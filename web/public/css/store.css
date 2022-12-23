@@ -1,0 +1,91 @@
+.content {
+  margin: 0 auto;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.store-navigation {
+  width: 100%;
+  border-right: 2px solid #2f2f2f;
+}
+
+.menu {
+  color: #ffffff;
+  background-color: #2f2f2f;
+  height: 3%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu h1 {
+  font-weight: 300;
+}
+.gender {
+  padding: 20px;
+}
+.gender h2 {
+  font-weight: 500;
+}
+.gender h2:hover {
+  font-weight: 900;
+  cursor: pointer;
+}
+.gender p {
+  font-weight: 100;
+}
+.gender p:hover {
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.collections {
+  padding: 10px;
+  width: calc(100% - 20px);
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 40px;
+  grid-template-rows: auto;
+  
+}
+
+.collection {
+  height: 500px
+}
+
+.nav {
+  height: 100%;
+  border-radius: 5px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+.name p{
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 200;
+}
+button {
+  margin: 24px;
+  width: 100px;  
+  height: 50px;
+  border-radius: 2px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transition: 0.2s;
+}
+button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  opacity: 90%;
+  cursor: pointer;
+}
+.description {
+  overflow-wrap: break-word;
+  height: 100%;
+  padding-left: 16px;
+}

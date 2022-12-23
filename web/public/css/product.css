@@ -1,0 +1,59 @@
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #fffefb;
+  display:block;
+  position: relative;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.navigation {
+  position: fixed;
+  width: 100%
+}
+.menu-bar {
+  padding-left: 16px;
+  height: 80px;
+  width: 100%;
+
+  display:grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+
+  color: #ffffff;
+  background-color: #000000;
+
+  align-items: center;
+}
+.esociety {
+  display: flex;
+  text-align: left;
+  align-items: center;
+}
+.esociety i {
+  font-size: 95%;
+}
+.esociety p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.collection-name {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+.product {
+  margin-top: 80px;
+  height: 100%;
+  width: 90%;
+  display: flex;
+}

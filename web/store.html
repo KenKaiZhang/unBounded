@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/css/navbar.css" />
+    <link rel="stylesheet" href="public/css/store.css" />
+    <script type="text/javascript" src="scripts/store.js"></script>
+    <title>eSociety</title>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="title">
+        <a href="/index.html">
+          <p>eSociety</p>
+        </a>
+      </div>
+      <div class="navbar">
+        <a id="active" href="/store.html"><p>STORE</p></a>
+        <a href="/join.html"><p>JOIN</p></a>
+        <a href="/about.html"><p>ABOUT</p></a>
+        <a href="/help.html"><p>HELP</p></a>
+      </div>
+    </div>
+    <div class="content">
+      <div class="store-navigation">
+        <div class="menu">
+          <h1>Menu</h1>
+        </div>
+        <div class="male gender">
+          <h2 onclick='goToProducts("male","all")'>Men<hr></h2>
+          <p onclick='goToProducts("male","Tops")'>Tops</p>
+          <p onclick='goToProducts("male","Bottoms")'>Bottoms</p>
+          <p onclick='goToProducts("male","Outwear")'>Outwear</p>
+          <p onclick='goToProducts("male","Assecories")'>Assecories</p>
+        </div>
+        <div class="female gender">
+          <h2 onclick='goToProducts("female","all")'>Women<hr></h2>
+          <p onclick='goToProducts("female","Tops")'>Tops</p>
+          <p onclick='goToProducts("female","Bottoms")'>Bottoms</p>
+          <p onclick='goToProducts("female","Outwear")'>Outwear</p>
+          <p onclick='goToProducts("female","Assecories")'>Assecories</p>
+        </div>
+      </div>
+      <div class="collections">
+      </div>
+      </div>
+    </div>
+    <script>
+      showCollections();
+    </script>
+  </body>
+</html>

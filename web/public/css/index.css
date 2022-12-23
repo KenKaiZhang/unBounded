@@ -1,0 +1,61 @@
+.content {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row: auto auto;
+}
+
+.box {
+  background-color: #383838;
+  border: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  transition: transform 0.2s;
+  transform-origin: left top;
+}
+.box a {
+  color: #fff5dd;
+  text-decoration: none;
+}
+.box p {
+  font-weight: 700;
+  letter-spacing: 0.25rem;
+  transform: scale(1, 0.9);
+}
+
+.content:hover > .box {
+  opacity: 0.95;
+  z-index: 0;
+}
+.content:hover > .store:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  transform-origin: left top;
+  box-shadow: 5px 5px;
+  z-index: 1;
+}
+.content:hover > .join:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  transform-origin: right top;
+  box-shadow: -5px 5px;
+  z-index: 1;
+}
+.content:hover > .help:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  transform-origin: left bottom;
+  box-shadow: 5px -5px;
+  z-index: 1;
+}
+.content:hover > .about:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  transform-origin: right bottom;
+  box-shadow: -5px -5px;
+  z-index: 1;
+}
