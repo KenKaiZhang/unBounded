@@ -1,61 +1,184 @@
-.content {
-  position: absolute;
-  width: 100%;
-  height: 90%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-row: auto auto;
+.title {
+  height: 80px;
+  background-color: black;
 }
-
-.box {
-  background-color: #383838;
-  border: 1px solid #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  transition: transform 0.2s;
-  transform-origin: left top;
-}
-.box a {
-  color: #fff5dd;
-  text-decoration: none;
-}
-.box p {
-  font-weight: 700;
-  letter-spacing: 0.25rem;
+.title p {
+  color: #fffefb;
+  font-weight: 300;
   transform: scale(1, 0.9);
 }
 
-.content:hover > .box {
-  opacity: 0.95;
-  z-index: 0;
+.content {
+  width: 100%;
+  height: 100%;
 }
-.content:hover > .store:hover {
-  opacity: 1;
-  transform: scale(1.5);
-  transform-origin: left top;
-  box-shadow: 5px 5px;
-  z-index: 1;
+
+.button {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #fffefb;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fffefb;
 }
-.content:hover > .join:hover {
-  opacity: 1;
-  transform: scale(1.5);
-  transform-origin: right top;
-  box-shadow: -5px 5px;
-  z-index: 1;
+
+.button:hover {
+  cursor: pointer;
+  background-color: #fffefb;
+  transition: 0.2s; 
 }
-.content:hover > .help:hover {
-  opacity: 1;
-  transform: scale(1.5);
-  transform-origin: left bottom;
-  box-shadow: 5px -5px;
-  z-index: 1;
+
+.button:hover p{
+  color: #000000;
+  font-weight: 900;
+  transition: 0.2s;
 }
-.content:hover > .about:hover {
-  opacity: 1;
-  transform: scale(1.5);
-  transform-origin: right bottom;
-  box-shadow: -5px -5px;
-  z-index: 1;
+
+.wrapper {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.store {
+  position: relative;
+  background-color: #302C2D;
+  width: calc(100% - 32px);
+  height: 750px;
+  display: flex;
+}
+
+.store .button-wrapper {
+  position: relative;
+  border-top: 4px solid #fffefb;
+  border-left: 4px solid #fffefb;
+  margin-top: 32px;
+  margin-left: 32px;
+  height: 60%;
+  width: 55%;
+}
+
+.store .button-wrapper .text p {
+  margin: 0;
+  margin-top: 16px;
+  margin-left: 16px;
+  color: #fffefb;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.store .button-wrapper .button {
+  position: absolute;
+  bottom: 0px;
+  margin-left: 16px;
+}
+
+.store .empty-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #fffefb;
+  border-right: 4px solid #fffefb;
+  margin-bottom: 32px;
+  margin-right: 32px;
+  height: 60%;
+  width: 55%;
+}
+
+.join {
+  margin-right: 8px;
+  margin-left: 16px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #302C2D;
+  flex: 1;
+  transition: 0.4s;
+}
+
+.join:hover {
+  flex: 6;
+}
+
+.join .button {
+  position: absolute;
+  margin-top: 450px;
+}
+
+.join .button a {
+  color:#fffefb;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.about {
+  margin-left: 8px;
+  margin-right: 16px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #302C2D;
+  flex: 1;
+  transition: 0.4s;
+}
+
+.about:hover {
+  flex: 6;
+}
+
+.about .button {
+  position: absolute;
+  margin-top: 450px;
+}
+
+.about .button a {
+  color:#fffefb;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.top-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 4px solid #fffefb;
+  border-left: 4px solid #fffefb;
+  margin-top: 8px;
+  margin-left: 8px;
+  height: 30%;
+  width: 30%;
+}
+
+.bottom-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #fffefb;
+  border-right: 4px solid #fffefb;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  height: 30%;
+  width: 30%;
+}
+
+.join-about-text {
+  position: relative;
+  width: 200px;
+  height: 350px;
+  border: 4px solid #fffefb;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.join-about-text p {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fffefb;
 }

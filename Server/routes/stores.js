@@ -38,6 +38,44 @@ router.get("/:storeId/products", getStore, async (req, res) => {
   }
 });
 
+// Getting all products from a store for a gender and style
+router.get(
+  "/:storeId/gender/:gender/style/:style",
+  getStore,
+  async (req, res) => {
+    try {
+      let storeGenderQuery;
+      if (req.params.style == "all") {
+        storeGenderQuery = {
+          store: res.store,
+          gender: req.params.gender,
+        };
+      } else {
+        storeGenderQuery = {
+          store: res.store,
+          gender: req.params.gender,
+          style: req.params.style,
+        };
+      }
+      const allStyles = await Product.find(storeGenderQuery);
+      res.status(200).json(allStyles);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+);
+
+// Getting all styles for a gender from a store
+router.get("/:storeId/style/:gender", getStore, async (req, res) => {
+  try {
+    const storeGenderQuery = { gender: req.params.gender, store: res.store };
+    const allStyles = await Product.distinct("style", storeGenderQuery);
+    res.status(200).json(allStyles);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Adding a store
 router.post("/", async (req, res) => {
   try {
@@ -85,7 +123,7 @@ router.delete("/:storeId", getStore, async (req, res) => {
 // Middleware
 async function getStore(req, res, next) {
   try {
-    target_store = await Store.findById(req.params.storeId);
+    const target_store = await Store.findById(req.params.storeId);
     if (!target_store)
       return res.status(404).json({ message: "Cannot find store." });
     res.store = target_store;

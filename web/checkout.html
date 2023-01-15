@@ -4,15 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/navbar.css" />
-    <link rel="stylesheet" href="public/css/product.css" />
-    
+    <link rel="stylesheet" href="public/css/checkout.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/show.js"></script>
     <script type="text/javascript" src="scripts/filter.js"></script>
     <script type="text/javascript" src="scripts/goto.js"></script>
     <script type="text/javascript" src="scripts/cart.js"></script>
-    <title>eSociety</title>
   </head>
   <body>
     <div class="navigation">
@@ -21,30 +19,43 @@
           <i class="material-icons">arrow_back_ios</i>
           <p>Products</p>
         </div>
-        <div class="collection-name">
-          <p>Testing Name</p>
+        <div class="checkout">
+          <p>CHECKOUT</p>
         </div>
-        <div class="cart" onclick="goToCart()">
-          <i class="material-icons">shopping_bag</i>
+        <div class="esociety blank" 
+            style="visibility: hidden;"
+        >
+          <i class="material-icons">arrow_back_ios</i>
+          <p>Products</p>
         </div>
       </div>
     </div>
     <div class="content">
-      <div class="product">
-        <div class="image">
+      <div class="bag">
+        <div class="top-corner"></div>
+        <h1>Your Cart</h1>
+        <div class="header">
+          <div class="item-info"><p>Product</p><hr></div>
+          <div class="item-quantity"><p>Quantity</p><hr></div>
+          <div class="item-price"><p>Price</p><hr></div>
         </div>
+        <div class="items">
+        </div>
+        <div class="cart-total">
+          <p id="subtotal-text"><b>Subtotal: </b></p>
+          <p id="subtotal"></p>
+        </div>
+      </div>
+      <div class="payment">
         <div class="info">
-          <div class="product-name"></div>
-          <div class="product-price"></div>
-          <button class="add-to-cart" onclick="addToCart(window.localStorage.getItem('selectedProduct'), 1)">
-            <p>ADD TO CART</p>
-          </button>
+          <h1>Payment Info</h1>
           <div class="bottom-corner"></div>
         </div>
       </div>
     </div>
     <script>
-      showProductInformation();
+      showCart()
     </script>
   </body>
 </html>
+ 

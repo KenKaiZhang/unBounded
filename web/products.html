@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/products.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script type="text/javascript" src="scripts/products.js"></script>
+    <script type="text/javascript" src="scripts/init.js"></script>
+    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/filter.js"></script>
+    <script type="text/javascript" src="scripts/goto.js"></script>
     <title>eSociety</title>
   </head>
   <body>
@@ -16,35 +19,39 @@
           <p>eSociety</p>
         </div>
         <div class="collection-name">
-          <p>Testing Name</p>
+          <p>All Products</p>
+        </div>
+        <div class="cart" onclick="goToCart()">
+          <i class="material-icons">shopping_bag</i>
         </div>
       </div>
       <div class="filter">
         <div class="bar">
-          <div class="menu" onclick="toggleNav()"><p>MENU</p></div>
+          <div class="menu" onclick="toggleFilterNav()"><p>MENU</p></div>
           <div class="male" 
-            onclick="showProducts(
-              'male',
-              'all'
-            ); styleFilters();"
+            onclick='showProducts(
+              "all",
+              "male",
+              "all"
+            ); showStyleFilters();''
           >
           <p>MEN</p>
           </div>
           <div class="female" 
             onclick='showProducts(
+              "all",
               "female",
               "all"
-            ); styleFilters();'
+            ); showStyleFilters();'
           >
             <p>WOMEN</p>
           </div>
           <div class="menu-counter"><p>MENU</p></div>
         </div>
-        <div class="side">
+        <div class="sidebar">
           <div class="styles">
             <h3>STYLES<hr/></h3>
           </div>
-          <div class="backdrop" onclick="toggleNav()"></div>
         </div>
       </div>
     </div>
@@ -53,8 +60,9 @@
       </div>
     </div>
     <script>
+      document.querySelector(`.${window.localStorage.getItem("gender")}`).classList.add("active")
       showProducts();
-      styleFilters();
+      showStyleFilters();
     </script>
   </body>
 </html>

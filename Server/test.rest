@@ -47,6 +47,9 @@ DELETE http://localhost:6969/products/63a410133be7003b90a282a7
 DELETE http://localhost:6969/stores/63a41480c890993afd6f6ec5
 ###
 
+GET http://localhost:6969/products/63a5608bc890993afd6f7491
+###
+
 POST http://localhost:6969/products
 Content-Type: application/json
 

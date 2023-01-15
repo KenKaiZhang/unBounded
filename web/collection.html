@@ -3,9 +3,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/css/products.css" />
     <link rel="stylesheet" href="public/css/collection.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script type="text/javascript" src="scripts/collection.js"></script>
+    <script type="text/javascript" src="scripts/init.js"></script>
+    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/filter.js"></script>
+    <script type="text/javascript" src="scripts/goto.js"></script>
     <title>eSociety</title>
   </head>
   <body>
@@ -17,18 +21,21 @@
       <div class="collection-name">
         <p>Testing Name</p>
       </div>
+      <div class="cart" onclick="goToCart()">
+        <i class="material-icons">shopping_bag</i>
+      </div>
     </div>
     <div class="welcome">
     </div>
     <div class="filter">
       <div class="bar">
-        <div class="menu" onclick="toggleNav()"><p>MENU</p></div>
+        <div class="menu" onclick="toggleFilterNav()"><p>MENU</p></div>
         <div class="male" 
-          onclick="showProducts(
-            window.localStorage.getItem('store'),
-            'male',
-            'all'
-          ); styleFilters();"
+          onclick='showProducts(
+            window.localStorage.getItem("store"),
+            "male",
+            "all"
+          ); showStyleFilters();''
         >
         <p>MEN</p>
         </div>
@@ -37,27 +44,27 @@
             window.localStorage.getItem("store"),
             "female",
             "all"
-          ); styleFilters();'
+          ); showStyleFilters();'
         >
           <p>WOMEN</p>
         </div>
         <div class="menu-counter"><p>MENU</p></div>
       </div>
-      <div class="side">
+      <div class="sidebar">
         <div class="styles">
           <h3>STYLES<hr/></h3>
         </div>
-        <div class="backdrop"></div>
       </div>
     </div>
+  </div>
     <div class="content">
       <div class="products">
       </div>
     </div>
     <script>
       showProducts();
-      stickyFilter();
-      styleFilters();
+      setStickyFilter();
+      showStyleFilters();
     </script>
   </body>
 </html>

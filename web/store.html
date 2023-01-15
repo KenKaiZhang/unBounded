@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/navbar.css" />
     <link rel="stylesheet" href="public/css/store.css" />
-    <script type="text/javascript" src="scripts/store.js"></script>
+    <script type="text/javascript" src="scripts/init.js"></script>
+    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/goto.js"></script>
     <title>eSociety</title>
   </head>
   <body>
@@ -25,21 +27,31 @@
     <div class="content">
       <div class="store-navigation">
         <div class="menu">
-          <h1>Menu</h1>
+          <h1>Explore Products</h1>
         </div>
         <div class="male gender">
-          <h2 onclick='goToProducts("male","all")'>Men<hr></h2>
-          <p onclick='goToProducts("male","Tops")'>Tops</p>
-          <p onclick='goToProducts("male","Bottoms")'>Bottoms</p>
-          <p onclick='goToProducts("male","Outwear")'>Outwear</p>
-          <p onclick='goToProducts("male","Assecories")'>Assecories</p>
+          <h2 onclick='goToProducts("all", "male", "all");'>Men<hr></h2>
+          <script>
+            const maleStyles = ["Tops", "Bottoms", "Outwear", "Assecories"];
+            maleStyles.map((style) => {
+              const styleP = document.createElement("p");
+              styleP.onclick = () => goToProducts("all", "male", style);
+              styleP.innerText = style;
+              document.querySelector(".male").appendChild(styleP)
+            })
+          </script>
         </div>
         <div class="female gender">
-          <h2 onclick='goToProducts("female","all")'>Women<hr></h2>
-          <p onclick='goToProducts("female","Tops")'>Tops</p>
-          <p onclick='goToProducts("female","Bottoms")'>Bottoms</p>
-          <p onclick='goToProducts("female","Outwear")'>Outwear</p>
-          <p onclick='goToProducts("female","Assecories")'>Assecories</p>
+          <h2 onclick='goToProducts("all", "female","all");'>Women<hr></h2>
+          <script>
+            const femaleStyles = ["Tops", "Bottoms", "Outwear", "Assecories"];
+            femaleStyles.map((style) => {
+              const styleP = document.createElement("p");
+              styleP.onclick = () => goToProducts("all", "female", style);
+              styleP.innerText = style;
+              document.querySelector(".female").appendChild(styleP)
+            })
+          </script>
         </div>
       </div>
       <div class="collections">

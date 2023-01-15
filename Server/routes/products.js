@@ -16,8 +16,33 @@ router.get("/", async (req, res) => {
 // Get a specific product
 router.get("/:productId", getProduct, async (req, res) => {
   try {
-    const target_product = req.product;
-    res.status(200).json(target_product);
+    res.status(200).json(res.product);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Getting all the styles added
+router.get("/style/:gender", async (req, res) => {
+  try {
+    const query = { gender: req.params.gender };
+    const allStyles = await Product.distinct("style", query);
+    res.status(200).json(allStyles);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Getting all the products filtered by gender adn style
+router.get("/gender/:gender/style/:style", async (req, res) => {
+  try {
+    let productQuery;
+    if (req.params.style == "all") {
+      productQuery = { gender: req.params.gender };
+    } else {
+      productQuery = { gender: req.params.gender, style: req.params.style };
+    }
+    res.status(200).json(await Product.find(productQuery));
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -111,7 +136,7 @@ router.delete("/:productId", getProduct, async (req, res) => {
 // Middleware
 async function getProduct(req, res, next) {
   try {
-    target_product = await Product.findById(req.params.productId);
+    const target_product = await Product.findById(req.params.productId);
     if (!target_product)
       return res.status(404).json({ message: "Cannot find product." });
     res.product = target_product;

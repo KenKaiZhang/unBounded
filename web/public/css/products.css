@@ -1,12 +1,13 @@
 body {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: Verdana,Geneva,sans-serif; 
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #fffefb;
+  background-color: #ffffff;
   display:block;
   position: relative;
+  font-weight: 100;
 }
 
 body::-webkit-scrollbar {
@@ -15,25 +16,28 @@ body::-webkit-scrollbar {
 
 .navigation {
   position: fixed;
-  width: 100%
+  width: 100%;
+  z-index: 3;
 }
 .menu-bar {
-  padding-left: 16px;
   height: 80px;
   width: 100%;
 
-  display:grid;
-  grid-template-columns: 33.33% 33.33% 33.33%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   color: #ffffff;
-  background-color: #000000;
+  background-color: #000000;;
 
   align-items: center;
+  z-index: 3;
 }
 .esociety {
   display: flex;
   text-align: left;
   align-items: center;
+  padding-left:24px;
 }
 .esociety i {
   font-size: 95%;
@@ -45,6 +49,18 @@ body::-webkit-scrollbar {
 .collection-name {
   text-align: center;
 }
+.cart{
+  padding-right:24px;
+  text-align: right;
+  align-items: center;
+}
+.cart i {
+  font-size: 150%;
+}
+.cart i:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .bar {
   display: flex;
@@ -53,8 +69,9 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 3px 3px 5px #000000;
+  box-shadow: 1px 1px 10px #707070;
   width: 100%;
+  z-index: 3;
 }
 .bar p{
   padding-left: 16px;
@@ -70,7 +87,24 @@ body::-webkit-scrollbar {
   transform: scale(1,0.9);
   transition: 0.2s;
 }
-.bar p:hover{
+.bar .menu:hover{
+  cursor: pointer;
+}
+.bar .menu:hover p {
+  cursor: pointer;
+  font-weight: 900;
+}
+.bar .male:hover{
+  cursor: pointer;
+}
+.bar .male:hover p {
+  cursor: pointer;
+  font-weight: 900;
+}
+.bar .female:hover{
+  cursor: pointer;
+}
+.bar .female:hover p {
   cursor: pointer;
   font-weight: 900;
 }
@@ -84,20 +118,30 @@ body::-webkit-scrollbar {
   margin-left: auto;
   visibility: hidden;
 }
-.side {
-  width: 100%;
-  height: 100vh;
-  top: 115px;
-  padding: 16px;
-  display: none;
-  left: 0;
+.sidebar {
   position: absolute;
+  display: flex;
+  width: 20%;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px #707070;
+  top: 130px;
+  left: -100vw;
+  padding-left: 16px;
+  opacity: 100%;
+  transition: 0.2s;
+  z-index: 2;
+}
+.sidebar.active {
+  left: 0;
 }
 .styles {
   float: left;
   width: 20%;
   height: 100vh;
-  background-color: #ffffff;
+}
+.styles hr {
+  width: 300%;
 }
 .styles p:hover{
   cursor: pointer;
@@ -106,16 +150,12 @@ body::-webkit-scrollbar {
 .style {
   margin-left: 16px;
 }
+.style p {
+  font-weight: 100;
+}
 .style:hover {
   cursor: pointer;
   font-weight: 900;
-}
-.backdrop {
-  float: right;
-  width: 80%;
-  height: 100vh;
-  background-color: #000000;
-  opacity: 80%;
 }
 
 .content {
@@ -126,27 +166,52 @@ body::-webkit-scrollbar {
 .products {
   display: grid;
   margin: 150px;
-  grid-template-columns: 200px 200px 200px 200px;
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-  width: 1500px;
-  justify-content: center;
+  grid-template-columns: 250px 250px 250px 250px;
+  grid-auto-rows: 350px;
+  grid-column-gap: 32px;
+  grid-row-gap: 32px;
 }
 .product {
-  height: 300px;
   width: 100%;
-  background-color: #ffffff;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  justify-content: center;
+  background-color: #fffdf5;
 }
 .product:hover {
   cursor: pointer;
-  box-shadow: 1.95px 1.95px 2.6px #757575;
+  box-shadow: 2px 1px 10px #b7b7b7;
 }
-.product img {
+.product .image {
   width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+.product .image img {
+  width: 75%;
   height: 70%;
+  z-index: 1;
+}
+.product .image .backdrop {
+  position: absolute;
+  background-color: #f6f3e7;
+  width: 85%;
+  height: 50%;
 }
 .product .info {
   height: 25%;
-  font-weight: 200;
-  font-size: 12px;
+  margin-left: 24px;
+}
+.product .info p{
+  height: 25%;
+  margin: 0px;
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
 }

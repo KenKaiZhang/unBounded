@@ -11,6 +11,7 @@ db.on("error", (err) => console.error(err));
 db.once("open", () => console.log("Connected to Database."));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: [
@@ -29,8 +30,5 @@ app.use("/products", productsRouter);
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
-
-const cartsRouter = require("./routes/carts");
-app.use("/carts", cartsRouter);
 
 app.listen(6969, () => console.log("NewFinds server listening on port 6969."));
