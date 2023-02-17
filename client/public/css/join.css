@@ -1,0 +1,198 @@
+.content {
+  background-color: #0e0e0e;
+  height: calc(100% - 100px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-box {
+  position: relative;
+  height: 350px;
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.globe-icon {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.globe-icon i {
+  color: #1e1e1e;
+  font-size: 500px;
+}
+
+.join-text {
+  text-align: center;
+  color: #fffefb;
+  z-index: 1;
+}
+.join-button {
+  margin-top: 32px;
+  height: 50px;
+  width: 150px;
+  background-color: transparent;
+  border: 2px solid #fffefb;
+  border-radius: 50px;
+  color: #fffefb;
+  font-weight: 700;
+  z-index: 1;
+}
+.join-button:hover {
+  background-color: #fffefb;
+  color: #000000;
+  cursor: pointer;
+}
+
+.join-form {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.join-form .info .field {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  font-size: 12px;
+}
+.join-form .info input[type="text"] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: transparent;
+  color: #fffefb;
+  border-bottom: 2px solid #fffefb;
+  font-size: 18px;
+  outline: none;
+}
+.join-form .info input[type="text"][required]:focus + label[placeholder]:before,
+.join-form
+  .info
+  input[type="text"][required]:valid
+  + label[placeholder]:before {
+  transition-duration: 0.2s;
+  transform: scale(0.9, 0.9) translate(-3px, -35px);
+}
+.join-form
+  .info
+  input[type="text"][required]:invalid
+  + label[placeholder][alt]:before {
+  content: attr(alt);
+}
+.join-form .info input[type="text"][required] + label[placeholder] {
+  display: block;
+  pointer-events: none;
+  margin-top: calc(-3em - 2px);
+}
+.join-form .info input[type="text"][required] + label[placeholder]:before {
+  content: attr(placeholder);
+  display: inline-block;
+  color: #fffefb;
+  transition: 0.3s ease-in-out;
+}
+
+.top-corner {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  left: 0;
+  border-top: 4px solid #fffefb;
+  border-left: 4px solid #fffefb;
+  height: 25%;
+  width: 25%;
+}
+.bottom-corner {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #fffefb;
+  border-right: 4px solid #fffefb;
+  height: 25%;
+  width: 25%;
+}
+
+.shift .welcome-box {
+  animation: 1s enlarge 1s forwards;
+}
+.shift .welcome {
+  animation: 1s shrink 1s forwards;
+}
+.shift .top-corner {
+  animation: straight 1s forwards, 1s collapse-right 1s forwards,
+    1s expand-left 2s forwards, 1s curve 2s forwards;
+}
+.shift .bottom-corner {
+  animation: straight 1s forwards, 1s collapse-left 1s forwards,
+    1s expand-right 2s forwards, 1s curve 2s forwards;
+}
+.shift .join-form {
+  animation: 1s expand 2s forwards;
+}
+
+@keyframes shrink {
+  100% {
+    transform: scale(0);
+    z-index: -1;
+  }
+}
+@keyframes straight {
+  100% {
+    height: 100%;
+    width: 0%;
+  }
+}
+@keyframes curve {
+  100% {
+    height: 30%;
+    width: 25%;
+  }
+}
+@keyframes collapse-right {
+  100% {
+    left: 50%;
+  }
+}
+@keyframes collapse-left {
+  100% {
+    right: 50%;
+  }
+}
+@keyframes expand-left {
+  100% {
+    left: 0;
+  }
+}
+@keyframes expand-right {
+  100% {
+    right: 0;
+  }
+}
+@keyframes enlarge {
+  100% {
+    height: 750px;
+    width: 550px;
+  }
+}
+@keyframes expand {
+  0% {
+    z-index: 1;
+    transform: scale(0);
+  }
+  100% {
+    z-index: 1;
+    transform: scale(1);
+  }
+}
