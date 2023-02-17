@@ -1,0 +1,218 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/css/general.css" />
+    <link rel="stylesheet" href="public/css/checkout.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="scripts/checkout.js" async></script>
+    <script type="text/javascript" src="scripts/cart.js" async></script>
+    <script type="text/javascript" src="scripts/init.js"></script>
+    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/goto.js"></script>
+    <script type="text/javascript" src="scripts/validate.js"></script>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="menu-bar">
+        <div class="unBounded" onclick="goToCollectionOrProducts()">
+          <i class="material-icons">arrow_back_ios</i>
+          <p>Products</p>
+        </div>
+        <div class="checkout">
+          <p>Checkout</p>
+        </div>
+        <div class="unBounded blank" 
+            style="visibility: hidden;"
+        >
+          <i class="material-icons">arrow_back_ios</i>
+          <p>Products</p>
+        </div>
+      </div>
+    </div>
+    <div class="registration">
+      <div class="top-corner"></div>
+      <div class="info">
+        <h1>Basic Information</h1>
+        <form id="registration-form">
+          <div class="user-name field">
+            <input id="user-name" required="" type="text">
+            <label id="user-name-label" alt="Full Name" placeholder='Full Name'></label>
+          </div>
+          <div class="user-email field">
+            <input id="user-email" required="" type="text">
+            <label id="user-email-label" alt="Email Address" placeholder='Email Address'></label>
+          </div>
+        </form>
+      </div>
+      <div class="continue" onclick="continueToCheckout()">
+        <p>Continue to checkout ></p>
+      </div>
+      <div class="bottom-corner"></div>
+    </div>
+    <div class="content">
+      <div class="bag">
+        <div class="top-corner"></div>
+        <div class="bag-content">
+          <div class="header">
+            <div class="item-info"><p>Product</p><hr></div>
+            <div class="item-quantity"><p>Quantity</p><hr></div>
+            <div class="item-price"><p>Price</p><hr></div>
+          </div>
+          <div class="items">
+          </div>
+        </div>
+        <div class="cart-total">
+          <p id="subtotal-text"><b>Subtotal: </b></p>
+          <p id="subtotal"></p>
+        </div>
+      </div>
+      <div class="address-payment">
+        <div class="basic">
+          <h2>Basic Information</h2>
+          <div class="user-info">
+            <p></p>
+          </div>
+        </div>
+        <div class="shipping">
+          <h2>Shipping</h2>
+          <p>Please enter your shipping details.</p>
+          <form id="shipping-form" class="form" onkeyup="enableSubmit()">
+            <div class="fields fields--2">
+              <label class="field">
+                <span class="field-label" for="firstname">First name</span>
+                <input class="field-input" type="text" id="firstname" />
+              </label>
+              <label class="field">
+                <span class="field-label" for="lastname">Last name</span>
+                <input class="field-input" type="text" id="lastname" />
+              </label>
+            </div>
+            <label class="field">
+              <span class="field-label" for="address">Address</span>
+              <input class="field-input" type="text" id="address" />
+            </label>
+            <div class="fields fields--3">
+              <label class="field">
+                <span class="field-label" for="zipcode">Zip code</span>
+                <input class="field-input" type="text" id="zipcode" />
+              </label>
+              <label class="field">
+                <span class="field-label" for="city">City</span>
+                <input class="field-input" type="text" id="city" />
+              </label>
+              <label class="field">
+                <span class="field-label" for="state">State</span>
+                <select class="field-input state" id="state">
+                  <option value=""></option>
+                </select>
+              </label>
+            </div>
+          </form>
+        </div>
+        <hr>
+        <div class="payment">
+          <h2>Payment</h2>
+          <p>Choose a payment method.</p>
+          <div class="paypal-button-wrapper" style="position: relative; z-index: 0">
+            <div id="paypal-button"></div>
+          </div>
+          <div class="or">
+            <p>or</p>
+          </div>
+          <form id="card-form" class="form" onkeyup="enableSubmit()">
+            <div class="fields fields--2">
+              <label class="field">
+                <span class="field-label" for="card-firstname">First name</span>
+                <input class="field-input" type="text" id="card-firstname" />
+              </label>
+              <label class="field">
+                <span class="field-label" for="card-lastname">Last name</span>
+                <input class="field-input" type="text" id="card-lastname" />
+              </label>
+            </div>
+            <label class="iframe field">
+              <span class="field-label" for="card-number">Card Number</span>
+              <div class="field-input" id="card-number"></div>
+            </label>
+            <div class="iframe fields fields--2">
+              <label class="iframe field">
+                <span class="field-label" for="cvv">CVV</span>
+                <div class="field-input" id="cvv"></div>
+              </label>
+              <label class="iframe field">
+                <span class="field-label" for="expiration">Expiration</span>
+                <div class="field-input" id="expiration"></div>
+              </label>
+            </div>
+            <div class="billing-add-toggle" onclick="enableSubmit()">
+              <input type="checkbox" id="switch" onclick="showBillingAddress()" checked/>
+              <label for="switch"></label>
+              <span class="toggle-text"><p>Billing address same as shipping.</p></span>
+            </div>
+            <div class="billing-address" onload="showBillingAddress()">
+              <div class="form">
+                <label class="field">
+                  <span class="field-label" for="billing-address">Address</span>
+                  <input class="field-input" type="text" id="billing-address" />
+                </label>
+                <div class="fields fields--3">
+                  <label class="field">
+                    <span class="field-label" for="billing-zipcode">Zip code</span>
+                    <input class="field-input" type="text" id="billing-zipcode" />
+                  </label>
+                  <label class="field">
+                    <span class="field-label" for="billing-city">City</span>
+                    <input class="field-input" type="text" id="billing-city" />
+                  </label>
+                  <label class="field">
+                    <span class="field-label" for="billing-state">State</span>
+                    <select class="field-input state" id="billing-state">
+                      <option value=""></option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="submit-button">
+              <button value="submit" id="submit" class="btn" disabled>Pay</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="results">
+      <div class="overlay"></div>
+      <div class="declined popout">
+        <div class="results-items">
+          <div class="symbol">
+            <i class="material-icons">close</i>
+          </div>
+          <p>Payment Declined</p>
+          <div class="close-button" onclick="closeResults()">
+            <button>Close</button>
+          </div>
+        </div>
+      </div>
+      <div class="accepted popout">
+        <div class="results-items">
+          <div class="symbol">
+            <i class="material-icons">done</i>
+          </div>
+          <p>Payment Processed</p>
+          <div class="close-button" onclick="closeResults()">
+            <button>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      showCart()
+      showStateOptions()
+      showBillingAddress()
+      showBasicInformation()
+    </script>
+  </body>
+</html>
+ 

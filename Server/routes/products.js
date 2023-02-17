@@ -6,8 +6,8 @@ const Product = require("../models/product");
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    const all_products = await Product.find();
-    res.status(200).json(all_products);
+    const allProducts = await Product.find();
+    res.status(200).json(allProducts);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -16,7 +16,8 @@ router.get("/", async (req, res) => {
 // Get a specific product
 router.get("/:productId", getProduct, async (req, res) => {
   try {
-    res.status(200).json(res.product);
+    const targetProduct = res.product;
+    res.status(200).json(targetProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -33,7 +34,7 @@ router.get("/style/:gender", async (req, res) => {
   }
 });
 
-// Getting all the products filtered by gender adn style
+// Getting all the products filtered by gender and style
 router.get("/gender/:gender/style/:style", async (req, res) => {
   try {
     let productQuery;
@@ -42,7 +43,8 @@ router.get("/gender/:gender/style/:style", async (req, res) => {
     } else {
       productQuery = { gender: req.params.gender, style: req.params.style };
     }
-    res.status(200).json(await Product.find(productQuery));
+    const targetProducts = await Product.find(productQuery);
+    res.status(200).json(targetProducts);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -51,13 +53,11 @@ router.get("/gender/:gender/style/:style", async (req, res) => {
 // Adding a product
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body.store);
-    const target_store = await Store.findById(req.body.store);
-    console.log(target_store);
-    if (!target_store) res.status(404).json("Store not found.");
+    const targetStore = await Store.findById(req.body.store);
+    if (!targetStore) res.status(404).json("Product's store not found.");
 
-    const new_product = new Product({
-      store: target_store,
+    const newProduct = new Product({
+      store: targetStore,
       name: req.body.name,
       price: req.body.price,
       image_url: req.body.image_url,
@@ -65,25 +65,12 @@ router.post("/", async (req, res) => {
       style: req.body.style,
       description: req.body.description,
     });
-    await new_product.save();
+    await newProduct.save();
 
-    console.log(target_store.male_styles.indexOf(req.body.style) == -1);
-    if (req.body.gender == "male") {
-      if (target_store.male_styles.indexOf(req.body.style) == -1) {
-        target_store.male_styles.push(req.body.style);
-        target_store.male_styles.sort();
-      }
-    } else if (req.body.gender == "female") {
-      if (target_store.female_styles.indexOf(req.body.style) == -1) {
-        target_store.female_styles.push(req.body.style);
-        target_store.female_styles.sort();
-      }
-    }
-
-    target_store.num_products++;
-    target_store.products.push(new_product);
-    result = await target_store.save();
-    res.status(201).json(result);
+    targetStore.num_products++;
+    targetStore.products.push(newProduct);
+    await targetStore.save();
+    res.status(201).json("New product successfully created.");
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -92,19 +79,17 @@ router.post("/", async (req, res) => {
 // Updating a specific product from a store
 router.patch("/:productId", getProduct, async (req, res) => {
   try {
-    const target_product = res.product;
-    if (req.body.name) target_product.name = req.body.name;
-    if (req.body.price) target_product.price = req.body.price;
-    if (req.body.image_url) target_product.image_url = req.body.image_url;
-    if (req.body.gender) target_product.gender = req.body.gender;
-    if (req.body.style) target_product.style = req.body.style;
-    if (req.body.description) target_product.description = req.body.description;
+    const targetProduct = res.product;
+    if (req.body.name) targetProduct.name = req.body.name;
+    if (req.body.price) targetProduct.price = req.body.price;
+    if (req.body.image_url) targetProduct.image_url = req.body.image_url;
+    if (req.body.gender) targetProduct.gender = req.body.gender;
+    if (req.body.style) targetProduct.style = req.body.style;
+    if (req.body.description) targetProduct.description = req.body.description;
     if (req.body.store || req.body.store_id)
-      res.status(400).json({
-        message: "Cannot change item's store location.",
-      });
-    await target_product.save();
-    res.status(200).json({ message: "Product updated." });
+      res.status(400).json("Changing product's store not allowed.");
+    await targetProduct.save();
+    res.status(200).json("Product succcessfully updated.");
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -113,21 +98,20 @@ router.patch("/:productId", getProduct, async (req, res) => {
 // Remove a specific product
 router.delete("/:productId", getProduct, async (req, res) => {
   try {
-    const target_product = res.product;
-    const target_store = await Store.findById(target_product.store);
-    if (target_store) {
-      for (let i = 0; i < target_store.num_products; i++) {
-        if (target_store.products[i]._id.equals(target_product._id)) {
-          target_store.products.splice(i, 1);
-          target_store.num_products--;
-          await target_store.save();
+    const targetProduct = res.product;
+    const targetStore = await Store.findById(targetProduct.store);
+    if (targetStore) {
+      for (let i = 0; i < targetStore.num_products; i++) {
+        if (targetStore.products[i]._id.equals(targetProduct._id)) {
+          targetStore.products.splice(i, 1);
+          targetStore.num_products--;
+          await targetStore.save();
           break;
         }
       }
     }
-
-    await target_product.remove();
-    res.status(200).json({ message: "Product removed from store." });
+    await targetProduct.remove();
+    res.status(200).json("Product successfully removed.");
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -136,10 +120,10 @@ router.delete("/:productId", getProduct, async (req, res) => {
 // Middleware
 async function getProduct(req, res, next) {
   try {
-    const target_product = await Product.findById(req.params.productId);
-    if (!target_product)
+    const targetProduct = await Product.findById(req.params.productId);
+    if (!targetProduct)
       return res.status(404).json({ message: "Cannot find product." });
-    res.product = target_product;
+    res.product = targetProduct;
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });
