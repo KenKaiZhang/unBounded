@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/:orderId", async (req, res) => {
+router.post("/order/:orderId", async (req, res) => {
   const mailContent = {
     from: "unboundedsw@gmail.com",
     to: "ken.cyc@gmail.com",
@@ -24,6 +24,22 @@ router.post("/:orderId", async (req, res) => {
       console.log(err);
     } else {
       console.log(success);
+    }
+  });
+});
+
+router.post("/partner_request", async (req, res) => {
+  const mailContent = {
+    from: req.body.email,
+    to: "unboundedsw@gmail.com",
+    subject: `${req.body.brand} (${req.body.id})partnership request`,
+    text: req.body.message,
+  };
+  transporter.sendMail(mailContent, (err, success) => {
+    if (err) {
+      res.status(503).json({ message: err.message });
+    } else {
+      res.status(200).json("Email sent successfully.");
     }
   });
 });

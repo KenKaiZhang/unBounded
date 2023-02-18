@@ -147,7 +147,6 @@ function enableSubmit() {
   if (enable) {
     const cardInputs = document.querySelectorAll("#card-form .field-input");
     const depth = document.querySelector("#switch").checked ? 4 : 0;
-    console.log(depth);
     for (let i = 0; i < cardInputs.length - depth; i++) {
       if (cardInputs[i].value == "") {
         document.querySelector("#submit").disabled = true;

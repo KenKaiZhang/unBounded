@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/public/css/general.css">
     <link rel="stylesheet" href="/public/css/join.css">
+    <script  type="text/javascript" src="scripts/join.js"></script>
+    <script  type="text/javascript" src="scripts/validate.js"></script>
     <title>unBounded</title>
 </head>
 <body>
@@ -27,12 +29,16 @@
       <div class="globe-icon">
         <i class="material-icons">public</i>
       </div>
-      <div class="welcome join-text">
-        <h2>BECOME A PARTNER<br>AND<br>HELP US UNBOUND THE WORLD</h2>
-      </div>
-      <button class="welcome join-button" onclick="document.querySelector('.content').classList.add('shift')">JOIN US</button>
 
-      <form class="join-form">
+      <div class="join-welcome">
+        <div class="join-text">
+          <h2>BECOME A PARTNER<br>AND<br>HELP US UNBOUND THE WORLD</h2>
+        </div>
+        <button class="join-button" onclick="document.querySelector('.content').classList.add('shift')">JOIN US</button>
+      </div>
+
+      <!-- onkeyup="activateSendMessage('.field input')" -->
+      <form class="join-form" >
         <div class="info">
           <div class="name field">
             <input id="name" required="" type="text">
@@ -54,16 +60,27 @@
             <input id="phone" required="" type="text">
             <label id="phone-label" placeholder='Phone Number'></label>
           </div>
-          <div class="message field">
-            <input id="message" required="" type="text">
-            <label id="message-label" placeholder='Message'></label>
+          <div class="message">
+            <label id="message-label">Message</label>
+            <textarea id="message"></textarea>
+          </div>
+          <div class="send-button">
+            <button 
+              id="send-message" 
+              onclick="document.querySelector('.content').classList.add('success')" 
+            >SEND MESSAGE</button>
           </div>
         </div>
       </form>
+
+      <div class="email-success">
+        <p>Your message was sent successfully.</p>
+        <h1>Thank you for reaching out!</h1>
+        <h4>If we determine your brand is fit for us, <br> we will contact you with the email you have provided</h4>
+      </div>
+      
       <div class="top-corner"></div>
       <div class="bottom-corner"></div>
-    </div>
-      
     </div>
   </div>
 </html>

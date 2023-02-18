@@ -40,7 +40,11 @@ app.use("/orders", ordersRouter);
 
 const paypalRouter = require("./routes/paypal");
 app.use("/paypal", paypalRouter);
+
 const emailRouter = require("./routes/email");
 app.use("/email", emailRouter);
+
+const waitlistRouter = require("./routes/waitlist");
+app.use("/waitlist", waitlistRouter);
 
 app.listen(7222, () => console.log("unBounded server listening on port 7222."));
