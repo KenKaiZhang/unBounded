@@ -1,0 +1,108 @@
+.content {
+  height: 100%;
+  width: 100%;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  height: calc(100% - 100px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in ease 0.5s;
+}
+.intro .text {
+  position: relative;
+  padding: 32px;
+  height: 30%;
+  width: 60%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.top-corner {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  left: 0;
+  border-top: 4px solid #000000;
+  border-left: 4px solid #000000;
+  height: 15%;
+  width: 25%;
+  animation: fade-in ease 2s;
+}
+.bottom-corner {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #000000;
+  border-right: 4px solid #000000;
+  height: 15%;
+  width: 25%;
+  animation: fade-in ease 2s;
+}
+
+.goal {
+  margin: 64px;
+  display: flex;
+  height: 50%;
+  width: auto;
+  justify-content: center;
+}
+.goal .image {
+  float: left;
+  height: 100%;
+  width: 50%;
+  max-width: 800px;
+  background-color: #000000;
+}
+.goal .image i {
+  float: left;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 700px;
+  color: #545454;
+}
+.goal .text-wrapper {
+  float: right;
+  display: flex;
+  margin-left: 3%;
+  height: 100%;
+  width: 47%;
+  max-width: 800px;
+  align-items: center;
+}
+.goal .text h2 {
+  font-size: 28px;
+}
+.goal .text p {
+  font-size: 20px;
+  margin-left: 8%;
+}
+
+.partners {
+  margin-top: 64px;
+  padding-top: 64px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

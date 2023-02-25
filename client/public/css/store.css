@@ -4,10 +4,10 @@
 
 .content {
   margin: 0 auto;
-  /* width: 1500px; */
   height: 90%;
   display: grid;
   grid-template-columns: 20% 80%;
+  animation: fade-in ease 0.1s;
 }
 
 .store-navigation {
@@ -55,7 +55,7 @@
 }
 
 .collection {
-  height: 500px
+  height: 500px;
 }
 
 .nav {
@@ -67,14 +67,14 @@
   align-items: center;
   background-size: cover;
 }
-.name p{
+.name p {
   color: #fffefb;
   font-size: 24px;
   font-weight: 200;
 }
 button {
   margin: 24px;
-  width: 100px;  
+  width: 100px;
   height: 50px;
   border-radius: 2px;
   background-color: transparent;
@@ -92,4 +92,13 @@ button:hover {
   overflow-wrap: break-word;
   height: 100%;
   padding-left: 16px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

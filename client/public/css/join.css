@@ -61,22 +61,26 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: -1;
 }
-.join-form .info {
-  width: 80%;
-  height: 100%;
-  margin-top: 32px;
+.contact-form {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.join-form .info .field {
+.contact-form .info {
+  width: 80%;
+  height: 80%;
+}
+.contact-form .info .field {
   margin-top: 16px;
   margin-bottom: 32px;
   font-size: 12px;
 }
-.join-form .info input[type="text"] {
+.contact-form .info input[type="text"] {
   width: 100%;
   height: 40px;
   margin-bottom: 20px;
@@ -87,36 +91,46 @@
   font-size: 18px;
   outline: none;
 }
-.join-form .info input[type="text"][required]:focus + label[placeholder]:before,
-.join-form
+
+.contact-form .info input:-webkit-autofill,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 20px #1f1f1f inset !important;
+  -webkit-text-fill-color: #fffefb;
+}
+
+.contact-form
+  .info
+  input[type="text"][required]:focus
+  + label[placeholder]:before,
+.contact-form
   .info
   input[type="text"][required]:valid
   + label[placeholder]:before {
   transition-duration: 0.2s;
-  transform: scale(0.9, 0.9) translate(-3px, -35px);
+  transform: scale(0.9, 0.9) translate(-3px, -45px);
 }
-.join-form
+.contact-form
   .info
   input[type="text"][required]:invalid
   + label[placeholder][alt]:before {
   content: attr(alt);
 }
-.join-form .info input[type="text"][required] + label[placeholder] {
+.contact-form .info input[type="text"][required] + label[placeholder] {
   display: block;
   pointer-events: none;
   margin-top: calc(-3em - 2px);
 }
-.join-form .info input[type="text"][required] + label[placeholder]:before {
+.contact-form .info input[type="text"][required] + label[placeholder]:before {
   content: attr(placeholder);
   display: inline-block;
   color: #fffefb;
   transition: 0.3s ease-in-out;
 }
-.join-form #message-label {
+.contact-form #message-label {
   color: #fffefb;
   font-size: 12px;
 }
-.join-form #message {
+.contact-form #message {
   margin-top: 8px;
   width: 100%;
   height: 30%;
@@ -126,27 +140,26 @@
   background-color: transparent;
   resize: none;
 }
-.join-form .send-button {
+.send-button {
   display: flex;
-  margin-top: 32px;
   justify-content: center;
 }
-.join-form .send-button button {
+.send-button button {
   background-color: transparent;
   height: 50px;
   width: 150px;
   color: #fffefb;
   border: 2px solid #fffefb;
   border-radius: 4px;
-  font-weight: 700;
+  font-weight: 500;
   transition: ease 0.5s;
 }
-.join-form .send-button button:hover {
+.send-button button:hover {
   background-color: #fffefb;
   color: #000000;
   cursor: pointer;
 }
-.join-form .send-button button:disabled,
+.send-button button:disabled,
 button[disabled] {
   border: 1px solid #676767;
   background-color: #676767;
@@ -154,17 +167,28 @@ button[disabled] {
   cursor: default;
 }
 
-.email-success {
+.email-result {
   position: absolute;
+  display: none;
+  padding: 32px;
   text-align: center;
   color: #fffefb;
-  z-index: -1;
+  background-color: #141414;
+  border: 2px solid #fffefb;
+  animation: popout 0.5s ease;
 }
-.email-success p {
+.email-result p {
   text-align: center;
   color: #fffefb;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 60%;
+}
+.email-result #close {
+  margin-top: 16px;
+}
+.email-result #close:hover {
+  opacity: 100%;
+  cursor: pointer;
 }
 
 .top-corner {
@@ -191,34 +215,21 @@ button[disabled] {
 }
 
 .shift .welcome-box {
-  animation: 1s enlarge 1s forwards;
+  animation: 0.8s enlarge 0.8s forwards;
 }
 .shift .join-welcome {
-  animation: 1s shrink 1s forwards;
+  animation: 0.8s shrink 0.8s forwards;
 }
 .shift .top-corner {
-  animation: straight 1s forwards, 1s collapse-right 1s forwards,
-    1s expand-left 2s forwards, 1s curve 2s forwards;
+  animation: straight 0.8s forwards, 0.8s collapse-right 0.8s forwards,
+    0.8s expand-left 1.5s forwards, 0.8s curve 1.5s forwards;
 }
 .shift .bottom-corner {
-  animation: straight 1s forwards, 1s collapse-left 1s forwards,
-    1s expand-right 2s forwards, 1s curve 2s forwards;
+  animation: straight 0.8s forwards, 0.8s collapse-left 0.8s forwards,
+    0.8s expand-right 1.5s forwards, 0.8s curve 1.5s forwards;
 }
 .shift .join-form {
-  animation: 1s expand 2s forwards;
-}
-
-.success .top-corner {
-  animation: wrap-left 1s forwards;
-}
-.success .bottom-corner {
-  animation: wrap-right 1s forwards;
-}
-.success .join-form {
-  animation: 1s shrink 1s forwards;
-}
-.success .email-success {
-  animation: 1s expand 1s forwards;
+  animation: 0.8s expand 1.5s forwards;
 }
 
 @keyframes fade-in {
@@ -243,7 +254,7 @@ button[disabled] {
 }
 @keyframes curve {
   100% {
-    height: 30%;
+    height: 25%;
     width: 25%;
   }
 }
@@ -286,26 +297,14 @@ button[disabled] {
     transform: scale(1);
   }
 }
-
-@keyframes decrease {
-  100% {
-    height: 200px;
-    width: 600px;
+@keyframes popout {
+  from {
+    transform: scale(0);
   }
-}
-@keyframes wrap-left {
-  100% {
-    top: 0;
-    left: 0;
-    width: 99%;
-    height: 99%;
+  80% {
+    transform: scale(1.2);
   }
-}
-@keyframes wrap-right {
-  100% {
-    bottom: 0;
-    right: 0;
-    width: 99%;
-    height: 99%;
+  to {
+    transform: scale(1);
   }
 }

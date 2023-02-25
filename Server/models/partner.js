@@ -8,6 +8,7 @@ const partnerSchema = new mongoose.Schema({
   email: { type: String, require: true },
   phone: { type: String, require: true },
   message: { type: String, require: true },
+  validated: { type: Boolean, default: false, require: true },
 });
 
 module.exports = mongoose.model("Partner", partnerSchema);

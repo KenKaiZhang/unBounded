@@ -31,10 +31,10 @@
 .button:hover {
   cursor: pointer;
   background-color: #fffefb;
-  transition: 0.2s; 
+  transition: 0.2s;
 }
 
-.button:hover p{
+.button:hover p {
   color: #000000;
   font-weight: 900;
   transition: 0.2s;
@@ -49,7 +49,7 @@
 
 .store {
   position: relative;
-  background-color: #302C2D;
+  background-color: #302c2d;
   width: calc(100% - 32px);
   height: 750px;
   display: flex;
@@ -95,9 +95,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #302C2D;
+  background-color: #302c2d;
   flex: 1;
-  transition: 0.4s;
+  transition: 0.6s;
 }
 .join:hover {
   flex: 6;
@@ -107,7 +107,7 @@
   margin-top: 450px;
 }
 .join .button a {
-  color:#fffefb;
+  color: #fffefb;
   text-decoration: none;
   font-size: 16px;
 }
@@ -119,9 +119,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #302C2D;
+  background-color: #302c2d;
   flex: 1;
-  transition: 0.4s;
+  transition: 0.6s;
 }
 .about:hover {
   flex: 6;
@@ -131,7 +131,7 @@
   margin-top: 450px;
 }
 .about .button a {
-  color:#fffefb;
+  color: #fffefb;
   text-decoration: none;
   font-size: 16px;
 }

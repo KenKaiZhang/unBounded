@@ -5,6 +5,7 @@ async function addToWaitlist() {
   const email = document.querySelector("#email").value;
   const phone = document.querySelector("#phone").value;
   const message = document.querySelector("#message").value;
+
   let partnerId = "";
   await fetch("https://data.unboundedsw.com/waitlist", {
     method: "POST",
@@ -35,12 +36,16 @@ async function addToWaitlist() {
     body: JSON.stringify({
       id: partnerId,
       email: email,
+      brand: brandName,
       message: message,
     }),
   }).then((res) => {
-    if (res.status == 200) {
-      document.querySelector(".content").classList.add("success");
-    }
+    console.log(res.status);
+    const msg = res.status == 200 ? ".success" : ".failed";
+    console.log(msg);
+    document.querySelector(".email-result").style.display = "block";
+    document.querySelector(msg).style.display = "block";
+    document.querySelector(".welcome-box").style.opacity = "10%";
   });
   console.log("SENT");
 }
@@ -48,4 +53,9 @@ async function addToWaitlist() {
 function activateSendMessage(formId) {
   const sendButton = document.querySelector("#send-message");
   sendButton.disabled = !validateFieldsFilled(formId);
+}
+
+function closeEmailResults() {
+  document.querySelector(".email-result").style.display = "none";
+  document.querySelector(".welcome-box").style.opacity = "100%";
 }
