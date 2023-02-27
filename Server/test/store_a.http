@@ -1,0 +1,7 @@
+POST https://data.unboundedsw.com/stores
+Content-Type: application/json
+
+{
+    "name": "Partner A",
+    "country": "Canada"
+}

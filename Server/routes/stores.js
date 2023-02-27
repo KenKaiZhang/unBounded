@@ -80,6 +80,7 @@ router.post("/", async (req, res) => {
   try {
     const newStore = new Store({
       name: req.body.name,
+      country: req.body.country,
       num_products: 0,
       store_image: req.body.store_image,
       products: [],
