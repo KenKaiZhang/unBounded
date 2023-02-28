@@ -1,67 +1,28 @@
-/**
- * Shows all the collection available in the database.
- */
-
-async function showCollections() {
-  const collectionsHTML = document.getElementsByClassName("collections")[0];
-  collectionsHTML.innerHTML = "";
-
-  const URL = "https://data.unboundedsw.com/stores";
-  await fetch(URL, {
+async function showAvailableCountries() {
+  const productNavHTML = document.querySelector(".countries-filter");
+  await fetch("http://localhost:1232/brands/countries", {
     method: "GET",
     headers: {
       Accept: "application/json",
     },
   })
     .then((res) => res.json())
-    .then((collections) => {
-      collections.map((collection, index) => {
-        const newCollection = document.createElement("div");
-        newCollection.classList.add("collection");
-        newCollection.id = collection._id;
-
-        const collectionNav = document.createElement("div");
-        collectionNav.classList.add("nav");
-        collectionNav.style.backgroundImage = `url(${collection.store_image})`;
-
-        const collectionName = document.createElement("div");
-        collectionName.classList.add("name");
-        const name = document.createElement("p");
-        name.innerText = collection.name;
-        collectionName.appendChild(name);
-
-        const navButtons = document.createElement("div");
-        navButtons.classList.add("buttons");
-        const menButton = document.createElement("button");
-        menButton.classList.add("men");
-        menButton.innerText = "MEN";
-        menButton.onclick = () => goToCollection(collection._id, "male", "all");
-        const womenButton = document.createElement("button");
-        womenButton.classList.add("women");
-        womenButton.innerText = "WOMEN";
-        womenButton.onclick = () =>
-          goToCollection(collection._id, "female", "all");
-        navButtons.appendChild(menButton);
-        navButtons.appendChild(womenButton);
-
-        collectionNav.appendChild(collectionName);
-        collectionNav.appendChild(navButtons);
-
-        const collectionDescription = document.createElement("div");
-        collectionDescription.classList.add("description");
-        collectionDescription.innerText = "THIS IS A TEMPORARY TEXT HOLDER!";
-
-        const evenRow = index % 2 == 0;
-        collectionNav.style.float = evenRow ? "left" : "right";
-        collectionNav.style.width = "60%";
-        collectionDescription.style.float = evenRow ? "right" : "left";
-        collectionDescription.style.width = "37%";
-
-        newCollection.appendChild(collectionNav);
-        newCollection.appendChild(collectionDescription);
-        collectionsHTML.appendChild(newCollection);
-      });
+    .then((countries) => {
+      countries.map((country) => {
+        const newCountry = document.createElement("li");
+        newCountry.innerText = country;
+        productNavHTML.appendChild(newCountry)
+      })
     });
+}
+
+/**
+ * Shows all the brands available in the database.
+ */
+
+async function showBrands() {
+  const brandsHTML = document.querySelector("brands");
+  
 }
 
 /**

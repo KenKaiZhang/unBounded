@@ -7,7 +7,19 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const allBrands = await Brand.find();
-    res.status(200).json({ message: allBrands });
+    res.status(200).json(allBrands);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get available countries
+router.get("/countries", async (req, res) => {
+  try {
+    console.log("TRIGGER");
+    const allCountries = await Brand.distinct("country");
+    console.log(allCountries);
+    res.status(200).json(allCountries);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

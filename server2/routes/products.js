@@ -33,10 +33,10 @@ router.get("/filter", async (req, res) => {
   }
 });
 
-// Get the different styles
-router.get("/styles", async (req, res) => {
+// Get the different options from query
+router.post("/options", async (req, res) => {
   try {
-    const allStyles = await Product.distinct("style", req.body);
+    const allStyles = await Product.distinct(req.body.option, req.body.query);
     res.status(200).json({ message: allStyles });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -23,43 +23,24 @@
         <a href="/join.html"><p>JOIN</p></a>
         <a href="/help.html"><p>HELP</p></a>
       </div>
+
+    </div>
+    <div class="products-navigation">
+      <div class="option" id="style">
+        <p>MEN</p>
+      </div>
+      <div class="option" id="GENDER">
+        <p>WOMEN</p>
+      </div>
     </div>
     <div class="content">
-      <div class="store-navigation">
-        <div class="menu">
-          <h1>Explore All Products</h1>
-        </div>
-        <div class="male gender">
-          <h2 onclick='goToProducts("all", "male", "all");'>Men<hr></h2>
-          <script>
-            const maleStyles = ["Tops", "Bottoms", "Outwear", "Assecories"];
-            maleStyles.map((style) => {
-              const styleP = document.createElement("p");
-              styleP.onclick = () => goToProducts("all", "male", style);
-              styleP.innerText = style;
-              document.querySelector(".male").appendChild(styleP)
-            })
-          </script>
-        </div>
-        <div class="female gender">
-          <h2 onclick='goToProducts("all", "female","all");'>Women<hr></h2>
-          <script>
-            const femaleStyles = ["Tops", "Bottoms", "Outwear", "Assecories"];
-            femaleStyles.map((style) => {
-              const styleP = document.createElement("p");
-              styleP.onclick = () => goToProducts("all", "female", style);
-              styleP.innerText = style;
-              document.querySelector(".female").appendChild(styleP)
-            })
-          </script>
-        </div>
+      <div class="countries-filter">
+        <h1>Explore brands from...</h1>
+        <li>Everywhere</li>
       </div>
-      <div class="collections">
-      </div>
-      </div>
+      <div class="brands"></div>
     </div>
-    <script>
-      showCollections();
-    </script>
+
   </body>
+  <script>showAvailableCountries()</script>
 </html>

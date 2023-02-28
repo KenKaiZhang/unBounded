@@ -2,6 +2,20 @@
   font-size: 24px;
 }
 
+.products-navigation {
+  height: 60px;
+  width: 100%;
+  background-color: #c8c8c8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-navigation .option {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
 .content {
   margin: 0 auto;
   height: 90%;
@@ -10,95 +24,21 @@
   animation: fade-in ease 0.1s;
 }
 
-.store-navigation {
-  width: 100%;
-  border-right: 2px solid #161616;
-}
-
-.menu {
-  color: #fffefb;
-  background-color: #161616;
-  height: 5%;
-  width: 100%;
-  display: flex;
-}
-.menu h1 {
-  padding-left: 16px;
-  font-weight: 100;
-  font-size: 20px;
-}
-.gender {
+.countries-filter{
   padding: 16px;
+  height: 100%;
+  width: 100%;
+  position: sticky;
+  border-right: 4px solid #c8c8c8;
+  list-style: none;
 }
-.gender h2 {
-  font-weight: 500;
+.countries-filter li {
+  padding-left: 16px;
 }
-.gender h2:hover {
+.countries-filter li:hover {
   font-weight: 900;
   cursor: pointer;
 }
-.gender p {
-  font-weight: 100;
-}
-.gender p:hover {
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.collections {
-  padding: 16px;
-  width: calc(100% - 20px);
-  display: grid;
-  grid-template-columns: 100%;
-  grid-row-gap: 40px;
-  grid-template-rows: auto;
-}
-
-.collection {
-  height: 500px;
-}
-
-.nav {
-  height: 100%;
-  border-radius: 5px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-size: cover;
-}
-.name p {
-  color: #fffefb;
-  font-size: 24px;
-  font-weight: 200;
-}
-button {
-  margin: 24px;
-  width: 100px;
-  height: 50px;
-  border-radius: 2px;
-  background-color: transparent;
-  color: #fffefb;
-  border: 2px solid #fffefb;
-  transition: 0.2s;
-}
-button:hover {
-  background-color: #fffefb;
-  color: #000000;
-  opacity: 90%;
-  cursor: pointer;
-}
-.description {
-  overflow-wrap: break-word;
-  height: 100%;
-  padding-left: 16px;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.countries-filter h1{
+  font-size: 18px;
 }
