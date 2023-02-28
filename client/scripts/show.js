@@ -1,6 +1,6 @@
 async function showAvailableCountries() {
   const productNavHTML = document.querySelector(".countries-filter");
-  await fetch("http://localhost:1232/brands/countries", {
+  await fetch("http://localhost:1232/brands/options/countries", {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -11,18 +11,67 @@ async function showAvailableCountries() {
       countries.map((country) => {
         const newCountry = document.createElement("li");
         newCountry.innerText = country;
-        productNavHTML.appendChild(newCountry)
-      })
+        newCountry.onclick = () => showBrands(country);
+        productNavHTML.appendChild(newCountry);
+      });
     });
 }
 
 /**
- * Shows all the brands available in the database.
+ * Shows brands by country selected
  */
+async function showBrands(country = "everywhere") {
+  const brandsHTML = document.querySelector(".brands");
+  brandsHTML.innerHTML = "";
+  const URL = `http://localhost:1232/brands/country/${country}`;
+  await fetch(URL, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((brands) => {
+      brands.map((brand) => {
+        const newBrand = document.createElement("div");
+        newBrand.id = brand._id;
 
-async function showBrands() {
-  const brandsHTML = document.querySelector("brands");
-  
+        const brandNavigation = document.createElement("div");
+        brandNavigation.classList.add("brand-navigation");
+        brandNavigation.style.background = "#000000";
+
+        const brandName = document.createElement("div");
+        brandName.classList.add("name");
+        const name = document.createElement("p");
+        name.innerText = brand.name;
+        brandName.appendChild(name);
+        brandNavigation.appendChild(brandName);
+
+        const navButtons = document.createElement("div");
+        navButtons.classList.add("buttons");
+        const menButton = document.createElement("button");
+        menButton.classList.add("men");
+        menButton.innerText = "MEN";
+        menButton.onclick = () => goToBrand(brand._id, "Men");
+        const womenButton = document.createElement("button");
+        womenButton.classList.add("women");
+        womenButton.innerText = "WOMEN";
+        womenButton.onclick = () => goToBrand(brand._id, "Women");
+
+        navButtons.appendChild(menButton);
+        navButtons.appendChild(womenButton);
+
+        brandNavigation.appendChild(navButtons);
+
+        const brandText = document.createElement("div");
+        brandText.classList.add("brand-text");
+        brandText.innerText = brand.description;
+
+        newBrand.appendChild(brandNavigation);
+        newBrand.appendChild(brandText);
+        brandsHTML.appendChild(newBrand);
+      });
+    });
 }
 
 /**
@@ -48,7 +97,8 @@ async function showProductInformation() {
 
       const productName = document.querySelector(".product-name");
       const name = document.createElement("h1");
-      name.innerHTML = `${product.name}<hr>`;
+      //name.innerHTML = `${product.name}<hr>`;
+      name.innerHTML = "Bwankie is cute";
       productName.appendChild(name);
 
       const productPrice = document.querySelector(".product-price");
@@ -61,32 +111,32 @@ async function showProductInformation() {
 /**
  * Show all products (filtered by gender).
  */
-async function showProducts(
-  store = window.localStorage.getItem("store"),
-  gender = window.localStorage.getItem("gender"),
-  style = window.localStorage.getItem("style")
-) {
-  console.log(store, gender, style);
+async function showProducts() {
+  const brand = window.localStorage.getItem("brand");
+  const gender = window.localStorage.getItem("gender");
+  const style = window.localStorage.getItem("style");
+  console.log(brand, gender, style);
   const active = document.getElementsByClassName("active")[0];
   if (active) active.classList.remove("active");
   document.querySelector(`.${gender}`).classList.add("active");
-
   const productsHTML = document.getElementsByClassName("products")[0];
   productsHTML.innerHTML = "";
 
-  const URL =
-    store == "all"
-      ? `https://data.unboundedsw.com/products/gender/${gender}/style/${style}`
-      : `https://data.unboundedsw.com/stores/${store}/gender/${gender}/style/${style}`;
-
-  await fetch(URL, {
-    method: "GET",
+  await fetch("http://localhost:1232/products/filter", {
+    method: "POST",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      brand: brand === null ? { $ne: null } : brand,
+      gender: gender === null ? { $ne: null } : gender,
+      style: style === null ? { $ne: null } : style,
+    }),
   })
     .then((res) => res.json())
     .then((products) => {
+      console.log(products);
       products.map((product) => {
         const newProduct = document.createElement("div");
         newProduct.classList.add("product");
@@ -96,8 +146,8 @@ async function showProducts(
         const productImage = document.createElement("div");
         productImage.classList.add("image");
         const image = document.createElement("img");
-        image.src = product.image_url;
-        image.alt = "product_img";
+        // image.src = product.image_url;
+        // image.alt = "product_img";
         const productImageBackdrop = document.createElement("div");
         productImageBackdrop.classList.add("backdrop");
         productImage.appendChild(image);

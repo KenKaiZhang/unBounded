@@ -38,37 +38,103 @@ function setStickyFilter() {
  * collection (for collection.html) or just simply by the gender (which is used
  * for both sorts since male and femal have different styles of clothing).
  */
-function showStyleFilters() {
+function showStyleFilters(gender) {
+  window.localStorage.removeItem("style");
+
+  const brandId = window.localStorage.getItem("brand");
+  if (gender !== undefined) {
+    window.localStorage.setItem("gender", gender);
+  }
+  const selectedGender = window.localStorage.getItem("gender");
+  console.log(selectedGender);
   const stylesHTML = document.querySelector(".styles");
-  stylesHTML.innerHTML = "<h3>STYLES<hr/></h3>";
+  stylesHTML.innerHTML = "";
 
-  const collectionId = window.localStorage.getItem("store");
-  const gender = document.querySelector(".active").classList[0];
+  const allStyles = document.createElement("div");
+  allStyles.classList.add("style");
+  allStyles.onclick = () => {
+    window.localStorage.removeItem("style");
+    showProducts();
+  };
+  allStyles.innerHTML = `<p>All Styles</p>`;
+  stylesHTML.appendChild(allStyles);
 
-  const URL =
-    collectionId == "all"
-      ? `https://data.unboundedsw.com/products/style/${gender}`
-      : `https://data.unboundedsw.com/stores/${collectionId}/style/${gender}`;
-
-  fetch(URL, {
-    method: "GET",
+  fetch("http://localhost:1232/products/options", {
+    method: "POST",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      option: "style",
+      query: {
+        gender: selectedGender,
+        brand: brandId === null ? { $ne: null } : brandId,
+      },
+    }),
   })
     .then((res) => res.json())
     .then((styles) => {
       styles.map((style) => {
-        const styleDiv = document.createElement("div");
-        styleDiv.classList.add("style");
-        styleDiv.onclick = () => showProducts(collectionId, gender, style);
-        const styleText = document.createElement("p");
-        styleText.innerText = style;
-        styleDiv.appendChild(styleText);
-        stylesHTML.appendChild(styleDiv);
+        const newStyle = document.createElement("div");
+        newStyle.classList.add("style");
+        newStyle.onclick = () => {
+          window.localStorage.setItem("style", style);
+          showProducts();
+        };
+        newStyle.innerHTML = `<p>${style}</p>`;
+        stylesHTML.appendChild(newStyle);
       });
     });
 }
+
+// function showCountryFilters(gender) {
+//   window.localStorage.removeItem("style");
+
+//   if (gender !== undefined) {
+//     window.localStorage.setItem("gender", gender);
+//   }
+//   const selectedGender = window.localStorage.getItem("gender");
+//   const countriesHTML = document.querySelector(".countries");
+//   countriesHTML.innerHTML = "";
+
+//   const allCountries = document.createElement("div");
+//   allCountries.classList.add("style");
+//   allCountries.onclick = () => {
+//     window.localStorage.removeItem("style");
+//     showProducts();
+//   };
+//   allCountries.innerHTML = `<p>All Countries</p>`;
+//   countriesHTML.appendChild(allCountries);
+
+//   fetch("http://localhost:1232/products/options", {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       option: "country",
+//       query: {
+//         gender: selectedGender,
+//       },
+//     }),
+//   })
+//     .then((res) => res.json())
+//     .then((countries) => {
+//       console.log(countries);
+//       countries.map((country) => {
+//         const newCountry = document.createElement("div");
+//         newCountry.classList.add("country");
+//         newCountry.onclick = () => {
+//           window.localStorage.setItem("country", country);
+//           showProducts();
+//         };
+//         newCountry.innerHTML = `<p>${country}</p>`;
+//         stylesHTML.appendChild(newCountry);
+//       });
+//     });
+// }
 
 // Opens and close the filter menu.
 function toggleFilterNav() {

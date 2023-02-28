@@ -13,10 +13,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get available countries
-router.get("/countries", async (req, res) => {
+// Get a specific brand
+router.get("/:brandId", getBrand, async (req, res) => {
   try {
-    console.log("TRIGGER");
+    const targetBrand = res.brand;
+    res.status(200).json({ message: targetBrand });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get available countries
+router.get("/options/countries", async (req, res) => {
+  try {
     const allCountries = await Brand.distinct("country");
     console.log(allCountries);
     res.status(200).json(allCountries);
@@ -25,11 +34,15 @@ router.get("/countries", async (req, res) => {
   }
 });
 
-// Get a specific brand
-router.get("/:brandId", getBrand, async (req, res) => {
+// Get all the brands from a country
+router.get("/country/:country", async (req, res) => {
   try {
-    const targetBrand = res.brand;
-    res.status(200).json({ message: targetBrand });
+    const query =
+      req.params.country === "everywhere"
+        ? {}
+        : { country: req.params.country };
+    const allBrands = await Brand.find(query);
+    res.status(200).json(allBrands);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

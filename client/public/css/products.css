@@ -1,11 +1,11 @@
 body {
-  font-family: Verdana,Geneva,sans-serif; 
+  font-family: Verdana, Geneva, sans-serif;
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  display:block;
+  display: block;
   position: relative;
   font-weight: 100;
 }
@@ -24,12 +24,12 @@ body::-webkit-scrollbar {
   position: fixed;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fffefb;
   box-shadow: 1px 1px 10px #707070;
   width: 100%;
   z-index: 3;
 }
-.bar p{
+.bar p {
   padding-left: 16px;
   padding-right: 16px;
 
@@ -40,31 +40,31 @@ body::-webkit-scrollbar {
   font-weight: 500;
 
   letter-spacing: 0.5rem;
-  transform: scale(1,0.9);
+  transform: scale(1, 0.9);
   transition: 0.2s;
 }
-.bar .menu:hover{
+.bar .menu:hover {
   cursor: pointer;
 }
 .bar .menu:hover p {
   cursor: pointer;
   font-weight: 900;
 }
-.bar .male:hover{
+.bar .men:hover {
   cursor: pointer;
 }
-.bar .male:hover p {
-  cursor: pointer;
-  font-weight: 900;
-}
-.bar .female:hover{
-  cursor: pointer;
-}
-.bar .female:hover p {
+.bar .men:hover p {
   cursor: pointer;
   font-weight: 900;
 }
-.active p{
+.bar .women:hover {
+  cursor: pointer;
+}
+.bar .women:hover p {
+  cursor: pointer;
+  font-weight: 900;
+}
+.active p {
   font-weight: 900;
 }
 .menu {
@@ -76,7 +76,8 @@ body::-webkit-scrollbar {
 }
 .sidebar {
   position: absolute;
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   width: 20%;
   height: 100vh;
   background-color: #ffffff;
@@ -91,20 +92,26 @@ body::-webkit-scrollbar {
 .sidebar.active {
   left: 0;
 }
+.sidebar h1 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+.sidebar hr {
+  width: 80%;
+  height: 4px;
+  margin: 0;
+}
 .styles {
   float: left;
-  width: 20%;
-  height: 100vh;
+  width: 100%;
 }
-.styles hr {
-  width: 300%;
-}
-.styles p:hover{
+.styles p:hover {
   cursor: pointer;
   font-weight: 900;
 }
 .style {
   margin-left: 16px;
+  margin-bottom: 16px;
 }
 .style p {
   font-weight: 100;
@@ -163,7 +170,7 @@ body::-webkit-scrollbar {
   height: 25%;
   margin-left: 24px;
 }
-.product .info p{
+.product .info p {
   height: 25%;
   margin: 0px;
   margin-top: 8px;

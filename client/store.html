@@ -23,24 +23,25 @@
         <a href="/join.html"><p>JOIN</p></a>
         <a href="/help.html"><p>HELP</p></a>
       </div>
-
     </div>
     <div class="products-navigation">
-      <div class="option" id="style">
+      <div class="option" id="men" onclick="goToProducts('Men')">
         <p>MEN</p>
       </div>
-      <div class="option" id="GENDER">
+      <div class="option" id="women" onclick="goToProducts('Women')">
         <p>WOMEN</p>
       </div>
     </div>
     <div class="content">
       <div class="countries-filter">
         <h1>Explore brands from...</h1>
-        <li>Everywhere</li>
+        <li onclick="showBrands('everywhere')">Everywhere</li>
       </div>
       <div class="brands"></div>
     </div>
-
   </body>
-  <script>showAvailableCountries()</script>
+  <script>
+    showAvailableCountries();
+    showBrands();
+  </script>
 </html>

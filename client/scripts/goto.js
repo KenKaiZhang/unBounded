@@ -4,22 +4,22 @@
  * HTML to another.
  */
 
-function goToStore() {
+function returnToStore() {
+  window.localStorage.removeItem("brand");
+  window.localStorage.removeItem("gender");
+  window.localStorage.removeItem("style");
   window.location.href = "/store.html";
 }
 
-function goToCollection(collectionId, gender, style) {
-  window.localStorage.setItem("store", collectionId);
+function goToBrand(brandId, gender) {
+  window.localStorage.setItem("brand", brandId);
   window.localStorage.setItem("gender", gender);
-  window.localStorage.setItem("style", style);
-  window.location.href = "/collection.html";
+  window.localStorage.removeItem("style");
+  window.location.href = `/brand.html`;
 }
 
-function goToProducts(collectionId, gender, style) {
-  window.localStorage.setItem("store", collectionId);
+function goToProducts(gender) {
   window.localStorage.setItem("gender", gender);
-  window.localStorage.setItem("style", style);
-
   window.location.href = "/products.html";
 }
 

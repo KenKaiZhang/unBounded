@@ -15,30 +15,79 @@
   margin-left: 32px;
   margin-right: 32px;
 }
+.products-navigation .option:hover {
+  cursor: pointer;
+  font-weight: 900;
+}
 
 .content {
-  margin: 0 auto;
   height: 90%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 18% calc(82% - 16px);
   animation: fade-in ease 0.1s;
 }
 
-.countries-filter{
+.countries-filter {
   padding: 16px;
   height: 100%;
-  width: 100%;
-  position: sticky;
+  width: calc (100% - 32px);
   border-right: 4px solid #c8c8c8;
   list-style: none;
 }
 .countries-filter li {
   padding-left: 16px;
+  margin-bottom: 16px;
 }
 .countries-filter li:hover {
   font-weight: 900;
   cursor: pointer;
 }
-.countries-filter h1{
-  font-size: 18px;
+.countries-filter h1 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.brands {
+  display: grid;
+  padding: 16px;
+  height: 100%;
+  width: calc (100% - 32px);
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  grid-template-rows: auto;
+}
+.brand-navigation {
+  height: 500px;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.brand-navigation .name {
+  color: #fffefb;
+  font-size: 24px;
+}
+.brand-navigation button {
+  margin: 24px;
+  width: 100px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: transparent;
+  color: #fffefb;
+  border: 2px solid #fffefb;
+  transition: 0.2s;
+}
+.brand-navigation button:hover {
+  background-color: #fffefb;
+  color: #000000;
+  opacity: 90%;
+  cursor: pointer;
+}
+.brand-text {
+  padding: 16px 16px 0px 16px;
+  height: 100px;
+  width: calc(100% - 32px);
 }
