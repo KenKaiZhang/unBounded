@@ -40,3 +40,10 @@ function goToCollectionOrProducts() {
 function goToCart() {
   window.location.href = "/checkout.html";
 }
+
+function goToPage(page) {
+  window.parent.location.href = page;
+}
+function goToLink(link) {
+  window.parent.location.href = link;
+}

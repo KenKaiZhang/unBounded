@@ -13,20 +13,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-#company-name {
-  font-family: "Bodoni MT", Didot, "Didot LT STD", "Book Antiqua", Garamond,
-    "Times New Roman", serif;
-  font-size: 24px;
-}
-
-.navigation {
-  width: 100%;
-  height: 100px;
-  background-color: #161616;
-  display: block;
-  z-index: 3;
-}
-
 .menu-bar {
   height: 80px;
   width: 100%;
@@ -73,51 +59,8 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+footer iframe{
   width: 100%;
-  height: 60%;
-}
-.title a {
-  color: #fffefb;
-  font-size: 28px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.navbar {
-  display: flex;
-  width: 100%;
-  height: 30%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.navbar a {
-  margin-left: 16px;
-  margin-right: 16px;
-  display: inline-block;
-
-  color: #fffefb;
-  text-align: center;
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 100;
-
-  letter-spacing: 0.1rem;
-  transition: 0.2s;
-}
-
-.navbar a:hover {
-  font-weight: 900;
-}
-
-#active {
-  font-weight: 900;
-  color: #fffefb;
+  height: 325px;
+  border: none;
 }

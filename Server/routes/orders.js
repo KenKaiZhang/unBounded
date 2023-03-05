@@ -1,23 +1,23 @@
-const express = require("express");
-const router = express.Router();
-const Order = require("../models/order");
+import express from "express";
+import { Cart, Order } from "../database.js";
 
-// Create a new order
+const router = express.Router();
+
 router.post("/", async (req, res) => {
   try {
     const newOrder = new Order({
-      userName: req.body.name,
-      orderId: req.body.id,
-      orderItems: req.body.items,
+      customerName: req.body.customerName,
+      customerCart: req.body.customerCart,
+      orderId: req.body.orderId,
       orderTotal: req.body.total,
       orderDate: new Date(),
       orderAddress: req.body.address,
     });
     const result = await newOrder.save();
-    res.status(200).json(result);
+    res.status(200).json({ message: result });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-module.exports = router;
+export default router;

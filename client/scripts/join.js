@@ -59,3 +59,10 @@ function closeEmailResults() {
   document.querySelector(".email-result").style.display = "none";
   document.querySelector(".welcome-box").style.opacity = "100%";
 }
+
+async function joinNewsLetter() {
+  const email = document.querySelector("#email").value;
+  if (email !== "") {
+    console.log("YES");
+  }
+}

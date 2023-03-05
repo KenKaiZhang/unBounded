@@ -1,158 +1,111 @@
-const express = require("express");
+import express from "express";
+import { Cart, Customer, Product } from "../database.js";
+
 const router = express.Router();
-const Product = require("../models/product");
-const Customer = require("../models/customer");
-const Cart = require("../models/cart");
 
-// Get all customers
-router.get("/", async (req, res) => {
-  try {
-    const allCustomers = await Customer.find();
-    res.status(200).json(allCustomers);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Get a specific customer
+// Get customer information
 router.get("/:customerId", getCustomer, async (req, res) => {
   try {
     const targetCustomer = res.customer;
-    res.status(200).json(targetCustomer);
+    res.status(200).json({ message: targetCustomer });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// Get customer's cart
+// Get customer cart
 router.get("/:customerId/cart", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
-    res.status(200).json(targetCart);
+    res.status(200).json({ message: targetCart });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// Add a customer
+// Make a new customer and assign a new cart
 router.post("/", async (req, res) => {
-  console.log("ADDING CUSTOMER");
   try {
-    // Make a new cart for customer.
-    const newCart = new Cart({
-      user: null,
-      items: [],
-      total: 0,
-    });
-
-    // Make a new customer and link cart.
     const newCustomer = new Customer({
       name: req.body.name,
       email: req.body.email,
-      cart: newCart._id,
+      phone: req.body.phone,
     });
-    await newCustomer.save();
+    const newCart = new Cart({
+      customer: newCustomer._id,
+    });
+    newCustomer.cart = newCart._id;
 
-    // Link customer to cart.
-    newCart.user = newCustomer;
+    await newCustomer.save();
     await newCart.save();
-    res.status(201).json(newCustomer);
+    res.status(201).json(newCustomer._id);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// Add item to customer's cart
-router.post("/:customerId/add_item", getCustomer, async (req, res) => {
+// Add item to cart
+router.patch("/:customerId/addItem", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
+    const cartItems = targetCart.items;
     const wantedProduct = await Product.findById(req.body.product);
-    const items = targetCart.items;
 
-    const match = items.filter((obj) => {
-      return obj.product.equals(wantedProduct._id);
+    const match = cartItems.filter((obj) => {
+      return obj.product.qeuals(wantedProduct._id);
     })[0];
     if (match) {
-      match.quantity++;
-      match.product_total += wantedProduct.price;
+      match.quantity += 1;
+      match.productTotal += wantedProduct.price;
     } else {
-      const item = {
+      const newItem = {
         product: wantedProduct,
         quantity: req.body.quantity,
-        product_total: wantedProduct.price * req.body.quantity,
+        productTotal: wantedProduct.price * req.body.quantity,
       };
-      targetCart.items.push(item);
+      cartItems.push(newItem);
     }
     updateCartTotal(targetCart);
     await targetCart.save();
-    res.status(202).json(`Item successfully added to cart.`);
+    res.status(202).json({ message: "Item successfully added to cart." });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
-
-// Change item quantity from customer's cart
-router.post("/:customerId/change_item", getCustomer, async (req, res) => {
+// Change item quantity in cart
+router.patch("/:customerId/changeItemQ", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
     const wantedItem = targetCart.items.find(
-      (item) => item._id == req.body.itemId
+      (item) => item._id === req.body.itemId
     );
     const itemProduct = await Product.findById(wantedItem.product);
     const productPrice = Number(itemProduct.price);
 
     if (req.body.quantity > 0) {
       wantedItem.quantity = req.body.quantity;
-      wantedItem.product_total = wantedItem.quantity * productPrice;
+      wantedItem.productTotal = wantedItem.quantity * productPrice;
     } else {
-      const index = targetCart.items.findIndex(
-        (item) => item._id == req.body.itemId
+      const index = targetcart.items.findIndex(
+        (item) => item._id === req.body.itemId
       );
       targetCart.items.splice(index, 1);
     }
     updateCartTotal(targetCart);
     await targetCart.save();
-    res.status(200).json(wantedItem);
+    res.status(200).json({ message: wantedItem });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
-
-// Update customer information
-router.patch("/:customerId", getCustomer, async (req, res) => {
-  try {
-    const targetCustomer = res.customer;
-    if (req.body.name) targetCustomer.name = req.body.name;
-    if (req.body.email) targetCustomer.email = req.body.email;
-    await targetCustomer.save();
-    res.status(200).json("Customer information successfully updated.");
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Clear customer's cart
-router.patch("/:customerId/new_cart", getCustomer, async (req, res) => {
+// Give customer a new cart
+router.patch("/:customerId/newCart", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
     targetCart.items = [];
-    targetCart.total = 0;
+    targetCart.subtotal = 0;
     await targetCart.save();
-    res.status(200).json(targetCart);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Remove a customer
-router.delete("/:customerId", getCustomer, async (req, res) => {
-  try {
-    const targetCustomer = res.user;
-    const targetCart = Cart.findById(targetCustomer.cart);
-
-    await targetCart.remove();
-    await targetCustomer.remove();
-    res.status(200).json("Customer successfully removed.");
+    res.status(200).json({ message: targetCart });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -162,9 +115,7 @@ async function getCustomer(req, res, next) {
   try {
     const targetCustomer = await Customer.findById(req.params.customerId);
     if (!targetCustomer)
-      return res
-        .status(404)
-        .json({ message: "Cannot find customer with associate id." });
+      return res.status(404).json({ message: "Cannot find customer." });
     res.customer = targetCustomer;
     res.cart = await Cart.findById(targetCustomer.cart);
     next();
@@ -175,9 +126,9 @@ async function getCustomer(req, res, next) {
 
 function updateCartTotal(targetCart) {
   const targetCartItems = targetCart.items;
-  targetCart.total = targetCartItems.reduce((sum, item) => {
-    return sum + item.product_total;
+  targetCart.subtotal = targetCartItems.reduce((sum, item) => {
+    return sum + item.productTotal;
   }, 0);
 }
 
-module.exports = router;
+export default router;
