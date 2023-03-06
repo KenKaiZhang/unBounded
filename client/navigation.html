@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/navigation.css">
+  <script type="text/javascript" src="scripts/goto.js"></script>
+</head>
+<body>
+  <div class="title">
+      <p id="company-name" onclick="goToLink('/')">unBounded</p>
+  </div>
+  <div class="navbar">
+    <li id="store" onclick="goToLink('/store.html', 'store')">STORE</li>
+    <li id="about" onclick="goToLink('/about.html', 'about')">ABOUT</li>
+    <li id="join" onclick="goToLink('/join.html', 'join')">JOIN</li>
+    <li id="help" onclick="goToLink('/help.html', 'help')">HELP</li>
+  </div>
+</body>
+<script>
+  const url = window.parent.location.href.split("/")
+  const page = url[url.length - 1].replace('.html', "")
+  document.querySelector(`.navbar #${page}`).classList.add("active")
+</script>
+</html>

@@ -5,8 +5,12 @@
 .title {
   height: 80px;
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .title p {
+  margin: 0;
   color: #fffefb;
   font-weight: 300;
   transform: scale(1, 0.9);

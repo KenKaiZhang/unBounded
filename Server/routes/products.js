@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const allProducts = await Product.find();
-    res.status(200).json({ message: allProducts });
+    res.status(200).json(allProducts);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 router.get("/:productId", getProduct, async (req, res) => {
   try {
     const targetProduct = res.product;
-    res.status(200).json({ message: targetProduct });
+    res.status(200).json(targetProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -26,7 +26,6 @@ router.get("/:productId", getProduct, async (req, res) => {
 // Get products accepted by filter
 router.post("/filter", async (req, res) => {
   try {
-    console.log(req.body);
     const targetProducts = await Product.find(req.body);
     res.status(200).json(targetProducts);
   } catch (err) {
@@ -37,9 +36,7 @@ router.post("/filter", async (req, res) => {
 // Get the different options from query
 router.post("/options", async (req, res) => {
   try {
-    console.log(req.body);
     const allOptions = await Product.distinct(req.body.option, req.body.query);
-    console.log(allOptions);
     res.status(200).json(allOptions);
   } catch (err) {
     res.status(500).json({ message: err.message });

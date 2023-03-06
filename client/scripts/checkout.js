@@ -1,8 +1,7 @@
-const userId = document.cookie.split("userId=")[1];
 async function setClient() {
   const head = document.querySelector("head");
   const clientScript = document.createElement("script");
-  await fetch("https://data.unboundedsw.com/paypal/create-client", {
+  await fetch(`${baseUrl}/paypal/createClient`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -34,7 +33,7 @@ async function continueToCheckout() {
       userEmail.style.borderBottom = "2px solid #FF8E76";
     }
   } else {
-    await fetch(`https://data.unboundedsw.com/customers/${userId}`, {
+    await fetch(`${baseUrl}/customers/${customerId}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -56,15 +55,16 @@ async function continueToCheckout() {
 }
 
 async function checkUserInfo() {
-  await fetch(`https://data.unboundedsw.com/customers/${userId}`, {
+  await fetch(`${baseUrl}/customers/${customerId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
     },
   })
     .then((res) => res.json())
-    .then((user) => {
-      if (user.name != "New Customer" && user.email != null) {
+    .then((customer) => {
+      console.log(customer.name);
+      if (customer.name !== undefined && customer.email !== undefined) {
         const resgistrationHTML = document.querySelector(".registration");
         const contentHTML = document.querySelector(".content");
         resgistrationHTML.style.display = "none";
@@ -76,7 +76,7 @@ async function checkUserInfo() {
 async function createOrder(orderId) {
   let userName;
   let userCart;
-  await fetch(`https://data.unboundedsw.com/customers/${userId}`, {
+  await fetch(`${baseUrl}/customers/${customerId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -86,7 +86,7 @@ async function createOrder(orderId) {
     .then((user) => {
       userName = user.name;
     });
-  await fetch(`https://data.unboundedsw.com/customers/${userId}/cart`, {
+  await fetch(`${baseUrl}/customers/${customerId}/cart`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -96,7 +96,7 @@ async function createOrder(orderId) {
     .then((cart) => {
       userCart = cart;
     });
-  await fetch(`https://data.unboundedsw.com/orders`, {
+  await fetch(`${baseUrl}/orders`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -119,7 +119,7 @@ async function createOrder(orderId) {
 }
 
 async function clearCart() {
-  fetch(`https://data.unboundedsw.com/customers/${userId}/new_cart`, {
+  fetch(`${baseUrl}/customers/${customerId}/new_cart`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -134,14 +134,14 @@ async function clearCart() {
 }
 
 async function sendOrderEmail(orderId) {
-  await fetch(`https://data.unboundedsw.com/email/${orderId}`, {
+  await fetch(`${baseUrl}/email/${orderId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userId: userId,
+      userId: customerId,
     }),
   });
 }

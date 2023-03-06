@@ -1,6 +1,6 @@
 .content {
   background-color: #1c1c1c;
-  height: calc(100% - 100px);
+  height: calc(100vh - 115px);
   width: 100%;
   display: flex;
   justify-content: center;

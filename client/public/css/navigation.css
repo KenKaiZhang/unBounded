@@ -1,7 +1,8 @@
-.navigation {
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  margin: 0;
   width: 100%;
   height: 115px;
-  background-color: #161616;
   display: block;
   z-index: 3;
 }
@@ -14,11 +15,14 @@
   width: 100%;
   height: 60%;
 }
-.title a {
+.title p {
   color: #fffefb;
   font-size: 28px;
   font-weight: 500;
   text-decoration: none;
+}
+.title p:hover {
+  cursor: pointer;
 }
 
 .navbar {
@@ -30,7 +34,7 @@
   text-align: center;
 }
 
-.navbar a {
+.navbar li {
   margin-left: 16px;
   margin-right: 16px;
   display: inline-block;
@@ -46,11 +50,12 @@
   transition: 0.2s;
 }
 
-.navbar a:hover {
+.navbar li:hover {
+  cursor: pointer;
   font-weight: 900;
 }
 
-#active {
+.navbar .active {
   font-weight: 900;
   color: #fffefb;
 }

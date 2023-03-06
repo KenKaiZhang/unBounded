@@ -1,0 +1,12 @@
+.menu-bar {
+  position: fixed;
+}
+
+.welcome {
+  background-color: #000000;
+  height: 95vh;
+}
+
+.filter .bar {
+  position: relative;
+}

@@ -22,13 +22,13 @@ paypal
     },
 
     createOrder: () => {
-      return fetch("https://data.unboundedsw.com/paypal/orders/create-order", {
+      return fetch(`${baseUrl}/paypal/orders/createOrder`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: document.cookie.split("userId=")[1],
+          userId: customerId,
         }),
       })
         .then((response) => response.json())
@@ -36,12 +36,9 @@ paypal
     },
     onApprove: (data, actions) => {
       console.log("ORDER ID: ", data.orderID);
-      return fetch(
-        `https://data.unboundedsw.com/paypal/orders/${data.orderID}/capture`,
-        {
-          method: "POST",
-        }
-      )
+      return fetch(`${baseUrl}/paypal/orders/${data.orderID}/capture`, {
+        method: "POST",
+      })
         .then((response) => response.json())
         .then(() => {
           createOrder(data.orderID)
@@ -58,13 +55,13 @@ if (paypal.HostedFields.isEligible()) {
   let orderId;
   paypal.HostedFields.render({
     createOrder: () => {
-      return fetch("https://data.unboundedsw.com/paypal/orders/create-order", {
+      return fetch(`${baseUrl}/paypal/orders/createOrder`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: document.cookie.split("userId=")[1],
+          userId: customerId,
         }),
       })
         .then((res) => res.json())
@@ -123,12 +120,9 @@ if (paypal.HostedFields.isEligible()) {
         })
         .then(() => {
           console.log("AFTER CLICKED");
-          fetch(
-            `https://data.unboundedsw.com/paypal/orders/${orderId}/capture`,
-            {
-              method: "POST",
-            }
-          )
+          fetch(`${baseUrl}/paypal/orders/${orderId}/capture`, {
+            method: "POST",
+          })
             .then((res) => res.json())
             .then((orderData) => {
               const errorDetail =

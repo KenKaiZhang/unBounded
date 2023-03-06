@@ -38,28 +38,24 @@ function setStickyFilter() {
  * collection (for collection.html) or just simply by the gender (which is used
  * for both sorts since male and femal have different styles of clothing).
  */
-function showStyleFilters(gender) {
-  window.localStorage.removeItem("style");
+function showStyleFilters() {
+  const request = JSON.parse(window.localStorage.getItem("request"));
+  console.log(request);
 
-  const brandId = window.localStorage.getItem("brand");
-  if (gender !== undefined) {
-    window.localStorage.setItem("gender", gender);
-  }
-  const selectedGender = window.localStorage.getItem("gender");
-  console.log(selectedGender);
   const stylesHTML = document.querySelector(".styles");
   stylesHTML.innerHTML = "";
 
   const allStyles = document.createElement("div");
   allStyles.classList.add("style");
   allStyles.onclick = () => {
-    window.localStorage.removeItem("style");
+    delete request.style;
+    window.localStorage.setItem("request", JSON.stringify(request));
     showProducts();
   };
   allStyles.innerHTML = `<p>All Styles</p>`;
   stylesHTML.appendChild(allStyles);
 
-  fetch("http://localhost:1232/products/options", {
+  fetch(`${baseUrl}/products/options`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -67,10 +63,7 @@ function showStyleFilters(gender) {
     },
     body: JSON.stringify({
       option: "style",
-      query: {
-        gender: selectedGender,
-        brand: brandId === null ? { $ne: null } : brandId,
-      },
+      query: request,
     }),
   })
     .then((res) => res.json())
@@ -79,7 +72,8 @@ function showStyleFilters(gender) {
         const newStyle = document.createElement("div");
         newStyle.classList.add("style");
         newStyle.onclick = () => {
-          window.localStorage.setItem("style", style);
+          request.style = style;
+          window.localStorage.setItem("request", JSON.stringify(request));
           showProducts();
         };
         newStyle.innerHTML = `<p>${style}</p>`;
@@ -107,7 +101,7 @@ function showStyleFilters(gender) {
 //   allCountries.innerHTML = `<p>All Countries</p>`;
 //   countriesHTML.appendChild(allCountries);
 
-//   fetch("http://localhost:1232/products/options", {
+//   fetch("${baseUrl}/products/options", {
 //     method: "POST",
 //     headers: {
 //       Accept: "application/json",
@@ -137,9 +131,24 @@ function showStyleFilters(gender) {
 // }
 
 // Opens and close the filter menu.
+
 function toggleFilterNav() {
   const content = document.querySelector(".content");
   if (content.offsetTop - document.body.scrollTop < 130) {
     document.querySelector(".sidebar").classList.toggle("active");
   }
+}
+
+function barGenderFilterEvent() {
+  const genders = ["Men", "Women"];
+  genders.map((gender) => {
+    document.querySelector(`#${gender.toLocaleLowerCase()}`).onclick = () => {
+      const request = JSON.parse(window.localStorage.getItem("request"));
+      delete request.style;
+      request.gender = gender;
+      window.localStorage.setItem("request", JSON.stringify(request));
+      showStyleFilters();
+      showProducts();
+    };
+  });
 }

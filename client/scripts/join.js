@@ -7,7 +7,7 @@ async function addToWaitlist() {
   const message = document.querySelector("#message").value;
 
   let partnerId = "";
-  await fetch("https://data.unboundedsw.com/waitlist", {
+  await fetch(`${baseUrl}/waitlist`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -27,7 +27,7 @@ async function addToWaitlist() {
       partnerId = response;
     });
 
-  await fetch("https://data.unboundedsw.com/email/partner_request", {
+  await fetch(`${baseUrl}/email/partnerRequest`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -40,9 +40,7 @@ async function addToWaitlist() {
       message: message,
     }),
   }).then((res) => {
-    console.log(res.status);
     const msg = res.status == 200 ? ".success" : ".failed";
-    console.log(msg);
     document.querySelector(".email-result").style.display = "block";
     document.querySelector(msg).style.display = "block";
     document.querySelector(".welcome-box").style.opacity = "10%";
@@ -58,11 +56,4 @@ function activateSendMessage(formId) {
 function closeEmailResults() {
   document.querySelector(".email-result").style.display = "none";
   document.querySelector(".welcome-box").style.opacity = "100%";
-}
-
-async function joinNewsLetter() {
-  const email = document.querySelector("#email").value;
-  if (email !== "") {
-    console.log("YES");
-  }
 }

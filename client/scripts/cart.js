@@ -1,7 +1,8 @@
-const user = document.cookie.split("userId=")[1];
+const customer = document.cookie.split("userId=")[1];
+
 async function addToCart(productId, quantity) {
-  fetch(`https://data.unboundedsw.com/customers/${user}/add_item`, {
-    method: "POST",
+  fetch(`${baseUrl}/customers/${customerId}/addItem`, {
+    method: "PATCH",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -16,8 +17,8 @@ async function addToCart(productId, quantity) {
 }
 
 async function changeCartQuantity(itemId, quantity) {
-  return fetch(`https://data.unboundedsw.com/customers/${user}/change_item`, {
-    method: "POST",
+  return fetch(`${baseUrl}/customers/${customerId}/changeItem`, {
+    method: "PATCH",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -34,7 +35,7 @@ async function changeCartQuantity(itemId, quantity) {
 }
 
 async function getCartTotal() {
-  return fetch(`https://data.unboundedsw.com/customers/${user}/cart`, {
+  return fetch(`${baseUrl}/customers/${customerId}/cart`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -44,4 +45,10 @@ async function getCartTotal() {
     .then((cart) => {
       return cart;
     });
+}
+
+function cartButtonEvent() {
+  const targetProduct = window.localStorage.getItem("product");
+  document.querySelector(".add-to-cart").onclick = () =>
+    addToCart(targetProduct, 1);
 }

@@ -1,16 +1,18 @@
-if (document.cookie == "") {
-  console.log("HERE");
-  fetch("https://data.unboundedsw.com/customers", {
+const baseUrl = "http://localhost:7222";
+
+if (document.cookie === "" || document.cookie === undefined) {
+  fetch(`${baseUrl}/customers`, {
     method: "POST",
     headers: {
       Accept: "application/json",
     },
   })
     .then((res) => res.json())
-    .then((user) => {
-      console.log("THere");
-      document.cookie = `userId=${user._id};`;
+    .then((customer) => {
+      console.log(customer);
+      document.cookie = `userId=${customer};`;
+      console.log(document.cookie);
     });
 }
-
-console.log("COOKIE: ", document.cookie);
+const customerId = document.cookie.split("userId=")[1];
+console.log(customerId);

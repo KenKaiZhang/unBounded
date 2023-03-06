@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
-    <link rel="stylesheet" href="/public/css/navigation.css">
     <link rel="stylesheet" href="public/css/store.css" />
     <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/show.js"></script>
@@ -12,19 +11,9 @@
     <title>unBounded</title>
   </head>
   <body>
-    <div class="navigation">
-      <div class="title">
-        <a href="/">
-          <p id="company-name">unBounded</p>
-        </a>
-      </div>
-      <div class="navbar">
-        <a id="active" href="/store.html"><p>STORE</p></a>
-        <a href="/about.html"><p>ABOUT</p></a>
-        <a href="/join.html"><p>JOIN</p></a>
-        <a href="/help.html"><p>HELP</p></a>
-      </div>
-    </div>
+    <nav>
+      <iframe src="navigation.html"></iframe>
+    </nav>
     <div class="products-navigation">
       <div class="option" id="men" onclick="goToProducts('Men')">
         <p>MEN</p>
@@ -41,7 +30,7 @@
       <div class="brands"></div>
     </div>
     <footer>
-      <iframe src="footer.html" iframetag></iframe>
+      <iframe src="footer.html"></iframe>
     </footer>
   </body>
   <script>

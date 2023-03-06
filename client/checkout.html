@@ -4,12 +4,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
-    <link rel="stylesheet" href="/public/css/navigation.css">
     <link rel="stylesheet" href="public/css/checkout.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/checkout.js" async></script>
     <script type="text/javascript" src="scripts/cart.js" async></script>
-    <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/show.js"></script>
     <script type="text/javascript" src="scripts/goto.js"></script>
     <script type="text/javascript" src="scripts/validate.js"></script>
@@ -17,16 +19,14 @@
   <body>
     <div class="navigation">
       <div class="menu-bar">
-        <div class="unBounded" onclick="goToCollectionOrProducts()">
+        <div class="unBounded" onclick="goToBrandOrProducts()">
           <i class="material-icons">arrow_back_ios</i>
           <p>Products</p>
         </div>
         <div class="checkout">
           <p>Checkout</p>
         </div>
-        <div class="unBounded blank" 
-            style="visibility: hidden;"
-        >
+        <div class="unBounded blank" style="visibility: hidden">
           <i class="material-icons">arrow_back_ios</i>
           <p>Products</p>
         </div>
@@ -38,12 +38,20 @@
         <h1>Basic Information</h1>
         <form id="registration-form">
           <div class="user-name field">
-            <input id="user-name" required="" type="text">
-            <label id="user-name-label" alt="Full Name" placeholder='Full Name'></label>
+            <input id="user-name" required="" type="text" />
+            <label
+              id="user-name-label"
+              alt="Full Name"
+              placeholder="Full Name"
+            ></label>
           </div>
           <div class="user-email field">
-            <input id="user-email" required="" type="text">
-            <label id="user-email-label" alt="Email Address" placeholder='Email Address'></label>
+            <input id="user-email" required="" type="text" />
+            <label
+              id="user-email-label"
+              alt="Email Address"
+              placeholder="Email Address"
+            ></label>
           </div>
         </form>
       </div>
@@ -57,12 +65,20 @@
         <div class="top-corner"></div>
         <div class="bag-content">
           <div class="header">
-            <div class="item-info"><p>Product</p><hr></div>
-            <div class="item-quantity"><p>Quantity</p><hr></div>
-            <div class="item-price"><p>Price</p><hr></div>
+            <div class="item-info">
+              <p>Product</p>
+              <hr />
+            </div>
+            <div class="item-quantity">
+              <p>Quantity</p>
+              <hr />
+            </div>
+            <div class="item-price">
+              <p>Price</p>
+              <hr />
+            </div>
           </div>
-          <div class="items">
-          </div>
+          <div class="items"></div>
         </div>
         <div class="cart-total">
           <p id="subtotal-text"><b>Subtotal: </b></p>
@@ -112,11 +128,14 @@
             </div>
           </form>
         </div>
-        <hr>
+        <hr />
         <div class="payment">
           <h2>Payment</h2>
           <p>Choose a payment method.</p>
-          <div class="paypal-button-wrapper" style="position: relative; z-index: 0">
+          <div
+            class="paypal-button-wrapper"
+            style="position: relative; z-index: 0"
+          >
             <div id="paypal-button"></div>
           </div>
           <div class="or">
@@ -148,9 +167,16 @@
               </label>
             </div>
             <div class="billing-add-toggle" onclick="enableSubmit()">
-              <input type="checkbox" id="switch" onclick="showBillingAddress()" checked/>
+              <input
+                type="checkbox"
+                id="switch"
+                onclick="showBillingAddress()"
+                checked
+              />
               <label for="switch"></label>
-              <span class="toggle-text"><p>Billing address same as shipping.</p></span>
+              <span class="toggle-text"
+                ><p>Billing address same as shipping.</p></span
+              >
             </div>
             <div class="billing-address" onload="showBillingAddress()">
               <div class="form">
@@ -160,8 +186,14 @@
                 </label>
                 <div class="fields fields--3">
                   <label class="field">
-                    <span class="field-label" for="billing-zipcode">Zip code</span>
-                    <input class="field-input" type="text" id="billing-zipcode" />
+                    <span class="field-label" for="billing-zipcode"
+                      >Zip code</span
+                    >
+                    <input
+                      class="field-input"
+                      type="text"
+                      id="billing-zipcode"
+                    />
                   </label>
                   <label class="field">
                     <span class="field-label" for="billing-city">City</span>
@@ -177,7 +209,9 @@
               </div>
             </div>
             <div class="submit-button">
-              <button value="submit" id="submit" class="btn" disabled>Pay</button>
+              <button value="submit" id="submit" class="btn" disabled>
+                Pay
+              </button>
             </div>
           </form>
         </div>
@@ -209,11 +243,10 @@
       </div>
     </div>
     <script>
-      showCart()
-      showStateOptions()
-      showBillingAddress()
-      showBasicInformation()
+      showCart();
+      showStateOptions();
+      showBillingAddress();
+      showBasicInformation();
     </script>
   </body>
 </html>
- 

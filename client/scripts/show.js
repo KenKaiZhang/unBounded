@@ -1,6 +1,6 @@
 async function showAvailableCountries() {
   const productNavHTML = document.querySelector(".countries-filter");
-  await fetch("http://localhost:1232/brands/options/countries", {
+  await fetch(`${baseUrl}/brands/options/countries`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -23,8 +23,7 @@ async function showAvailableCountries() {
 async function showBrands(country = "everywhere") {
   const brandsHTML = document.querySelector(".brands");
   brandsHTML.innerHTML = "";
-  const URL = `http://localhost:1232/brands/country/${country}`;
-  await fetch(URL, {
+  await fetch(`${baseUrl}/brands/country/${country}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -74,15 +73,31 @@ async function showBrands(country = "everywhere") {
     });
 }
 
+async function showBrandName() {
+  const request = JSON.parse(window.localStorage.getItem("request"));
+  const brandNameHTML = document.querySelector(".brand-name p");
+  if (request.brand === undefined) {
+    brandNameHTML.innerText = "All Products";
+  } else {
+    fetch(`${baseUrl}/brands/${request.brand}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((brand) => (brandNameHTML.innerText = brand.name));
+  }
+}
+
 /**
  * Shows the product information. Triggers upon clicking on a product listed in one of the
  * product listing HTML pages.
  */
 async function showProductInformation() {
-  const selectedProduct = window.localStorage.getItem("selectedProduct");
+  const selectedProduct = window.localStorage.getItem("product");
 
-  const URL = `https://data.unboundedsw.com/products/${selectedProduct}`;
-  await fetch(URL, {
+  await fetch(`${baseUrl}/products/${selectedProduct}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -97,8 +112,7 @@ async function showProductInformation() {
 
       const productName = document.querySelector(".product-name");
       const name = document.createElement("h1");
-      //name.innerHTML = `${product.name}<hr>`;
-      name.innerHTML = "Bwankie is cute";
+      name.innerHTML = `${product.name}<hr>`;
       productName.appendChild(name);
 
       const productPrice = document.querySelector(".product-price");
@@ -112,27 +126,24 @@ async function showProductInformation() {
  * Show all products (filtered by gender).
  */
 async function showProducts() {
-  const brand = window.localStorage.getItem("brand");
-  const gender = window.localStorage.getItem("gender");
-  const style = window.localStorage.getItem("style");
-  console.log(brand, gender, style);
+  const request = JSON.parse(window.localStorage.getItem("request"));
+  console.log(request);
+
   const active = document.getElementsByClassName("active")[0];
   if (active) active.classList.remove("active");
-  document.querySelector(`.${gender}`).classList.add("active");
+  document
+    .querySelector(`#${request.gender.toLowerCase()}`)
+    .classList.add("active");
+
   const productsHTML = document.getElementsByClassName("products")[0];
   productsHTML.innerHTML = "";
-
-  await fetch("http://localhost:1232/products/filter", {
+  await fetch(`${baseUrl}/products/filter`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      brand: brand === null ? { $ne: null } : brand,
-      gender: gender === null ? { $ne: null } : gender,
-      style: style === null ? { $ne: null } : style,
-    }),
+    body: JSON.stringify(request),
   })
     .then((res) => res.json())
     .then((products) => {
@@ -173,10 +184,9 @@ async function showProducts() {
  * Show everything in the cart.
  */
 async function showCart() {
-  const userId = document.cookie.split("userId=")[1];
   const itemsHTML = document.querySelector(".items");
 
-  await fetch(`https://data.unboundedsw.com/customers/${userId}/cart`, {
+  await fetch(`${baseUrl}/customers/${customerId}/cart`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -185,7 +195,7 @@ async function showCart() {
     .then((res) => res.json())
     .then((cart) => {
       const items = cart.items;
-      const total = cart.total;
+      const total = cart.subtotal;
 
       items.map(async (item) => {
         const newItemRow = document.createElement("div");
@@ -200,7 +210,7 @@ async function showCart() {
         const itemCancel = document.createElement("div");
         itemCancel.classList.add("cancel");
 
-        await fetch(`https://data.unboundedsw.com/products/${item.product}`, {
+        await fetch(`${baseUrl}/products/${item.product}`, {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -233,12 +243,11 @@ async function showCart() {
           const quantityDiv = itemDiv.childNodes[1];
           const newQuantity = Number(quantityDiv.childNodes[1].innerText) + 1;
           quantityDiv.childNodes[1].innerText = newQuantity;
-
-          changeCartQuantity(item._id, newQuantity).then((product_total) => {
-            itemDiv.childNodes[2].innerText = `$ ${product_total}`;
+          changeCartQuantity(item._id, newQuantity).then((res) => {
+            itemDiv.childNodes[2].innerText = `$ ${res.productTotal}`;
             getCartTotal().then((cart) => {
               const cartTotal = document.querySelector("#subtotal");
-              cartTotal.innerText = `$ ${cart.total}`;
+              cartTotal.innerText = `$ ${cart.subtotal}`;
             });
           });
         };
@@ -254,21 +263,21 @@ async function showCart() {
           const quantityDiv = itemDiv.childNodes[1];
           const newQuantity = Number(quantityDiv.childNodes[1].innerText) - 1;
           if (newQuantity <= 0) {
-            changeCartQuantity(item._id, 0).then((product_total) => {
-              itemDiv.childNodes[2].innerText = `$ ${product_total}`;
+            changeCartQuantity(item._id, 0).then((res) => {
+              itemDiv.childNodes[2].innerText = `$ ${res.productTotal}`;
               getCartTotal().then((cart) => {
                 const cartTotal = document.querySelector("#subtotal");
-                cartTotal.innerText = `$ ${cart.total}`;
+                cartTotal.innerText = `$ ${cart.subtotal}`;
               });
             });
             itemDiv.remove();
           } else {
             quantityDiv.childNodes[1].innerText = newQuantity;
-            changeCartQuantity(item._id, newQuantity).then((product_total) => {
-              itemDiv.childNodes[2].innerText = `$ ${product_total}`;
+            changeCartQuantity(item._id, newQuantity).then((res) => {
+              itemDiv.childNodes[2].innerText = `$ ${res.productTotal}`;
               getCartTotal().then((cart) => {
                 const cartTotal = document.querySelector("#subtotal");
-                cartTotal.innerText = `$ ${cart.total}`;
+                cartTotal.innerText = `$ ${cart.subtotal}`;
               });
             });
           }
@@ -288,7 +297,7 @@ async function showCart() {
         itemQuantity.appendChild(quantityWrapper);
         itemQuantity.appendChild(incrementIconWrapper);
 
-        itemTotal.innerText = `$ ${item.product_total}`;
+        itemTotal.innerText = `$ ${item.productTotal}`;
 
         const cancelIcon = document.createElement("i");
         cancelIcon.classList.add("material-icons");
@@ -299,7 +308,7 @@ async function showCart() {
           changeCartQuantity(item._id, 0).then(() => {
             getCartTotal().then((cart) => {
               const cartTotal = document.querySelector("#subtotal");
-              cartTotal.innerText = `$ ${cart.total}`;
+              cartTotal.innerText = `$ ${cart.subtotal}`;
             });
           });
           itemDiv.remove();
@@ -313,7 +322,7 @@ async function showCart() {
       });
 
       const cartTotal = document.querySelector("#subtotal");
-      cartTotal.innerText = `$${total}`;
+      cartTotal.innerText = `$${cart.subtotal}`;
     });
 }
 
@@ -412,8 +421,7 @@ function showBillingAddress() {
 async function showBasicInformation() {
   const basicUserInfo = document.querySelector(".basic .user-info p");
 
-  const userId = document.cookie.split("userId=")[1];
-  await fetch(`https://data.unboundedsw.com/customers/${userId}`, {
+  await fetch(`${baseUrl}/customers/${customerId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",

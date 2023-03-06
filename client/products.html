@@ -4,13 +4,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
-    <link rel="stylesheet" href="/public/css/navigation.css">
     <link rel="stylesheet" href="public/css/products.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <!-- <script type="text/javascript" src="scripts/init.js"></script> -->
+    <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/show.js"></script>
     <script type="text/javascript" src="scripts/filter.js"></script>
     <script type="text/javascript" src="scripts/goto.js"></script>
@@ -24,7 +23,7 @@
           <p>STORE</p>
         </div>
         <div class="brand-name">
-          <p>All Products</p>
+          <p></p>
         </div>
         <div class="cart" onclick="goToCart()">
           <i class="material-icons">shopping_bag</i>
@@ -33,48 +32,37 @@
       <div class="welcome"></div>
       <div class="filter">
         <div class="bar">
-          <div class="menu" onclick="toggleFilterNav()"><p>MENU</p></div>
-          <div
-            class="men"
-            onclick="
-              showStyleFilters('Men');
-              showProducts(); 
-             "
-          >
+          <div id="menu" onclick="toggleFilterNav()"><p>MENU</p></div>
+          <div class="gender-filter" id="men">
             <p>MEN</p>
           </div>
-          <div
-            class="women"
-            onclick="
-              showStyleFilters('Women');
-              showProducts(); 
-             "
-          >
+          <div class="gender-filter" id="women">
             <p>WOMEN</p>
           </div>
-          <div class="menu-counter"><p>MENU</p></div>
+          <div id="menu-counter"><p>MENU</p></div>
         </div>
         <div class="sidebar">
           <h1>
             STYLES
             <hr />
           </h1>
-          <div class="styles"></div>
-
-          <!-- <h1>
-            Countries
-            <hr />
-          </h1>
-          <div class="countries"></div> -->
+          <div class="styles">
+            <div class="style"></div>
+          </div>
         </div>
       </div>
     </div>
     <div class="content">
       <div class="products"></div>
     </div>
+    <footer>
+      <iframe src="footer.html"></iframe>
+    </footer>
     <script>
+      showBrandName();
       showProducts();
       showStyleFilters();
+      barGenderFilterEvent();
       // showCountryFilters();
     </script>
   </body>

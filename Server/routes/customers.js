@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/:customerId", getCustomer, async (req, res) => {
   try {
     const targetCustomer = res.customer;
-    res.status(200).json({ message: targetCustomer });
+    res.status(200).json(targetCustomer);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -17,7 +17,7 @@ router.get("/:customerId", getCustomer, async (req, res) => {
 router.get("/:customerId/cart", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
-    res.status(200).json({ message: targetCart });
+    res.status(200).json(targetCart);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -26,6 +26,7 @@ router.get("/:customerId/cart", getCustomer, async (req, res) => {
 // Make a new customer and assign a new cart
 router.post("/", async (req, res) => {
   try {
+    console.log("NEW CUSTOMER");
     const newCustomer = new Customer({
       name: req.body.name,
       email: req.body.email,
@@ -44,6 +45,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Change customer details
+router.patch("/:customerId", getCustomer, async (req, res) => {
+  try {
+    const targetCustomer = res.customer;
+    if (req.body.name) targetCustomer.name = req.body.name;
+    if (req.body.email) targetCustomer.email = req.body.email;
+    await targetCustomer.save();
+    res.status(200).json("Customer information successfully updated.");
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Add item to cart
 router.patch("/:customerId/addItem", getCustomer, async (req, res) => {
   try {
@@ -52,11 +66,13 @@ router.patch("/:customerId/addItem", getCustomer, async (req, res) => {
     const wantedProduct = await Product.findById(req.body.product);
 
     const match = cartItems.filter((obj) => {
-      return obj.product.qeuals(wantedProduct._id);
+      return obj.product.equals(wantedProduct._id);
     })[0];
     if (match) {
       match.quantity += 1;
-      match.productTotal += wantedProduct.price;
+      match.productTotal = twoDecimalOnly(
+        match.productTotal + wantedProduct.price
+      );
     } else {
       const newItem = {
         product: wantedProduct,
@@ -73,27 +89,28 @@ router.patch("/:customerId/addItem", getCustomer, async (req, res) => {
   }
 });
 // Change item quantity in cart
-router.patch("/:customerId/changeItemQ", getCustomer, async (req, res) => {
+router.patch("/:customerId/changeItem", getCustomer, async (req, res) => {
   try {
     const targetCart = res.cart;
     const wantedItem = targetCart.items.find(
-      (item) => item._id === req.body.itemId
+      (item) => item._id == req.body.itemId
     );
     const itemProduct = await Product.findById(wantedItem.product);
     const productPrice = Number(itemProduct.price);
-
     if (req.body.quantity > 0) {
       wantedItem.quantity = req.body.quantity;
-      wantedItem.productTotal = wantedItem.quantity * productPrice;
+      wantedItem.productTotal = twoDecimalOnly(
+        wantedItem.quantity * productPrice
+      );
     } else {
-      const index = targetcart.items.findIndex(
-        (item) => item._id === req.body.itemId
+      const index = targetCart.items.findIndex(
+        (item) => item._id == req.body.itemId
       );
       targetCart.items.splice(index, 1);
     }
     updateCartTotal(targetCart);
     await targetCart.save();
-    res.status(200).json({ message: wantedItem });
+    res.status(200).json(wantedItem);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -105,7 +122,7 @@ router.patch("/:customerId/newCart", getCustomer, async (req, res) => {
     targetCart.items = [];
     targetCart.subtotal = 0;
     await targetCart.save();
-    res.status(200).json({ message: targetCart });
+    res.status(200).json(targetCart);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -126,9 +143,14 @@ async function getCustomer(req, res, next) {
 
 function updateCartTotal(targetCart) {
   const targetCartItems = targetCart.items;
-  targetCart.subtotal = targetCartItems.reduce((sum, item) => {
+  const subtotal = targetCartItems.reduce((sum, item) => {
     return sum + item.productTotal;
   }, 0);
+  targetCart.subtotal = twoDecimalOnly(subtotal);
+}
+
+function twoDecimalOnly(value) {
+  return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
 export default router;

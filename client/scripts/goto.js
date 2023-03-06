@@ -4,45 +4,40 @@
  * HTML to another.
  */
 
+function makeRequest(request) {
+  window.localStorage.setItem("request", JSON.stringify(request));
+}
+
 function returnToStore() {
-  window.localStorage.removeItem("brand");
-  window.localStorage.removeItem("gender");
-  window.localStorage.removeItem("style");
   window.location.href = "/store.html";
 }
 
 function goToBrand(brandId, gender) {
-  window.localStorage.setItem("brand", brandId);
-  window.localStorage.setItem("gender", gender);
-  window.localStorage.removeItem("style");
+  makeRequest({ brand: brandId, gender: gender });
   window.location.href = `/brand.html`;
 }
 
 function goToProducts(gender) {
-  window.localStorage.setItem("gender", gender);
+  makeRequest({ gender: gender });
   window.location.href = "/products.html";
 }
 
 function goToProduct(productId) {
-  window.localStorage.setItem("selectedProduct", productId);
+  window.localStorage.setItem("product", productId);
   window.location.href = "/product.html";
 }
 
-function goToCollectionOrProducts() {
-  if (window.localStorage.getItem("store") == "all") {
-    window.localStorage.setItem("style", "all");
-    window.location.href = "/products.html";
-  } else {
-    window.location.href = "/collection.html";
-  }
+function goToBrandOrProducts() {
+  const request = JSON.parse(window.localStorage.getItem("request"));
+  console.log(request.brandId);
+  window.location.href =
+    request.brand === undefined
+      ? (window.location.href = "/products.html")
+      : (window.location.href = "/brand.html");
 }
 
 function goToCart() {
   window.location.href = "/checkout.html";
-}
-
-function goToPage(page) {
-  window.parent.location.href = page;
 }
 function goToLink(link) {
   window.parent.location.href = link;

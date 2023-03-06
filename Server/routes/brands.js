@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 router.get("/:brandId", getBrand, async (req, res) => {
   try {
     const targetBrand = res.brand;
-    res.status(200).json({ message: targetBrand });
+    res.status(200).json(targetBrand);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -27,7 +27,6 @@ router.get("/:brandId", getBrand, async (req, res) => {
 router.get("/options/countries", async (req, res) => {
   try {
     const allCountries = await Brand.distinct("country");
-    console.log(allCountries);
     res.status(200).json(allCountries);
   } catch (err) {
     res.status(500).json({ message: err.message });

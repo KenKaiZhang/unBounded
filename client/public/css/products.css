@@ -15,18 +15,20 @@ body::-webkit-scrollbar {
 }
 
 .navigation {
+  width: 100%;
   position: fixed;
+  z-index: 2;
 }
 
 .bar {
   display: flex;
   height: 50px;
+  width: 100%;
   position: fixed;
   justify-content: center;
   align-items: center;
   background-color: #fffefb;
   box-shadow: 1px 1px 10px #707070;
-  width: 100%;
   z-index: 3;
 }
 .bar p {
@@ -43,37 +45,38 @@ body::-webkit-scrollbar {
   transform: scale(1, 0.9);
   transition: 0.2s;
 }
-.bar .menu:hover {
+.bar #menu:hover {
   cursor: pointer;
 }
-.bar .menu:hover p {
-  cursor: pointer;
-  font-weight: 900;
-}
-.bar .men:hover {
-  cursor: pointer;
-}
-.bar .men:hover p {
+.bar #menu:hover p {
   cursor: pointer;
   font-weight: 900;
 }
-.bar .women:hover {
+.bar #men:hover {
   cursor: pointer;
 }
-.bar .women:hover p {
+.bar #men:hover p {
+  cursor: pointer;
+  font-weight: 900;
+}
+.bar #women:hover {
+  cursor: pointer;
+}
+.bar #women:hover p {
   cursor: pointer;
   font-weight: 900;
 }
 .active p {
   font-weight: 900;
 }
-.menu {
+#menu {
   margin-right: auto;
 }
-.menu-counter {
+#menu-counter {
   margin-left: auto;
   visibility: hidden;
 }
+
 .sidebar {
   position: absolute;
   display: inline-flex;
@@ -124,7 +127,8 @@ body::-webkit-scrollbar {
 .content {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
 }
 .products {
   display: grid;

@@ -4,10 +4,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
-    <link rel="stylesheet" href="/public/css/navigation.css">
     <link rel="stylesheet" href="public/css/product.css" />
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <script type="text/javascript" src="scripts/init.js"></script>
     <script type="text/javascript" src="scripts/show.js"></script>
     <script type="text/javascript" src="scripts/filter.js"></script>
@@ -18,12 +20,12 @@
   <body>
     <div class="navigation">
       <div class="menu-bar">
-        <div class="unBounded" onclick="goToCollectionOrProducts()">
+        <div class="unBounded" onclick="goToBrandOrProducts()">
           <i class="material-icons">arrow_back_ios</i>
           <p>PRODUCTS</p>
         </div>
-        <div class="collection-name">
-          <p>Testing Name</p>
+        <div class="brand-name">
+          <p></p>
         </div>
         <div class="cart" onclick="goToCart()">
           <i class="material-icons">shopping_bag</i>
@@ -32,12 +34,11 @@
     </div>
     <div class="content">
       <div class="product">
-        <div class="image">
-        </div>
+        <div class="image"></div>
         <div class="info">
           <div class="product-name"></div>
           <div class="product-price"></div>
-          <button class="add-to-cart" onclick="addToCart(window.localStorage.getItem('selectedProduct'), 1)">
+          <button class="add-to-cart">
             <p>ADD TO CART</p>
           </button>
           <div class="bottom-corner"></div>
@@ -45,7 +46,9 @@
       </div>
     </div>
     <script>
+      showBrandName();
       showProductInformation();
+      cartButtonEvent();
     </script>
   </body>
 </html>
