@@ -1,5 +1,5 @@
 .products-navigation {
-  height: 60px;
+  height: 40px;
   width: 100%;
   background-color: #c8c8c8;
   display: flex;
@@ -10,6 +10,7 @@
 .products-navigation .option {
   margin-left: 32px;
   margin-right: 32px;
+  font-size: 14px;
 }
 .products-navigation .option:hover {
   cursor: pointer;
@@ -32,6 +33,7 @@
   list-style: none;
 }
 .countries-filter li {
+  font-size: 14px;
   padding-left: 16px;
   margin-bottom: 16px;
 }
@@ -40,7 +42,7 @@
   cursor: pointer;
 }
 .countries-filter h1 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 16px;
 }
 

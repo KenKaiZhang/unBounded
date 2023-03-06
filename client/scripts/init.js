@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:7222";
+const baseUrl = "https://data.unboundedsw.com";
 
 if (document.cookie === "" || document.cookie === undefined) {
   fetch(`${baseUrl}/customers`, {
