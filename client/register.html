@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  />
+  <link rel="stylesheet" href="public/css/general.css" />
+  <link rel="stylesheet" href="public/css/resgister.css" />
+  <script type="text/javascript" src="scripts/init.js"></script>
+  <script type="text/javascript" src="scripts/goto.js"></script>
+  <script type="text/javascript" src="scripts/validate.js"></script>
+</head>
+<body>
+  <div class="backdrop"></div>
+  <div class="registration">
+    <div class="top-corner"></div>
+    <div class="info">
+      <h1>Basic Information</h1>
+      <form id="registration-form">
+        <div class="user-name field">
+          <input id="user-name" required="" type="text" />
+          <label
+            id="user-name-label"
+            placeholder="Full Name"
+          ></label>
+        </div>
+        <div class="user-email field">
+          <input id="user-email" required="" type="text" />
+          <label
+            id="user-email-label"
+            placeholder="Email Address"
+          ></label>
+        </div>
+      </form>
+    </div>
+    <div class="continue" onclick="continueToCheckout()">
+      <p>Continue to checkout ></p>
+    </div>
+  </div>
+</body>
+</html>

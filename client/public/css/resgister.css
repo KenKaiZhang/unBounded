@@ -1,0 +1,106 @@
+body {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.backdrop {
+  position: absolute;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  background-color: #000000;
+}
+.registration {
+  display: flex;
+  position: relative;
+  padding: 16px;
+  padding-left: 40px; 
+  width: 800px;
+  height: 600px;
+  background-color: #fffefb;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  box-shadow: 10px 10px 0px #000000;
+}
+.registration .top-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 4px solid #000000;
+  border-left: 4px solid #000000;
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 10%;
+  width: 40%;
+}
+.registration .info {
+  display: block;
+  height: 100%;
+  width: 70%;
+}
+.registration .info h1{
+  margin-bottom: 0
+}
+.registration form {
+  margin-top: 32px;
+}
+.registration .info .field {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+.registration .info .user-name{
+  width: 80%;
+}
+.registration .info input[type="text"] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 32px;
+  border: none;
+  border-bottom: 2px solid #aeaeae;
+  font-size: 16px;
+  outline: none;
+}
+.registration .info input[type="text"][required]:focus + label[placeholder]:before,
+.registration .info input[type="text"][required]:valid + label[placeholder]:before {
+  transition-duration: .2s;
+  transform: scale(0.9, 0.9) translate(-3px, -35px);
+}
+.registration .info input[type="text"][required]:invalid + label[placeholder][alt]:before {
+  content: attr(alt);
+}
+.registration .info input[type="text"][required] + label[placeholder] {
+  display: block;
+  pointer-events: none;
+  margin-top: calc(-3em - 5px);
+}
+.registration .info input[type="text"][required] + label[placeholder]:before {
+  content: attr(placeholder);
+  display: inline-block;
+  color: #898989;
+  transition: 0.3s ease-in-out;
+}
+.registration .continue {
+  position: absolute;
+  right: 7%;
+  bottom: 5%;
+  z-index: 1;
+}
+.registration .continue:hover {
+  font-weight: 900;
+  cursor: pointer;
+}
+.registration .bottom-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid #000000;
+  border-right: 4px solid #000000;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  height: 15%;
+  width: 40%;
+}

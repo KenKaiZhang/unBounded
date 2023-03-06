@@ -9,10 +9,7 @@ if (document.cookie === "" || document.cookie === undefined) {
   })
     .then((res) => res.json())
     .then((customer) => {
-      console.log(customer);
       document.cookie = `userId=${customer};`;
-      console.log(document.cookie);
     });
 }
 const customerId = document.cookie.split("userId=")[1];
-console.log(customerId);

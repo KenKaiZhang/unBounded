@@ -127,8 +127,6 @@ async function showProductInformation() {
  */
 async function showProducts() {
   const request = JSON.parse(window.localStorage.getItem("request"));
-  console.log(request);
-
   const active = document.getElementsByClassName("active")[0];
   if (active) active.classList.remove("active");
   document
@@ -147,7 +145,6 @@ async function showProducts() {
   })
     .then((res) => res.json())
     .then((products) => {
-      console.log(products);
       products.map((product) => {
         const newProduct = document.createElement("div");
         newProduct.classList.add("product");

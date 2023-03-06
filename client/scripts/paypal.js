@@ -28,14 +28,13 @@ paypal
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: customerId,
+          customerId: customerId,
         }),
       })
         .then((response) => response.json())
         .then((order) => order.id);
     },
     onApprove: (data, actions) => {
-      console.log("ORDER ID: ", data.orderID);
       return fetch(`${baseUrl}/paypal/orders/${data.orderID}/capture`, {
         method: "POST",
       })
@@ -61,14 +60,12 @@ if (paypal.HostedFields.isEligible()) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: customerId,
+          customerId: customerId,
         }),
       })
         .then((res) => res.json())
         .then((orderData) => {
           orderId = orderData.id;
-          console.log("ORDER CREATED");
-          console.log(orderData);
           return orderData.id;
         });
     },
@@ -92,10 +89,8 @@ if (paypal.HostedFields.isEligible()) {
       },
     },
   }).then((cardFields) => {
-    console.log("CARD FIELDS: ", cardFields);
     document.querySelector("#card-form").addEventListener("submit", (event) => {
       const switched = !document.querySelector("#switch").checked;
-      console.log("CLICKED");
       event.preventDefault();
       cardFields
         .submit({
@@ -119,7 +114,6 @@ if (paypal.HostedFields.isEligible()) {
           },
         })
         .then(() => {
-          console.log("AFTER CLICKED");
           fetch(`${baseUrl}/paypal/orders/${orderId}/capture`, {
             method: "POST",
           })
@@ -146,5 +140,4 @@ if (paypal.HostedFields.isEligible()) {
         });
     });
   });
-  console.log("HOSTEDFIELDS MADE");
 }

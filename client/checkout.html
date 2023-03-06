@@ -32,34 +32,6 @@
         </div>
       </div>
     </div>
-    <div class="registration">
-      <div class="top-corner"></div>
-      <div class="info">
-        <h1>Basic Information</h1>
-        <form id="registration-form">
-          <div class="user-name field">
-            <input id="user-name" required="" type="text" />
-            <label
-              id="user-name-label"
-              alt="Full Name"
-              placeholder="Full Name"
-            ></label>
-          </div>
-          <div class="user-email field">
-            <input id="user-email" required="" type="text" />
-            <label
-              id="user-email-label"
-              alt="Email Address"
-              placeholder="Email Address"
-            ></label>
-          </div>
-        </form>
-      </div>
-      <div class="continue" onclick="continueToCheckout()">
-        <p>Continue to checkout ></p>
-      </div>
-      <div class="bottom-corner"></div>
-    </div>
     <div class="content">
       <div class="bag">
         <div class="top-corner"></div>
@@ -87,7 +59,10 @@
       </div>
       <div class="address-payment">
         <div class="basic">
-          <h2>Basic Information</h2>
+          <div class="header">
+            <h2>Basic Information</h2>
+            <a href="/register.html">Edit</a>
+          </div>
           <div class="user-info">
             <p></p>
           </div>
@@ -246,7 +221,7 @@
       showCart();
       showStateOptions();
       showBillingAddress();
-      showBasicInformation();
+      showBasicInformation()
     </script>
   </body>
 </html>

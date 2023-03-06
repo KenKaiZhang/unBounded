@@ -45,7 +45,6 @@ async function addToWaitlist() {
     document.querySelector(msg).style.display = "block";
     document.querySelector(".welcome-box").style.opacity = "10%";
   });
-  console.log("SENT");
 }
 
 function activateSendMessage(formId) {

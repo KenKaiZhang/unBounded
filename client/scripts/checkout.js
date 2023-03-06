@@ -21,58 +21,6 @@ async function setClient() {
   head.appendChild(clientScript);
 }
 
-async function continueToCheckout() {
-  const userName = document.querySelector("#user-name");
-  const userEmail = document.querySelector("#user-email");
-
-  if (userName.value == "" || userEmail.value == "") {
-    if (userName.value == "") {
-      userName.style.borderBottom = "2px solid #FF8E76";
-    }
-    if (userEmail.value == "") {
-      userEmail.style.borderBottom = "2px solid #FF8E76";
-    }
-  } else {
-    await fetch(`${baseUrl}/customers/${customerId}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: userName.value,
-        email: userEmail.value,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-
-    const resgistrationHTML = document.querySelector(".registration");
-    const contentHTML = document.querySelector(".content");
-    resgistrationHTML.style.display = "none";
-    contentHTML.style.display = "flex";
-  }
-}
-
-async function checkUserInfo() {
-  await fetch(`${baseUrl}/customers/${customerId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((customer) => {
-      console.log(customer.name);
-      if (customer.name !== undefined && customer.email !== undefined) {
-        const resgistrationHTML = document.querySelector(".registration");
-        const contentHTML = document.querySelector(".content");
-        resgistrationHTML.style.display = "none";
-        contentHTML.style.display = "flex";
-      }
-    });
-}
-
 async function createOrder(orderId) {
   let userName;
   let userCart;
@@ -118,21 +66,6 @@ async function createOrder(orderId) {
     .then((res) => console.log(res));
 }
 
-async function clearCart() {
-  fetch(`${baseUrl}/customers/${customerId}/new_cart`, {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("CART CLEARED");
-      document.querySelector("#subtotal").innerText = `${res.total}`;
-      document.querySelector(".items").innerHTML = "";
-    });
-}
-
 async function sendOrderEmail(orderId) {
   await fetch(`${baseUrl}/email/${orderId}`, {
     method: "POST",
@@ -168,4 +101,3 @@ function closeResults() {
 }
 
 setClient();
-checkUserInfo();

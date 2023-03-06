@@ -40,7 +40,6 @@ function setStickyFilter() {
  */
 function showStyleFilters() {
   const request = JSON.parse(window.localStorage.getItem("request"));
-  console.log(request);
 
   const stylesHTML = document.querySelector(".styles");
   stylesHTML.innerHTML = "";

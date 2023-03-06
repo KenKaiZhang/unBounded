@@ -11,9 +11,7 @@ async function addToCart(productId, quantity) {
       product: productId,
       quantity: quantity,
     }),
-  })
-    .then((res) => res.json())
-    .then((response) => console.log(response));
+  });
 }
 
 async function changeCartQuantity(itemId, quantity) {
@@ -44,6 +42,20 @@ async function getCartTotal() {
     .then((res) => res.json())
     .then((cart) => {
       return cart;
+    });
+}
+
+async function clearCart() {
+  fetch(`${baseUrl}/customers/${customerId}/newCart`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      document.querySelector("#subtotal").innerText = `$${res.subtotal}`;
+      document.querySelector(".items").innerHTML = "";
     });
 }
 

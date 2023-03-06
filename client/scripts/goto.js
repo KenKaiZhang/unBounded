@@ -29,16 +29,61 @@ function goToProduct(productId) {
 
 function goToBrandOrProducts() {
   const request = JSON.parse(window.localStorage.getItem("request"));
-  console.log(request.brandId);
   window.location.href =
     request.brand === undefined
       ? (window.location.href = "/products.html")
       : (window.location.href = "/brand.html");
 }
 
-function goToCart() {
+async function goToRegister() {
+  await fetch(`${baseUrl}/customers/${customerId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((customer) => {
+      if (customer.name !== undefined && customer.email !== undefined) {
+        window.location.href = "/checkout.html";
+      } else {
+        window.location.href = "/register.html";
+      }
+    });
+}
+
+async function continueToCheckout() {
+  const userName = document.querySelector("#user-name");
+  const userEmail = document.querySelector("#user-email");
+
+  if (userName.value == "" || userEmail.value == "") {
+    if (userName.value == "") {
+      userName.style.borderBottom = "2px solid #FF8E76";
+    }
+    if (userEmail.value == "") {
+      userEmail.style.borderBottom = "2px solid #FF8E76";
+    }
+  } else {
+    await fetch(`${baseUrl}/customers/${customerId}`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: userName.value,
+        email: userEmail.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => goToCheckout());
+  }
+}
+
+function goToCheckout() {
   window.location.href = "/checkout.html";
 }
+
 function goToLink(link) {
   window.parent.location.href = link;
 }
