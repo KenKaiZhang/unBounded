@@ -14,10 +14,13 @@ router.post("/", async (req, res) => {
       orderAddress: req.body.address,
     });
     const result = await newOrder.save();
-    res.status(200).json({ message: result });
+    res.status(200).json(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 export default router;
+
+//sb-paayz24887748@personal.example.com
+//Hq:VtI/4

@@ -14,12 +14,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/order/:orderId", async (req, res) => {
+router.post("/order", async (req, res) => {
   const targetCustomer = await Customer.findById(req.body.customerId);
   const mailContent = {
     from: "unboundedsw@gmail.com",
     to: targetCustomer.email,
-    subject: `Order ${req.params.orderId} Receipt`,
+    subject: `Order ${req.body.orderId} Receipt`,
     text: "Thank you for shopping at unBounded.",
   };
   transporter.sendMail(mailContent, (err, success) => {
@@ -31,7 +31,7 @@ router.post("/order/:orderId", async (req, res) => {
   });
 });
 
-router.post("/partnerRequest", async (req, res) => {
+router.post("/partnerRequest", (req, res) => {
   const mailContent = {
     from: req.body.email,
     to: "unboundedsw@gmail.com",

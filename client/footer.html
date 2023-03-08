@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://kit.fontawesome.com/4efcaed77a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="public/css/footer.css" />
-  <script type="text/javascript" src="scripts/join.js"></script>
-  <script type="text/javascript" src="scripts/goto.js"></script>
+  <script type="module" src="scripts/utils/goto.js"></script>
+  <script type="module" src="scripts/utils/add.js"></script>
+  <script type="module" src="scripts/footer.js"></script>
 </head>
 <body>
   <div class="slogan">
@@ -16,11 +17,11 @@
   </div>
   <div class="content">
     <div class="box nav">
-        <li onclick="goToLink('/')">Home</li>
-        <li onclick="goToLink('/store.html')">Store</li>
-        <li onclick="goToLink('/about.html')">About</li>
-        <li onclick="goToLink('/join.html')">Join</li>
-        <li onclick="goToLink('/help.html')">Help</li>
+        <li id="home">Home</li>
+        <li id="store">Store</li>
+        <li id="about">About</li>
+        <li id="join">Join</li>
+        <li id="help">Help</li>
     </div>
     <div class="box contact-us">
       <h2>Contact Us</h2>
@@ -29,9 +30,9 @@
     <div class="box follow-us">
       <h2>Follow Us</h2>
       <div class="links">
-        <i class="fa-brands fa-instagram" onclick="goToLink('https://www.instagram.com/unboundedsw/')"></i>
-        <i class="fa-brands fa-facebook" onclick="goToLink('https://www.facebook.com/unboundedsw')"></i>
-        <i class="fa-brands fa-twitter" onclick="goToLink('https://twitter.com/unBoundedsw')"></i>
+        <i id="instagram" class="fa-brands fa-instagram"></i>
+        <i id="facebook" class="fa-brands fa-facebook"></i>
+        <i id="twitter" class="fa-brands fa-twitter"></i>
       </div>
     </div>
     <div class="box news-letter">

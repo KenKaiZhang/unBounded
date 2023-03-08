@@ -1,0 +1,60 @@
+import { baseUrl, cartId } from "./init.js";
+
+export async function createOrder(orderId) {
+  let customerName;
+  let targetCart;
+  await fetch(`${baseUrl}/carts/${cartId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((cart) => {
+      customerName = cart.ownerName;
+    });
+  await fetch(`${baseUrl}/carts/${cartId}/cart`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((cart) => {
+      targetCart = cart;
+    });
+  await fetch(`${baseUrl}/orders`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: customerName,
+      id: orderId,
+      items: targetCart.items,
+      total: targetCart.total,
+      address: `${document.querySelector("#address").value}, ${
+        document.querySelector("#city").value
+      }, ${document.querySelector("#state").value}, US, ${
+        document.querySelector("#zipcode").value
+      }`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+}
+
+export async function sendOrderEmail(orderId) {
+  await fetch(`${baseUrl}/email/order`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      cartId: cartId,
+      orderId: orderId,
+    }),
+  });
+}

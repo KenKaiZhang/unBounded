@@ -1,58 +1,37 @@
-async function addToWaitlist() {
-  const ownerName = document.querySelector("#name").value;
-  const brandName = document.querySelector("#brand").value;
-  const country = document.querySelector("#country").value;
-  const email = document.querySelector("#email").value;
-  const phone = document.querySelector("#phone").value;
-  const message = document.querySelector("#message").value;
+import { validateFieldsFilled } from "./utils/validate.js";
+import { addToWaitlist } from "./utils/add.js";
 
-  let partnerId = "";
-  await fetch(`${baseUrl}/waitlist`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ownerName: ownerName,
-      storeName: brandName,
-      storeAddress: country,
-      email: email,
-      phone: phone,
-      message: message,
-    }),
-  })
-    .then((res) => res.json())
-    .then(async (response) => {
-      partnerId = response;
-    });
+// Set trigger for animation
+document.querySelector(".join-button").addEventListener("click", () => {
+  document.querySelector(".content").classList.add("shift");
+});
 
-  await fetch(`${baseUrl}/email/partnerRequest`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: partnerId,
-      email: email,
-      brand: brandName,
-      message: message,
-    }),
-  }).then((res) => {
-    const msg = res.status == 200 ? ".success" : ".failed";
-    document.querySelector(".email-result").style.display = "block";
-    document.querySelector(msg).style.display = "block";
-    document.querySelector(".welcome-box").style.opacity = "10%";
+// Set checking to see if send button is ready
+const sendButton = document.querySelector("#send-message");
+document.querySelector(".contact-form").addEventListener("keyup", () => {
+  sendButton.disabled = !validateFieldsFilled(".field input");
+});
+
+// Set button action
+sendButton.addEventListener("click", () => {
+  const values = {
+    ownerName: document.querySelector("#name").value,
+    brandName: document.querySelector("#brand").value,
+    country: document.querySelector("#country").value,
+    email: document.querySelector("#email").value,
+    phone: document.querySelector("#phone").value,
+    message: document.querySelector("#message").value,
+  };
+  const results = addToWaitlist(values);
+  const msg = results == 200 ? ".success" : ".failed";
+  document.querySelector(".email-result").style.display = "block";
+  document.querySelector(msg).style.display = "block";
+  document.querySelector(".welcome-box").style.opacity = "10%";
+});
+
+Array.from(document.querySelectorAll(".close")).map((closeDiv) => {
+  closeDiv.addEventListener("click", () => {
+    document.querySelector(".email-result").style.display = "none";
+    document.querySelector(".welcome-box").style.opacity = "100%";
   });
-}
-
-function activateSendMessage(formId) {
-  const sendButton = document.querySelector("#send-message");
-  sendButton.disabled = !validateFieldsFilled(formId);
-}
-
-function closeEmailResults() {
-  document.querySelector(".email-result").style.display = "none";
-  document.querySelector(".welcome-box").style.opacity = "100%";
-}
+});

@@ -1,3 +1,8 @@
+import { baseUrl, cartId } from "./utils/init.js";
+import { sendOrderEmail, createOrder } from "./utils/orders.js";
+import { validateFieldsFilled } from "./utils/validate.js";
+import { clearCart } from "./utils/cart.js";
+
 function showProcessResults(result = true) {
   document.querySelector(".results").style.display = "flex";
   const processHTML = document.querySelector(
@@ -6,18 +11,31 @@ function showProcessResults(result = true) {
   processHTML.style.display = "flex";
   processHTML.style.opacity = "100%";
 }
-
 paypal
   .Buttons({
     // Sets up the transaction when a payment button is clicked
     onInit: (data, actions) => {
       actions.disable();
+      document.querySelector(".items").addEventListener("click", () => {
+        if (document.querySelectorAll(".item").length < 1) {
+          actions.disable();
+        }
+      });
       document.querySelector("#shipping-form").addEventListener("keyup", () => {
         if (validateFieldsFilled("#shipping-form .field-input")) {
           actions.enable();
         } else {
           actions.disable();
         }
+      });
+      Array.from(document.querySelectorAll(".state")).map((option) => {
+        option.addEventListener("change", () => {
+          if (validateFieldsFilled("#shipping-form .field-input")) {
+            actions.enable();
+          } else {
+            actions.disable();
+          }
+        });
       });
     },
 
@@ -28,7 +46,7 @@ paypal
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          customerId: customerId,
+          cartId: cartId,
         }),
       })
         .then((response) => response.json())
@@ -60,7 +78,7 @@ if (paypal.HostedFields.isEligible()) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          customerId: customerId,
+          cartId: cartId,
         }),
       })
         .then((res) => res.json())

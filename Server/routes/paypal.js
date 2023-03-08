@@ -19,7 +19,7 @@ router.get("/createClient", async (req, res) => {
 });
 
 // create order
-router.post("/orders/createOrder", getCustomer, async (req, res) => {
+router.post("/orders/createOrder", getCart, async (req, res) => {
   try {
     const order = await createOrder(res.cart);
     res.json(order);
@@ -130,15 +130,14 @@ async function handleResponse(response) {
   throw new Error(errorMessage);
 }
 
-async function getCustomer(req, res, next) {
+async function getCart(req, res, next) {
   try {
-    const targetCustomer = await Customer.findById(req.body.customerId);
-    if (!targetCustomer)
+    const targetCart = await Cart.findById(req.body.cartId);
+    if (!targetCart)
       return res
         .status(404)
-        .json({ message: "Cannot find customer with associate id." });
-    res.customer = targetCustomer;
-    res.cart = await Cart.findById(targetCustomer.cart);
+        .json({ message: "Cannot find cart with associate id." });
+    res.cart = targetCart;
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });

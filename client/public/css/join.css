@@ -1,6 +1,6 @@
 .content {
   background-color: #1c1c1c;
-  height: calc(100vh - 115px);
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -183,10 +183,10 @@ button[disabled] {
   font-size: 14px;
   opacity: 60%;
 }
-.email-result #close {
+.email-result .close {
   margin-top: 16px;
 }
-.email-result #close:hover {
+.email-result .close:hover {
   opacity: 100%;
   cursor: pointer;
 }

@@ -10,24 +10,20 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <script type="text/javascript" src="scripts/init.js"></script>
-    <script type="text/javascript" src="scripts/show.js"></script>
-    <script type="text/javascript" src="scripts/filter.js"></script>
-    <script type="text/javascript" src="scripts/goto.js"></script>
-    <script type="text/javascript" src="scripts/cart.js"></script>
+    <script type="module" src="scripts/product.js"></script>
     <title>unBounded</title>
   </head>
   <body>
     <div class="navigation">
       <div class="menu-bar">
-        <div class="unBounded" onclick="goToBrandOrProducts()">
+        <div class="unBounded">
           <i class="material-icons">arrow_back_ios</i>
           <p>PRODUCTS</p>
         </div>
         <div class="brand-name">
           <p></p>
         </div>
-        <div class="cart" onclick="goToRegister()">
+        <div class="cart">
           <i class="material-icons">shopping_bag</i>
         </div>
       </div>
@@ -45,10 +41,5 @@
         </div>
       </div>
     </div>
-    <script>
-      showBrandName();
-      showProductInformation();
-      cartButtonEvent();
-    </script>
   </body>
 </html>

@@ -3,6 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import BrandRouter from "./routes/brands.js";
 import ProductRouter from "./routes/products.js";
+import CartRouter from "./routes/cart.js";
 import CustomerRouter from "./routes/customers.js";
 import OrderRouter from "./routes/orders.js";
 import PaypalRouter from "./routes/paypal.js";
@@ -16,12 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["https://unboundedsw.com"],
+    origin: ["https://unboundedsw.com", "http://127.0.0.1:5501"],
   })
 );
 
 app.use("/brands", BrandRouter);
 app.use("/products", ProductRouter);
+app.use("/carts", CartRouter);
 app.use("/customers", CustomerRouter);
 app.use("/orders", OrderRouter);
 app.use("/paypal", PaypalRouter);

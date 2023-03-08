@@ -6,9 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/public/css/general.css">
     <link rel="stylesheet" href="/public/css/join.css">
-    <script type="text/javascript" src="scripts/init.js"></script>
-    <script  type="text/javascript" src="scripts/join.js"></script>
-    <script  type="text/javascript" src="scripts/validate.js"></script>
+    <script  type="module" src="scripts/join.js"></script>
     <title>unBounded</title>
 </head>
 <body>
@@ -25,11 +23,11 @@
         <div class="join-text">
           <h2>BECOME A PARTNER<br>AND<br>HELP US UNBOUND THE WORLD</h2>
         </div>
-        <button class="join-button" onclick="document.querySelector('.content').classList.add('shift')">JOIN US</button>
+        <button class="join-button">JOIN US</button>
       </div>
 
       <div class="join-form">
-        <form class="contact-form" onkeyup="activateSendMessage('.field input')" >
+        <form class="contact-form" >
           <div class="info">
             <div class="name field">
               <input id="name" required="" type="text">
@@ -58,11 +56,7 @@
           </div>
         </form>
         <div class="send-button">
-          <button 
-            id="send-message" 
-            onclick="addToWaitlist()" 
-            disabled
-          >SEND MESSAGE</button>
+          <button id="send-message" disabled>SEND MESSAGE</button>
         </div>
       </div>
       <div class="top-corner"></div>
@@ -73,12 +67,12 @@
         <p>Your message was sent successfully.</p>
         <h1>Thank you for reaching out!</h1>
         <h4>If we determine your brand is a fit for us, <br> we will contact you with the email you have provided.</h4>
-        <p id="close" onclick="closeEmailResults()">Close</p>
+        <p class="close">Close</p>
       </div>
       <div class="failed" style="display: none">
         <p>Message failed to send.</p>
         <h2>Make sure information provided are valid.</h2>
-        <p id="close" onclick="closeEmailResults()">Close</p>
+        <p class="close">Close</p>
       </div>
     </div>
   </div>

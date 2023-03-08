@@ -1,9 +1,11 @@
+import { baseUrl } from "./init.js";
+import { showProducts } from "./show.js";
 /**
  * Mainly for collection.html. Detechs the height of the menu bar and once the top
  * of the menu bar div hits a height of pixel, stick it so the menu bar doesnt keep
  * scrolling upwards.
  */
-function setStickyFilter() {
+export function setStickyFilter() {
   const filterBar = document.querySelector(".bar");
   const filterSide = document.querySelector(".sidebar");
   const content = document.querySelector(".content");
@@ -21,7 +23,7 @@ function setStickyFilter() {
         filterSide.style.top = "130px";
       } else {
         filterBar.style.position = null;
-        filterBar.style.top = null;
+        filterBar.style.top = "0px";
         filterBar.style.boxShadow = "none";
         filterBar.style.left = 0;
         if (filterSide.classList.contains("active")) {
@@ -38,7 +40,7 @@ function setStickyFilter() {
  * collection (for collection.html) or just simply by the gender (which is used
  * for both sorts since male and femal have different styles of clothing).
  */
-function showStyleFilters() {
+export function showStyleFilters() {
   const request = JSON.parse(window.localStorage.getItem("request"));
 
   const stylesHTML = document.querySelector(".styles");
@@ -81,73 +83,26 @@ function showStyleFilters() {
     });
 }
 
-// function showCountryFilters(gender) {
-//   window.localStorage.removeItem("style");
-
-//   if (gender !== undefined) {
-//     window.localStorage.setItem("gender", gender);
-//   }
-//   const selectedGender = window.localStorage.getItem("gender");
-//   const countriesHTML = document.querySelector(".countries");
-//   countriesHTML.innerHTML = "";
-
-//   const allCountries = document.createElement("div");
-//   allCountries.classList.add("style");
-//   allCountries.onclick = () => {
-//     window.localStorage.removeItem("style");
-//     showProducts();
-//   };
-//   allCountries.innerHTML = `<p>All Countries</p>`;
-//   countriesHTML.appendChild(allCountries);
-
-//   fetch("${baseUrl}/products/options", {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       option: "country",
-//       query: {
-//         gender: selectedGender,
-//       },
-//     }),
-//   })
-//     .then((res) => res.json())
-//     .then((countries) => {
-//       console.log(countries);
-//       countries.map((country) => {
-//         const newCountry = document.createElement("div");
-//         newCountry.classList.add("country");
-//         newCountry.onclick = () => {
-//           window.localStorage.setItem("country", country);
-//           showProducts();
-//         };
-//         newCountry.innerHTML = `<p>${country}</p>`;
-//         stylesHTML.appendChild(newCountry);
-//       });
-//     });
-// }
-
 // Opens and close the filter menu.
-
-function toggleFilterNav() {
+export function toggleSideFilter() {
   const content = document.querySelector(".content");
   if (content.offsetTop - document.body.scrollTop < 130) {
     document.querySelector(".sidebar").classList.toggle("active");
   }
 }
 
-function barGenderFilterEvent() {
+export function barGenderFilterEvent() {
   const genders = ["Men", "Women"];
   genders.map((gender) => {
-    document.querySelector(`#${gender.toLocaleLowerCase()}`).onclick = () => {
-      const request = JSON.parse(window.localStorage.getItem("request"));
-      delete request.style;
-      request.gender = gender;
-      window.localStorage.setItem("request", JSON.stringify(request));
-      showStyleFilters();
-      showProducts();
-    };
+    document
+      .querySelector(`#${gender.toLocaleLowerCase()}`)
+      .addEventListener("click", () => {
+        const request = JSON.parse(window.localStorage.getItem("request"));
+        delete request.style;
+        request.gender = gender;
+        window.localStorage.setItem("request", JSON.stringify(request));
+        showStyleFilters();
+        showProducts();
+      });
   });
 }

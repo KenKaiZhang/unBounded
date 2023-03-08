@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
     <link rel="stylesheet" href="public/css/store.css" />
-    <script type="text/javascript" src="scripts/init.js"></script>
-    <script type="text/javascript" src="scripts/show.js"></script>
-    <script type="text/javascript" src="scripts/goto.js"></script>
+    <script type="module" src="scripts/store.js"></script>
     <title>unBounded</title>
   </head>
   <body>
@@ -15,17 +13,17 @@
       <iframe src="navigation.html"></iframe>
     </nav>
     <div class="products-navigation">
-      <div class="option" id="men" onclick="goToProducts('Men')">
+      <div class="option" id="men">
         <p>MEN</p>
       </div>
-      <div class="option" id="women" onclick="goToProducts('Women')">
+      <div class="option" id="women">
         <p>WOMEN</p>
       </div>
     </div>
     <div class="content">
       <div class="countries-filter">
         <h1>Explore brands from...</h1>
-        <li onclick="showBrands('everywhere')">Everywhere</li>
+        <li id="everywhere">Everywhere</li>
       </div>
       <div class="brands"></div>
     </div>
@@ -33,8 +31,4 @@
       <iframe src="footer.html"></iframe>
     </footer>
   </body>
-  <script>
-    showAvailableCountries();
-    showBrands();
-  </script>
 </html>

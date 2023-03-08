@@ -14,7 +14,7 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.navigation {
+.menu-bar {
   width: 100%;
   position: fixed;
   z-index: 2;
@@ -28,7 +28,6 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   background-color: #fffefb;
-  box-shadow: 1px 1px 10px #707070;
   z-index: 3;
 }
 .bar p {

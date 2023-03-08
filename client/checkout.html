@@ -9,19 +9,14 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <script type="text/javascript" src="scripts/init.js"></script>
-    <script type="text/javascript" src="scripts/checkout.js" async></script>
-    <script type="text/javascript" src="scripts/cart.js" async></script>
-    <script type="text/javascript" src="scripts/show.js"></script>
-    <script type="text/javascript" src="scripts/goto.js"></script>
-    <script type="text/javascript" src="scripts/validate.js"></script>
+    <script type="module" src="scripts/checkout.js" async></script>
   </head>
   <body>
     <div class="navigation">
       <div class="menu-bar">
-        <div class="unBounded" onclick="goToBrandOrProducts()">
+        <div class="unBounded">
           <i class="material-icons">arrow_back_ios</i>
-          <p>Products</p>
+          <p></p>
         </div>
         <div class="checkout">
           <p>Checkout</p>
@@ -70,7 +65,7 @@
         <div class="shipping">
           <h2>Shipping</h2>
           <p>Please enter your shipping details.</p>
-          <form id="shipping-form" class="form" onkeyup="enableSubmit()">
+          <form id="shipping-form" class="form">
             <div class="fields fields--2">
               <label class="field">
                 <span class="field-label" for="firstname">First name</span>
@@ -116,7 +111,7 @@
           <div class="or">
             <p>or</p>
           </div>
-          <form id="card-form" class="form" onkeyup="enableSubmit()">
+          <form id="card-form" class="form">
             <div class="fields fields--2">
               <label class="field">
                 <span class="field-label" for="card-firstname">First name</span>
@@ -141,19 +136,14 @@
                 <div class="field-input" id="expiration"></div>
               </label>
             </div>
-            <div class="billing-add-toggle" onclick="enableSubmit()">
-              <input
-                type="checkbox"
-                id="switch"
-                onclick="showBillingAddress()"
-                checked
-              />
+            <div class="billing-add-toggle">
+              <input type="checkbox" id="switch" checked />
               <label for="switch"></label>
               <span class="toggle-text"
                 ><p>Billing address same as shipping.</p></span
               >
             </div>
-            <div class="billing-address" onload="showBillingAddress()">
+            <div class="billing-address">
               <div class="form">
                 <label class="field">
                   <span class="field-label" for="billing-address">Address</span>
@@ -200,7 +190,7 @@
             <i class="material-icons">close</i>
           </div>
           <p>Payment Declined</p>
-          <div class="close-button" onclick="closeResults()">
+          <div class="close-button">
             <button>Close</button>
           </div>
         </div>
@@ -211,17 +201,11 @@
             <i class="material-icons">done</i>
           </div>
           <p>Payment Processed</p>
-          <div class="close-button" onclick="closeResults()">
+          <div class="close-button">
             <button>Close</button>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      showCart();
-      showStateOptions();
-      showBillingAddress();
-      showBasicInformation()
-    </script>
   </body>
 </html>

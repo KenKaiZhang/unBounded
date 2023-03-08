@@ -10,29 +10,27 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <script type="text/javascript" src="scripts/init.js"></script>
-    <script type="text/javascript" src="scripts/show.js"></script>
-    <script type="text/javascript" src="scripts/filter.js"></script>
-    <script type="text/javascript" src="scripts/goto.js"></script>
+    <script type="module" src="scripts/menubar.js"></script>
+    <script type="module" src="scripts/brand.js"></script>
     <title>unBounded</title>
   </head>
   <body>
     <div class="menu-bar">
-      <div class="unBounded" onclick="returnToStore()">
+      <div class="unBounded">
         <i class="material-icons">arrow_back_ios</i>
-        <p>STORE</p>
+        <p>Store</p>
       </div>
       <div class="brand-name">
         <p></p>
       </div>
-      <div class="cart" onclick="goToRegister()">
+      <div class="cart">
         <i class="material-icons">shopping_bag</i>
       </div>
     </div>
     <div class="welcome"></div>
     <div class="filter">
       <div class="bar">
-        <div id="menu" onclick="toggleFilterNav()"><p>MENU</p></div>
+        <div id="menu"><p>MENU</p></div>
         <div class="gender-filter" id="men">
           <p>MEN</p>
         </div>
@@ -54,12 +52,5 @@
     <div class="content">
       <div class="products"></div>
     </div>
-    <script>
-      showBrandName();
-      showProducts();
-      setStickyFilter();
-      showStyleFilters();
-      barGenderFilterEvent();
-    </script>
   </body>
 </html>

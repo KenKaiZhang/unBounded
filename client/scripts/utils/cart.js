@@ -1,7 +1,6 @@
-const customer = document.cookie.split("userId=")[1];
-
-async function addToCart(productId, quantity) {
-  fetch(`${baseUrl}/customers/${customerId}/addItem`, {
+import { baseUrl, cartId } from "./init.js";
+export async function addToCart(productId, quantity) {
+  fetch(`${baseUrl}/carts/${cartId}/addItem`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -14,8 +13,8 @@ async function addToCart(productId, quantity) {
   });
 }
 
-async function changeCartQuantity(itemId, quantity) {
-  return fetch(`${baseUrl}/customers/${customerId}/changeItem`, {
+export async function changeCartQuantity(itemId, quantity) {
+  return fetch(`${baseUrl}/carts/${cartId}/changeItem`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -32,8 +31,8 @@ async function changeCartQuantity(itemId, quantity) {
     });
 }
 
-async function getCartTotal() {
-  return fetch(`${baseUrl}/customers/${customerId}/cart`, {
+export async function getCartTotal() {
+  return fetch(`${baseUrl}/carts/${cartId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -45,8 +44,8 @@ async function getCartTotal() {
     });
 }
 
-async function clearCart() {
-  fetch(`${baseUrl}/customers/${customerId}/newCart`, {
+export async function clearCart() {
+  fetch(`${baseUrl}/carts/${cartId}/newCart`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -57,10 +56,4 @@ async function clearCart() {
       document.querySelector("#subtotal").innerText = `$${res.subtotal}`;
       document.querySelector(".items").innerHTML = "";
     });
-}
-
-function cartButtonEvent() {
-  const targetProduct = window.localStorage.getItem("product");
-  document.querySelector(".add-to-cart").onclick = () =>
-    addToCart(targetProduct, 1);
 }
