@@ -21,6 +21,3 @@ router.post("/", async (req, res) => {
 });
 
 export default router;
-
-//sb-paayz24887748@personal.example.com
-//Hq:VtI/4

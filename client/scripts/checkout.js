@@ -199,7 +199,7 @@ fetch(`${baseUrl}/carts/${cartId}`, {
   });
 
 // Show information from registration
-const basicUserInfo = document.querySelector(".basic .user-info p");
+const basicUserInfo = document.querySelector(".basic-info .user-info p");
 
 fetch(`${baseUrl}/carts/${cartId}`, {
   method: "GET",
@@ -294,14 +294,16 @@ usStates.map((state) => {
 });
 
 // Set billing address toggle
+const bagHTML = document.querySelector(".bag");
+const iapHTML = document.querySelector(".info-address-payment");
+bagHTML.style.height = iapHTML.style.height;
 document.querySelector("#switch").addEventListener("click", () => {
   if (document.querySelector("#switch").checked) {
     document.querySelector(".billing-address").style.display = "none";
-    document.querySelector(".content").style.height = "880px";
   } else {
-    document.querySelector(".content").style.height = "990px";
     document.querySelector(".billing-address").style.display = "flex";
   }
+  bagHTML.style.height = iapHTML.style.height;
   enableSubmit();
 });
 

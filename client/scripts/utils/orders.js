@@ -13,7 +13,7 @@ export async function createOrder(orderId) {
     .then((cart) => {
       customerName = cart.ownerName;
     });
-  await fetch(`${baseUrl}/carts/${cartId}/cart`, {
+  await fetch(`${baseUrl}/carts/${cartId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -31,8 +31,7 @@ export async function createOrder(orderId) {
     },
     body: JSON.stringify({
       name: customerName,
-      id: orderId,
-      items: targetCart.items,
+      orderId: orderId,
       total: targetCart.total,
       address: `${document.querySelector("#address").value}, ${
         document.querySelector("#city").value

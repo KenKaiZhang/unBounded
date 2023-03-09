@@ -1,6 +1,6 @@
 import express from "express";
 import nodemailer from "nodemailer";
-import { Customer } from "../database.js";
+import { Cart, Newsletter } from "../database.js";
 
 const router = express.Router();
 
@@ -15,10 +15,10 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post("/order", async (req, res) => {
-  const targetCustomer = await Customer.findById(req.body.customerId);
+  const targetCart = await Cart.findById(req.body.cartId);
   const mailContent = {
     from: "unboundedsw@gmail.com",
-    to: targetCustomer.email,
+    to: targetCart.ownerEmail,
     subject: `Order ${req.body.orderId} Receipt`,
     text: "Thank you for shopping at unBounded.",
   };
@@ -31,9 +31,9 @@ router.post("/order", async (req, res) => {
   });
 });
 
-router.post("/partnerRequest", (req, res) => {
+router.post("/partnerRequest", checkEmailValid, (req, res) => {
   const mailContent = {
-    from: req.body.email,
+    from: res.email,
     to: "unboundedsw@gmail.com",
     subject: `${req.body.brand} (${req.body.id})partnership request`,
     text: req.body.message,
@@ -46,5 +46,33 @@ router.post("/partnerRequest", (req, res) => {
     }
   });
 });
+
+router.post("/newsletter", checkEmailValid, async (req, res) => {
+  try {
+    const newEmail = new Newsletter({
+      email: res.email,
+    });
+    await newEmail.save();
+    res.status(200).json("Email added to newsletter.");
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+function checkEmailValid(req, res, next) {
+  try {
+    const customerEmail = req.body.email;
+    if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(customerEmail) ==
+      false
+    ) {
+      return res.status(400).json("Bad email format.");
+    }
+    res.email = customerEmail;
+    next();
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
 
 export default router;

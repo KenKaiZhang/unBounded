@@ -6,6 +6,7 @@ import CustomerSchema from "./models/customer.js";
 import ProductSchema from "./models/product.js";
 import OrderSchema from "./models/order.js";
 import PartnerSchema from "./models/partner.js";
+import NewsletterSchema from "./models/newletter.js";
 
 dotenv.config();
 
@@ -20,8 +21,9 @@ const Customer = database.model("Customer", CustomerSchema);
 const Order = database.model("Order", OrderSchema);
 const Product = database.model("Product", ProductSchema);
 const Partner = database.model("Partner", PartnerSchema);
+const Newsletter = database.model("Newsletter", NewsletterSchema);
 
 database.on("error", (err) => console.error(err));
 database.once("open", () => console.log("Connected to Database."));
 
-export { Brand, Customer, Product, Cart, Order, Partner };
+export { Brand, Customer, Product, Cart, Order, Partner, Newsletter };
