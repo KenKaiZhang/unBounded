@@ -36,3 +36,20 @@ await fetch(`${baseUrl}/brands/options/countries`, {
       goToProducts(gender);
     });
 });
+
+/*
+ * Settings for smaller screen size
+ */
+
+// Setting toggle to reveal main navigation
+const toggle = document.querySelector(".toggle-filters");
+toggle.addEventListener("click", () => {
+  const toggled = toggle.id === "active";
+  toggle.id = toggled ? null : "active";
+
+  if (toggled) {
+    document.querySelector(".filters").style.display = "flex";
+  } else {
+    document.querySelector(".filters").style.display = "none";
+  }
+});

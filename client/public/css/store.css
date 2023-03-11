@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .products-navigation .option {
   margin-left: 32px;
   margin-right: 32px;
@@ -16,20 +15,26 @@
   cursor: pointer;
   font-weight: 900;
 }
+.products-navigation .toggle-filters {
+  display: none;
+}
 
 .content {
-  height: auto;
-  min-height: 100vh;
+  height: calc(100vh - 120px) ;
   width: 100%;
   display: grid;
-  grid-template-columns: 18% calc(82% - 16px);
+  grid-template-columns: 20% calc(80% - 16px);
+  overflow: hidden;
+}
+
+.filters {
+  border-right: 4px solid #c8c8c8;
 }
 
 .countries-filter {
   padding: 16px;
   height: 100%;
   width: calc (100% - 32px);
-  border-right: 4px solid #c8c8c8;
   list-style: none;
 }
 .countries-filter li {
@@ -49,12 +54,13 @@
 .brands {
   display: grid;
   padding: 16px;
-  height: 100%;
-  width: calc (100% - 32px);
+  height: calc(100% - 32px);
+  width: calc(100% - 32px);
   grid-template-columns: 50% 50%;
   grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-row-gap: 32px;
   grid-template-rows: auto;
+  overflow-y: scroll;
 }
 .brand-navigation {
   height: 500px;
@@ -88,4 +94,25 @@
   padding: 16px 16px 0px 16px;
   height: 100px;
   width: calc(100% - 32px);
+}
+
+@media screen and (max-width: 1000px) {
+  .products-navigation .toggle-filters {
+    position: absolute;
+    display: flex;
+    left: 16px;
+  }
+  .products-navigation .toggle-filters:hover {
+    cursor: pointer;
+  }
+  .content {
+    height: calc(100vh - 64px) ;
+    grid-template-columns: 100%;
+  }
+  .filters {
+    display: none;
+  }
+  .brands {
+    grid-template-columns: 100%;
+  }
 }

@@ -18,6 +18,7 @@ export async function showBrands(country = "everywhere") {
       brands.map((brand) => {
         const newBrand = document.createElement("div");
         newBrand.id = brand._id;
+        newBrand.classList.add("brand");
 
         const brandNavigation = document.createElement("div");
         brandNavigation.classList.add("brand-navigation");
