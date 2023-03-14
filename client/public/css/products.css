@@ -19,6 +19,12 @@ body::-webkit-scrollbar {
   position: fixed;
   z-index: 2;
 }
+.menu-bar p {
+  margin-left: 8px;
+}
+.menu-bar .cart i {
+  font-size: 18px;
+}
 
 .bar {
   display: flex;
@@ -44,43 +50,38 @@ body::-webkit-scrollbar {
   transform: scale(1, 0.9);
   transition: 0.2s;
 }
-.bar #menu:hover {
-  cursor: pointer;
+.bar #menu {
+  position: absolute;
+  left: 16;
 }
-.bar #menu:hover p {
+.bar #menu input {
+  display: none;
+}
+.bar #menu label:after {
+  content: "MENU";
+}
+.bar #menu label:hover {
   cursor: pointer;
   font-weight: 900;
 }
 .bar #men:hover {
   cursor: pointer;
-}
-.bar #men:hover p {
-  cursor: pointer;
   font-weight: 900;
 }
 .bar #women:hover {
   cursor: pointer;
-}
-.bar #women:hover p {
-  cursor: pointer;
   font-weight: 900;
 }
+
 .active p {
   font-weight: 900;
-}
-#menu {
-  margin-right: auto;
-}
-#menu-counter {
-  margin-left: auto;
-  visibility: hidden;
 }
 
 .sidebar {
   position: fixed;
   display: inline-flex;
   flex-direction: column;
-  width: 20%;
+  width: 30%;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: 1px 1px 10px #707070;
@@ -129,13 +130,14 @@ body::-webkit-scrollbar {
   height: auto;
   min-height: 100vh;
 }
+
 .products {
   display: grid;
-  margin: 150px;
-  grid-template-columns: 250px 250px 250px 250px;
+  margin-top: 150px;
+  padding: 16px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 350px;
-  grid-column-gap: 32px;
-  grid-row-gap: 32px;
+  gap: 32px;
 }
 .product {
   width: 100%;
@@ -180,4 +182,27 @@ body::-webkit-scrollbar {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.1em;
+}
+
+@media all and (max-width: 800px) {
+  .bar #menu label:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0ca";
+    font-weight: 900;
+  }
+  .bar #menu:hover {
+    cursor: pointer;
+  }
+  .bar #menu #button:checked + label:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00d";
+    font-weight: 900;
+  }
+  .sidebar {
+    width: 50%;
+  }
+  .products {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 }

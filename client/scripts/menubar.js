@@ -11,5 +11,5 @@ document.querySelector(".cart").addEventListener("click", () => goToRegister());
 
 // Set side filter toggle
 document
-  .querySelector("#menu")
+  .querySelector("#button")
   .addEventListener("click", () => toggleSideFilter());

@@ -36,3 +36,8 @@ await fetch(`${baseUrl}/brands/options/countries`, {
       goToProducts(gender);
     });
 });
+
+document.querySelector(".toggle #button").addEventListener("click", () => {
+  const filtersHTML = document.querySelector(".filters");
+  filtersHTML.id = filtersHTML.id === "show" ? null : "show";
+});

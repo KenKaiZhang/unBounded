@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["https://unboundedsw.com"],
+    origin: ["https://unboundedsw.com", "http://127.0.0.1:5501"],
   })
 );
 
