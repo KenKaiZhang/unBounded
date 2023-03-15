@@ -7,21 +7,16 @@
   align-items: center;
 }
 .option {
-  margin-left: 32px;
-  margin-right: 32px;
-  font-size: 14px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 0.8rem;
 }
 .option:hover {
   cursor: pointer;
-  font-weight: 900;
+  font-family: var(--bold);
 }
 .toggle {
   display: none;
-}
-.toggle #icon:after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f0ca";
-  font-weight: 900;
 }
 
 .content {
@@ -33,34 +28,34 @@
 }
 
 .filters {
-  box-shadow: 1px 1px 10px #707070;
+  border-right: 2px solid #f4f4f4;
 }
 .countries-filter {
-  padding: 16px;
+  padding: 1rem;
   height: 100%;
   width: calc (100% - 32px);
   list-style: none;
 }
 .countries-filter li {
-  font-size: 14px;
-  padding-left: 16px;
-  margin-bottom: 16px;
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 .countries-filter li:hover {
-  font-weight: 900;
+  font-family: var(--bold);
   cursor: pointer;
 }
 .countries-filter h1 {
-  font-size: 18px;
-  margin-bottom: 16px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .brands {
   display: grid;
-  padding: 16px;
-  padding-bottom: 500px;
+  padding: 1rem;
+  padding-bottom: 450px;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 1rem;
   grid-template-rows: auto;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -75,35 +70,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 4px;
 }
 .brand-navigation .name {
-  color: #fffefb;
-  font-size: 24px;
+  color: var(--main-white);
+  font-size: 1.5rem;
 }
 .brand-navigation button {
-  margin: 24px;
-  width: 100px;
+  margin: 1rem;
+  width: 150px;
   height: 50px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: transparent;
-  color: #fffefb;
-  border: 2px solid #fffefb;
+  color: var(--main-white);
+  border: 2px solid var(--main-white);
   transition: 0.2s;
 }
 .brand-navigation button:hover {
-  background-color: #fffefb;
+  background-color: var(--main-white);
   color: #000000;
   opacity: 90%;
   cursor: pointer;
 }
 .brand-text {
-  font-size: 1rem;
-  padding: 16px 16px 0px 16px;
-  height: 100px;
+  font-size: 0.9rem;
+  padding: 1rem 1rem 0px 1rem;
+  height: 75px;
   width: calc(100% - 32px);
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 1024px) {
   .content {
     grid-template-columns: 1fr;
   }
@@ -111,10 +107,15 @@
   .toggle {
     display: flex;
     position: absolute;
-    left: 16px;
+    left: 1rem;
   }
   .toggle #button {
     display: none;
+  }
+  .toggle #icon:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0ca";
+    font-weight: 900;
   }
   .toggle #icon:hover {
     cursor: pointer;
@@ -128,7 +129,7 @@
   .filters {
     width: 0;
     position: absolute;
-    background-color: #fffefb;
+    background-color: var(--main-white);
     height: 100%;
     transition: 0.5s;
   }
@@ -137,7 +138,7 @@
   }
 
   #show {
-    width: 50%;
+    width: 30%;
   }
   #show .filter {
     display: block;

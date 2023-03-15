@@ -16,7 +16,7 @@ export function setStickyFilter() {
       const contentTop = content.offsetTop - document.body.scrollTop;
       if (contentTop < 130) {
         filterBar.style.position = "fixed";
-        filterBar.style.top = "80px";
+        filterBar.style.top = "60px";
         filterBar.style.boxShadow = "1px 1px 10px #707070";
         filterSide.style.display = "flex";
         filterSide.style.position = "fixed";
