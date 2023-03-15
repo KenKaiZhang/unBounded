@@ -1,6 +1,6 @@
 import { assignCart } from "./cookie.js";
 
-const baseUrl = "http://localhost:7222";
+const baseUrl = "https://data.unboundedsw.com";
 const cartId = assignCart();
 
 export { baseUrl, cartId };

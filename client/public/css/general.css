@@ -76,3 +76,9 @@ footer iframe {
   height: 325px;
   border: none;
 }
+
+@media all and (max-width: 1024px) {
+  footer {
+    display: none;
+  }
+}

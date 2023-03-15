@@ -5,26 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/css/general.css" />
     <link rel="stylesheet" href="public/css/checkout.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/4efcaed77a.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="scripts/checkout.js" async></script>
   </head>
   <body>
-    <div class="navigation">
-      <div class="menu-bar">
-        <div class="unBounded">
-          <i class="material-icons">arrow_back_ios</i>
-          <p></p>
-        </div>
-        <div class="checkout">
-          <p>Checkout</p>
-        </div>
-        <div class="unBounded blank" style="visibility: hidden">
-          <i class="material-icons">arrow_back_ios</i>
-          <p>Products</p>
-        </div>
+    <div class="menu-bar">
+      <div class="unBounded">
+        <i class="fa-sharp fa-solid fa-arrow-left"></i>
+        <p></p>
+      </div>
+      <div class="checkout">
+        <p>Checkout</p>
       </div>
     </div>
     <div class="content">
@@ -32,15 +27,15 @@
         <div class="top-corner"></div>
         <div class="bag-content">
           <div class="header">
-            <div class="item-info">
+            <div>
               <p>Product</p>
               <hr />
             </div>
-            <div class="item-quantity">
+            <div>
               <p>Quantity</p>
               <hr />
             </div>
-            <div class="item-price">
+            <div>
               <p>Price</p>
               <hr />
             </div>
@@ -104,10 +99,7 @@
           <div class="payment">
             <h2>Payment</h2>
             <p>Choose a payment method.</p>
-            <div
-              class="paypal-button-wrapper"
-              style="position: relative; z-index: 0"
-            >
+            <div class="paypal-button-wrapper">
               <div id="paypal-button"></div>
             </div>
             <div class="or">
@@ -116,7 +108,9 @@
             <form id="card-form" class="form">
               <div class="fields fields--2">
                 <label class="field">
-                  <span class="field-label" for="card-firstname">First name</span>
+                  <span class="field-label" for="card-firstname"
+                    >First name</span
+                  >
                   <input class="field-input" type="text" id="card-firstname" />
                 </label>
                 <label class="field">
@@ -148,8 +142,14 @@
               <div class="billing-address">
                 <div class="form">
                   <label class="field">
-                    <span class="field-label" for="billing-address">Address</span>
-                    <input class="field-input" type="text" id="billing-address" />
+                    <span class="field-label" for="billing-address"
+                      >Address</span
+                    >
+                    <input
+                      class="field-input"
+                      type="text"
+                      id="billing-address"
+                    />
                   </label>
                   <div class="fields fields--3">
                     <label class="field">
@@ -164,7 +164,11 @@
                     </label>
                     <label class="field">
                       <span class="field-label" for="billing-city">City</span>
-                      <input class="field-input" type="text" id="billing-city" />
+                      <input
+                        class="field-input"
+                        type="text"
+                        id="billing-city"
+                      />
                     </label>
                     <label class="field">
                       <span class="field-label" for="billing-state">State</span>
@@ -189,9 +193,7 @@
       <div class="overlay"></div>
       <div class="declined popout">
         <div class="results-items">
-          <div class="symbol">
-            <i class="material-icons">close</i>
-          </div>
+          <div class="symbol"></div>
           <p>Payment Declined</p>
           <div class="close-button">
             <button>Close</button>
@@ -200,9 +202,7 @@
       </div>
       <div class="accepted popout">
         <div class="results-items">
-          <div class="symbol">
-            <i class="material-icons">done</i>
-          </div>
+          <div class="symbol"></div>
           <p>Payment Processed</p>
           <div class="close-button">
             <button>Close</button>

@@ -124,10 +124,6 @@ fetch(`${baseUrl}/carts/${cartId}`, {
           });
         });
       };
-      const incrementIcon = document.createElement("i");
-      incrementIcon.classList.add("material-icons");
-      incrementIcon.innerText = "add";
-      incrementIconWrapper.appendChild(incrementIcon);
 
       const decrementIconWrapper = document.createElement("div");
       decrementIconWrapper.classList.add("decrement");
@@ -155,10 +151,6 @@ fetch(`${baseUrl}/carts/${cartId}`, {
           });
         }
       };
-      const decrementIcon = document.createElement("i");
-      decrementIcon.classList.add("material-icons");
-      decrementIcon.innerText = "remove";
-      decrementIconWrapper.appendChild(decrementIcon);
 
       const quantityWrapper = document.createElement("div");
       quantityWrapper.classList.add("quantity");
@@ -172,10 +164,6 @@ fetch(`${baseUrl}/carts/${cartId}`, {
 
       itemTotal.innerText = `$ ${item.productTotal}`;
 
-      const cancelIcon = document.createElement("i");
-      cancelIcon.classList.add("material-icons");
-      cancelIcon.innerText = "close";
-      itemCancel.appendChild(cancelIcon);
       itemCancel.onclick = () => {
         const itemDiv = document.getElementById(`${item._id}`);
         changeCartQuantity(item._id, 0).then(() => {
