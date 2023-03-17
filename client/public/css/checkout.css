@@ -24,11 +24,11 @@ body {
 .menu-bar .checkout p {
   margin: 0.5rem;
   font-family: var(--bold);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .content {
-  top: 12%;
+  top: 100px;
   position: absolute;
   width: 95%;
   display: grid;
@@ -159,6 +159,7 @@ body {
 .bag .cart-total p {
   margin-left: 1rem;
   font-size: 1rem;
+  font-family: var(--medium);
 }
 
 .info-address-payment {
@@ -186,6 +187,7 @@ body {
 }
 .basic-info .header h2 {
   font-size: 1rem;
+  font-family: var(--medium);
   margin-bottom: 0;
 }
 .basic-info .header a {
@@ -222,6 +224,7 @@ body {
 .shipping h2 {
   margin: 0;
   margin-bottom: 8px;
+  font-family: var(--medium);
 }
 .shipping p {
   margin: 0;
@@ -293,6 +296,7 @@ hr {
 .payment h2 {
   margin: 0;
   margin-bottom: 8px;
+  font-family: var(--medium);
 }
 .payment p {
   margin: 0;

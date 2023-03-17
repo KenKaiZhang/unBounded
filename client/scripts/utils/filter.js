@@ -8,26 +8,25 @@ import { showProducts } from "./show.js";
 export function setStickyFilter() {
   const filterBar = document.querySelector(".bar");
   const filterSide = document.querySelector(".sidebar");
-  const content = document.querySelector(".content");
 
   window.addEventListener(
     "scroll",
-    (event) => {
-      const contentTop = content.offsetTop - document.body.scrollTop;
-      if (contentTop < 130) {
+    () => {
+      const welcomeBot =
+        document.querySelector(".welcome").clientHeight - window.scrollY;
+      if (welcomeBot < 60) {
         filterBar.style.position = "fixed";
         filterBar.style.top = "60px";
-        filterBar.style.boxShadow = "1px 1px 10px #707070";
         filterSide.style.display = "flex";
         filterSide.style.position = "fixed";
-        filterSide.style.top = "130px";
+        filterSide.style.top = "100px";
       } else {
-        filterBar.style.position = null;
+        filterBar.style.position = "relative";
         filterBar.style.top = "0px";
-        filterBar.style.boxShadow = "none";
         filterBar.style.left = 0;
         if (filterSide.classList.contains("active")) {
           filterSide.classList.remove("active");
+          document.querySelector("#menu #button").checked = false;
         }
       }
     },
@@ -47,12 +46,15 @@ export function showStyleFilters() {
   stylesHTML.innerHTML = "";
 
   const allStyles = document.createElement("div");
-  allStyles.classList.add("style");
-  allStyles.onclick = () => {
+  allStyles.classList.add("style", "active");
+  allStyles.id = "all";
+  allStyles.addEventListener("click", () => {
+    document.querySelector(".styles .active").classList.toggle("active");
+    allStyles.classList.toggle("active");
     delete request.style;
     window.localStorage.setItem("request", JSON.stringify(request));
     showProducts();
-  };
+  });
   allStyles.innerHTML = `<p>All Styles</p>`;
   stylesHTML.appendChild(allStyles);
 
@@ -72,11 +74,15 @@ export function showStyleFilters() {
       styles.map((style) => {
         const newStyle = document.createElement("div");
         newStyle.classList.add("style");
-        newStyle.onclick = () => {
+        newStyle.id = style;
+        newStyle.addEventListener("click", () => {
           request.style = style;
+          document.querySelector(".styles .active").classList.toggle("active");
+          newStyle.classList.toggle("active");
           window.localStorage.setItem("request", JSON.stringify(request));
           showProducts();
-        };
+        });
+
         newStyle.innerHTML = `<p>${style}</p>`;
         stylesHTML.appendChild(newStyle);
       });

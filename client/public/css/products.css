@@ -53,7 +53,7 @@
 }
 .bar #menu label:hover {
   cursor: pointer;
-  font-weight: 900;
+  font-family: var(--bold);
 }
 .bar #men:hover {
   cursor: pointer;
@@ -99,17 +99,20 @@
   float: left;
   width: 100%;
 }
-.style p {
-  font-size: 0.8rem;
-  font-family: "Gotham Light", sans-serif;
-}
-.styles p:hover {
-  cursor: pointer;
-  font-family: var(--bold);
-}
 .style {
   margin-left: 1rem;
   margin-bottom: 1rem;
+}
+.style.active p{
+  font-family: var(--bold);
+}
+.style p:hover {
+  cursor: pointer;
+  font-family: var(--bold);
+}
+.style p {
+  font-size: 0.8rem;
+  font-family: "Gotham Light", sans-serif;
 }
 .style:hover {
   cursor: pointer;
@@ -187,6 +190,10 @@
     font-family: "Font Awesome 5 Free";
     content: "\f00d";
     font-weight: 900;
+  }
+  .bar #menu #button:checked + label:hover {
+    transform: rotate(360deg);
+    transition: 1.5s;
   }
   .bar #menu label p {
     display: none;

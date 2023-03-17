@@ -1,12 +1,10 @@
-/* .menu-bar {
-  top: 0px;
-} */
-
 .welcome {
   background-color: #000000;
-  height: 95vh;
+  height: 96vh;
 }
 
-.filter .bar {
+.bar {
+  top: 0px;
   position: relative;
+  border-bottom: 2px solid #f4f4f4;;
 }

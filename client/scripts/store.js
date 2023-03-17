@@ -6,9 +6,14 @@ import { goToProducts } from "./utils/goto.js";
 showBrands();
 
 // Setting show all brands filter
-document
-  .querySelector("#everywhere")
-  .addEventListener("click", () => showBrands());
+const everywhereFilter = document.querySelector("#everywhere");
+everywhereFilter.addEventListener("click", () => {
+  document
+    .querySelector(".countries-filter .active")
+    .classList.toggle("active");
+  everywhereFilter.classList.toggle("active");
+  showBrands();
+});
 
 // Show available countries to filter
 const productNavHTML = document.querySelector(".countries-filter");
@@ -22,8 +27,15 @@ await fetch(`${baseUrl}/brands/options/countries`, {
   .then((countries) => {
     countries.map((country) => {
       const newCountry = document.createElement("li");
+      newCountry.id = country;
       newCountry.innerText = country;
-      newCountry.addEventListener("click", () => showBrands(country));
+      newCountry.addEventListener("click", () => {
+        document
+          .querySelector(".countries-filter .active")
+          .classList.toggle("active");
+        newCountry.classList.toggle("active");
+        showBrands(country);
+      });
       productNavHTML.appendChild(newCountry);
     });
   });

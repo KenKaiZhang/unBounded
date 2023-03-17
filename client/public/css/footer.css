@@ -1,11 +1,12 @@
 body {
-  font-family: Verdana, Geneva, sans-serif;
-  padding: 16px;
+  font-family: "Gotham Light", sans-serif;
+  padding: 1rem;
   height: 250px;
   width: calc(100% - 32);
   display: block;
   color: #fffefb;
   background-color: #1c1c1c;
+  font-size: 16px;
 }
 
 .slogan {
@@ -14,8 +15,9 @@ body {
 }
 .slogan h1 {
   margin: 0;
-  margin-bottom: 8px;
-  font-size: 24px;
+  margin-bottom: 0.5rem;
+  font-family: "Gotham Black", sans-serif;
+  font-size: 1.5em;
 }
 .slogan p {
   margin: 0;
@@ -30,7 +32,7 @@ body {
 
 .box {
   height: 85%;
-  padding: 16px;
+  padding: 1rem;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -39,33 +41,32 @@ body {
 
 .box h2 {
   margin: 0;
-  margin-bottom: 16px;
-  font-size: 18px;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.3em;
+  font-family: "Gotham Black", sans-serif;;
 }
 .box p {
   margin: 0;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1em;
 }
 
 .nav {
   list-style: none;
 }
 .nav li {
-  margin: 8px;
+  margin: 0.5rem;
 }
 .nav li:hover{
   cursor: pointer;
-  font-weight: 900;
+  font-family: "Gotham Black", sans-serif;
 }
 
 .follow-us .links{
   display: flex;
 }
 .follow-us .links i{
-  margin-right: 16px;
-  font-size: 24px;
+  margin-right: 1rem;
+  font-size: 2em;
   text-decoration: none;
   color: #fffefb;
 }
@@ -78,9 +79,9 @@ body {
   border: none;
 }
 .news-letter .field {
-  margin-top: 8px;
-  margin-bottom: 32px;
-  font-size: 12px;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.8em;
 }
 .news-letter input[type="text"] {
   width: 100%;
@@ -89,7 +90,7 @@ body {
   background-color: transparent;
   color: #fffefb;
   border-bottom: 2px solid #fffefb;
-  font-size: 18px;
+  font-size: 1.5em;
   outline: none;
 }
 .news-letter input:-webkit-autofill,
@@ -104,7 +105,7 @@ input:-webkit-autofill:active {
   input[type="text"][required]:valid
   + label[placeholder]:before {
   transition-duration: 0.2s;
-  transform: scale(0.9, 0.9) translate(-3px, -35px);
+  transform: scale(0.9, 0.9) translate(-3px, -30px);
 }
 .news-letter
   input[type="text"][required]:invalid
@@ -128,11 +129,47 @@ input:-webkit-autofill:active {
   color: #fffefb;
   background: none;
   border: 2px solid #fffefb;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: 0.2s;
 }
 .news-letter button:hover {
   cursor: pointer;
   background-color: #fffefb;
+  font-family: "Gotham Black", sans-serif;;
   color: #000000;
+}
+
+@media all and (max-width: 1024px) {
+  body {
+    font-size: 12px;
+    height: 400px;
+  }
+  .content{
+    grid-template-columns: 1fr;
+    grid-row: auto;
+    gap: 1rem;
+  }
+
+  .slogan {
+    height: 15%;
+  }
+  .box {
+    padding: 0;
+    border: none;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .news-letter {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
 }

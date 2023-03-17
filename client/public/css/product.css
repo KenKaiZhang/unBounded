@@ -108,6 +108,10 @@
     align-items: unset;
   }
 
+  .unBounded p {
+    display: none;
+  }
+
   .product {
     top: 100px;
     height: 400px;

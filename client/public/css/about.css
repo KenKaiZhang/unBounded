@@ -1,24 +1,33 @@
 .content {
-  height: auto;
+  height: calc(100vh - 60px);
   width: 100%;
   display: block;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
 }
 
+h1 {
+  font-family: var(--medium);
+  font-size: 2.5em;
+}
+p {
+  font-size: 1.2em;
+}
 .intro {
-  height: calc(100vh - 115px);
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: fade-in ease 0.5s;
+  scroll-snap-align: start;
 }
 .intro .text {
   position: relative;
-  padding: 32px;
+  padding: 2rem;
   height: 30%;
   width: 60%;
   max-width: 1000px;
@@ -52,50 +61,40 @@
 }
 
 .goal {
-  margin: 64px;
-  display: flex;
-  height: 50%;
-  width: auto;
-  justify-content: center;
-}
-.goal .image {
-  float: left;
-  height: 100%;
-  width: 50%;
-  max-width: 800px;
-  background-color: #000000;
-}
-.goal .image i {
-  float: left;
+  margin: auto;
   height: 100%;
   width: 100%;
-  text-align: center;
-  font-size: 700px;
-  color: #545454;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+.goal .image {
+  height: 50%;
+  width: 100%;
+  background-color: #000000;
 }
 .goal .text-wrapper {
-  float: right;
   display: flex;
-  margin-left: 3%;
+  margin-left: 2rem;
   height: 100%;
-  width: 47%;
+  width: 100%;
   max-width: 800px;
   align-items: center;
 }
-.goal .text h2 {
-  font-size: 28px;
-}
-.goal .text p {
-  font-size: 20px;
-  margin-left: 8%;
+.goal .text p{
+  margin-left: 1.5rem;
 }
 
 .partners {
-  margin-top: 64px;
-  padding-top: 64px;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
+  display: grid;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 @keyframes fade-in {
@@ -104,5 +103,45 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media all and (max-width: 1024px) {
+
+  .content {
+    font-size: 12px;
+  }
+  .intro {
+    height: 100%;
+  }
+  .intro .text {
+    height: 25%;
+    width: 80%;
+  }
+  .top-corner {
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+  }
+  .bottom-corner {
+    border-bottom: 2px solid #000000;
+    border-right: 2px solid #000000;
+  }
+
+  .goal {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+  }
+  .goal .image {
+    height: 100%;
+  }
+  .goal .text-wrapper {
+    margin: 0;
+    align-items: start;
+    text-align: center;
+  }
+  .goal .text p {
+    margin: 0;
+    padding: 1rem;
   }
 }

@@ -1,6 +1,7 @@
 :root {
   --main-white: #fffefb;
   --bold: "Gotham Black", sans-serif;
+  --medium: "Gotham Medium", sans-serif;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
   letter-spacing: 0.1rem;
   width: 100vw;
   height: 100vh;
+  min-width: 400px;
   margin: 0;
   padding: 0;
   background-color: #fffefb;
@@ -78,7 +80,7 @@ footer iframe {
 }
 
 @media all and (max-width: 1024px) {
-  footer {
-    display: none;
+  footer iframe{
+    height: 450px;
   }
 }
