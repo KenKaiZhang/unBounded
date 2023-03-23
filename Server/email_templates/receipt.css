@@ -1,0 +1,77 @@
+:root {
+  --main-white: #fffefb;
+  --table-color: #e8e8e8;
+  --bold: "Gotham Medium", sans-serif;
+}
+
+/* body {
+  position: relative;
+  font-family: "Gotham Light", sans-serif;
+  height: auto;
+  width: 600px;
+  border: 2px solid #000000;
+} */
+/* 
+table {
+  padding: 1em;
+  border-radius: 4px;
+  width: calc(100% - 2em);
+} */
+
+th {
+  font-family: var(--bold);
+}
+
+#main {
+  margin-right: 0;
+  border-spacing: 0 0.5em;
+}
+
+#thank-you {
+  font-size: 2em
+}
+
+
+#shipping {
+  margin: 1em;
+  text-align: left;
+  background-color: var(--table-color);
+}
+#shipping td {
+  padding-left: 0.5em;
+}
+
+#cart {
+  margin: 1em;
+  text-align: left;
+  background-color: var(--table-color);
+}
+
+#total {
+  text-align: right;
+}
+#total b {
+  font-family: var(--bold);
+}
+
+/* #top-corner {
+  top: 10px;
+  left: 10px;
+  position:absolute;
+  width: 60%;
+  height: 20%;
+  border-radius: 0;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+} */
+
+/* #bottom-corner {
+  bottom: 10px;
+  right: 10px;
+  position:absolute;
+  width: 60%;
+  height: 20%;
+  border-radius: 0;
+  border-bottom: 2px solid #000000;
+  border-right: 2px solid #000000;
+} */

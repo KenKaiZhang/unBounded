@@ -19,6 +19,7 @@ body {
   color: #fffefb;
   font-size: 20px;
   font-family: "Gotham Medium", sans-serif;
+  transform: scale(1, 0.9);
   text-decoration: none;
 }
 .title p:hover {

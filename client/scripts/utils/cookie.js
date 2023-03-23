@@ -24,7 +24,7 @@ export function setCookie(cname, cvalue, exdays) {
 export function assignCart() {
   let customerId = getCookie("customerId");
   if (customerId == "") {
-    fetch("https://data.unboundedsw.com/carts", {
+    fetch("http://localhost:7222/carts", {
       method: "POST",
       headers: {
         Accept: "application/json",

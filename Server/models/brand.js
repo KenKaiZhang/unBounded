@@ -8,6 +8,14 @@ const BrandSchema = new mongoose.Schema({
   collections: [{ type: String }],
   image: { type: String },
   description: { type: String },
+  yearlySales: [
+    {
+      year: { type: Number },
+      month: { type: Number },
+      day: { type: Number },
+      sales: { type: Number, default: 0 },
+    },
+  ],
 });
 
 export default BrandSchema;

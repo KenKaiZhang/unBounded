@@ -33,11 +33,11 @@ export async function createOrder(orderId) {
       name: customerName,
       orderId: orderId,
       total: targetCart.total,
-      address: `${document.querySelector("#address").value}, ${
+      address: `${document.querySelector("#address").value}:${
         document.querySelector("#city").value
-      }, ${document.querySelector("#state").value}, US, ${
+      }, ${document.querySelector("#state").value} ${
         document.querySelector("#zipcode").value
-      }`,
+      }:United States`,
     }),
   })
     .then((res) => res.json())

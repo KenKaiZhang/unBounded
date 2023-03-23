@@ -149,7 +149,7 @@ if (paypal.HostedFields.isEligible()) {
               createOrder(orderId)
                 .then(() => showProcessResults())
                 .then(() => {
-                  sendOrderEmail(orderId).then(clearCart());
+                  sendOrderEmail(orderId);
                 });
             });
         })

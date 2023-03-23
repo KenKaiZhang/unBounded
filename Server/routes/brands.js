@@ -47,6 +47,53 @@ router.get("/country/:country", async (req, res) => {
   }
 });
 
+// Get sales for a year
+router.get("/:brandId/sales/:year", getBrand, async (req, res) => {
+  try {
+    const targetBrand = res.brand;
+    const targetYearSales = targetBrand.yearlySales.filter((date) => {
+      date.year === req.params.year;
+    });
+    const sales = targetYearSales.reduce((sum, date) => {
+      return sum + date.sale;
+    }, 0);
+    res.status(200).json(sales);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get sales for a month
+router.get("/:brandId/sales/:year/:month", getBrand, async (req, res) => {
+  try {
+    const targetBrand = res.brand;
+    const targetMonthSales = targetBrand.yearlySales.filter((date) => {
+      date.year === req.params.year && date.month === req.params.month;
+    });
+    const sales = targetMonthSales.reduce((sum, date) => {
+      return sum + date.sale;
+    }, 0);
+    res.status(200).json(sales);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get sales for a day
+router.get("/:brandId/sales/:year/:month/:day", getBrand, async (req, res) => {
+  try {
+    const targetBrand = res.brand;
+    const targetSales = targetBrand.yearlySales.filter((date) => {
+      date.year === req.params.year &&
+        date.month === req.params.month &&
+        date.day == req.params.day;
+    });
+    res.status(200).json(targetSales);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Add a new brand
 router.post("/", async (req, res) => {
   try {

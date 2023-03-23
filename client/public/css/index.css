@@ -9,7 +9,7 @@
   margin: 0;
   color: var(--main-white);
   font-size: 1.5em;
-  font-family: var(-medium);
+  font-family: var(--medium);
   transform: scale(1, 0.9);
 }
 

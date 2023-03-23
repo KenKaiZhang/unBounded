@@ -9,6 +9,7 @@ const ProductSchema = new mongoose.Schema({
   style: { type: String },
   gender: { type: String },
   description: { type: String },
+  unitsSold: { type: Number, default: 0 },
 });
 
 export default ProductSchema;
