@@ -1,0 +1,10 @@
+.welcome {
+  background-color: #000000;
+  height: 96vh;
+}
+
+.bar {
+  top: 0px;
+  position: relative;
+  border-bottom: 2px solid #f4f4f4;;
+}

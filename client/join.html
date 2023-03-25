@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/public/css/general.css">
+    <link rel="stylesheet" href="/public/css/join.css">
+    <script  type="module" src="scripts/join.js"></script>
+    <title>unBounded</title>
+</head>
+<body>
+  <nav>
+    <iframe src="navigation.html"></iframe>
+  </nav>
+  <div class="content">
+    <div class="welcome-box">
+      <div class="globe-icon">
+        <i class="material-icons">public</i>
+      </div>
+
+      <div class="join-welcome">
+        <div class="join-text">
+          <h2>BECOME A PARTNER<br>AND<br>HELP US UNBOUND THE WORLD</h2>
+        </div>
+        <button class="join-button">JOIN US</button>
+      </div>
+
+      <div class="join-form">
+        <form class="contact-form" >
+          <div class="info">
+            <div class="name field">
+              <input id="name" required="" type="text">
+              <label id="name-label" placeholder='Your Name'></label>
+            </div>
+            <div class="brand field">
+              <input id="brand" required="" type="text">
+              <label id="brand-label" placeholder='Brand Name'></label>
+            </div>
+            <div class="country field">
+              <input id="country" required="" type="text">
+              <label id="country-label" placeholder='Brand Country'></label>
+            </div>
+            <div class="email field">
+              <input id="email" required="" type="text">
+              <label id="email-label" placeholder='Email Address'></label>
+            </div>
+            <div class="phone field">
+              <input id="phone" required="" type="text">
+              <label id="phone-label" placeholder='Phone Number'></label>
+            </div>
+            <div class="message">
+              <label id="message-label">Message</label>
+              <textarea id="message"></textarea>
+            </div>
+          </div>
+        </form>
+        <div class="send-button">
+          <button id="send-message" disabled>SEND MESSAGE</button>
+        </div>
+      </div>
+      
+      <div class="top-corner"></div>
+      <div class="bottom-corner"></div>
+    </div>
+    <div class="email-result">
+      <div id="success" style="display: none">
+        <p>Your message was sent successfully.</p>
+        <h1>Thank you for reaching out!</h1>
+        <h4>If we determine your brand is a fit for us, <br> we will contact you with the email you have provided.</h4>
+        <p class="close">Close</p>
+      </div>
+      <div id="failed" style="display: none">
+        <p>Message failed to send.</p>
+        <h2>Make sure information provided are valid.</h2>
+        <p class="close">Close</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <iframe src="footer.html"></iframe>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+:root {
+  --main-white: #fffefb;
+  --bold: "Gotham Black", sans-serif;
+  --medium: "Gotham Medium", sans-serif;
+}
+
+body {
+  font-family: "Gotham Light", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.1rem;
+  width: 100vw;
+  height: 100vh;
+  min-width: 350px;
+  margin: 0;
+  padding: 0;
+  background-color: #fffefb;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+nav iframe {
+  width: 100%;
+  height: 80px;
+  border: none;
+  background-color: #000000;
+}
+
+.menu-bar {
+  height: 80px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  color: #ffffff;
+  background-color: #000000;
+
+  align-items: center;
+  z-index: 3;
+}
+.unBounded {
+  display: flex;
+  align-items: center;
+  left: 0;
+  margin-left: 5%;
+  font-size: 16px;
+}
+.unBounded i {
+  font-size: 95%;
+  margin-top: 3px;
+}
+.unBounded p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.collection-name {
+  text-align: center;
+  margin-right: 5%;
+}
+.cart {
+  right: 0;
+  margin-right: 5%;
+  align-items: center;
+}
+.cart i {
+  font-size: 150%;
+}
+.cart i:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+footer iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+@media all and (max-width: 1024px) {
+  footer iframe {
+    height: 450px;
+  }
+}

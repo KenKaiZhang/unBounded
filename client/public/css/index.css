@@ -1,0 +1,246 @@
+.title {
+  height: 80px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title p {
+  margin: 0;
+  color: var(--main-white);
+  font-size: 1.3em;
+  font-family: var(--medium);
+  transform: scale(1, 0.9);
+}
+
+.content {
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 100vh;
+  min-height: 1500px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.button {
+  height: 50px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid var(--main-white);
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--main-white);
+}
+.button p {
+  color: var(--main-white);
+  font-size: 0.9em;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: var(--main-white);
+  transition: 0.2s;
+}
+.button:hover p {
+  color: #000000;
+  font-family: var(--bold);
+  transition: 0.2s;
+}
+
+.wrapper {
+  margin-top: 16px;
+  height: 100%;
+  width: 100%;
+}
+
+.store {
+  position: relative;
+  background-color: #302c2d;
+  width: calc(100% - 2rem);
+  display: flex;
+}
+.store .button-wrapper {
+  position: relative;
+  border-top: 4px solid var(--main-white);
+  border-left: 4px solid var(--main-white);
+  margin-top: 2rem;
+  margin-left: 2rem;
+  height: 60%;
+  width: 50%;
+}
+.store .button-wrapper .text p {
+  margin: 0;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: var(--main-white);
+  font-size: 4em;
+  font-family: var(--bold);
+}
+.store .button-wrapper .button {
+  position: absolute;
+  bottom: 0px;
+  margin-left: 16px;
+}
+.store .empty-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid var(--main-white);
+  border-right: 4px solid var(--main-white);
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  height: 45%;
+  width: 55%;
+}
+
+.join-about {
+  width: calc(100% - 2rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.join {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #302c2d;
+  flex: 1;
+  transition: 0.6s;
+}
+.join .button {
+  position: absolute;
+  margin-top: 300px;
+}
+.join .button a {
+  color: var(--main-white);
+  text-decoration: none;
+}
+
+.about {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #302c2d;
+  flex: 1;
+  transition: 0.6s;
+}
+.about .button {
+  position: absolute;
+  margin-top: 300px;
+}
+.about .button a {
+  color: var(--main-white);
+  text-decoration: none;
+}
+
+.join-about-text {
+  position: relative;
+  max-width: 50%;
+  height: 70%;
+  min-width: 300px;
+  border: 4px solid var(--main-white);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.join-about-text p {
+  font-size: 1.5em;
+  font-weight: 800;
+  color: var(--main-white);
+}
+
+.top-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 4px solid var(--main-white);
+  border-left: 4px solid var(--main-white);
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  height: 30%;
+  width: 30%;
+}
+
+.bottom-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 4px solid var(--main-white);
+  border-right: 4px solid var(--main-white);
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  height: 30%;
+  width: 30%;
+}
+
+@media all and (max-width: 800px) {
+  .content {
+    font-size: 12px;
+  }
+  .button {
+    border: 2px solid var(--main-white);
+  }
+  .store .button-wrapper {
+    border-top: 2px solid var(--main-white);
+    border-left: 2px solid var(--main-white);
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    height: 60%;
+    width: 50%;
+  }
+  .store .empty-wrapper {
+    border-bottom: 2px solid var(--main-white);
+    border-right: 2px solid var(--main-white);
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    height: 30%;
+    width: 55%;
+  }
+  .store .button-wrapper .text p {
+    font-size: 3rem;
+  }
+  .join-about {
+    grid-template-columns: 1fr;
+  }
+  .join-about-text {
+    height: 100%;
+    width: 100%;
+    border: none;
+    align-items: unset;
+  }
+  .join-about-text p {
+    margin-top: 5rem;
+  }
+  .join .button {
+    margin-top: 25%;
+    border: 2px solid var(--main-white);
+  }
+  .about .button {
+    margin-top: 25%;
+    border: 2px solid var(--main-white);
+  }
+  .top-corner {
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    width: 20%;
+    border-top: 2px solid var(--main-white);
+    border-left: 2px solid var(--main-white);
+  }
+  .bottom-corner {
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    width: 20%;
+    border-bottom: 2px solid var(--main-white);
+    border-right: 2px solid var(--main-white);
+  }
+}
