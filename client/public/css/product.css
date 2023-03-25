@@ -11,6 +11,9 @@
   position: absolute;
   left: 0;
 }
+.menu-bar .unBounded:hover {
+  cursor: pointer;
+}
 .menu-bar .unBounded i {
   margin-right: 0.5rem;
 }
@@ -106,10 +109,6 @@
     gap: 1rem;
     justify-items: center;
     align-items: unset;
-  }
-
-  .unBounded p {
-    display: none;
   }
 
   .product {

@@ -1,4 +1,6 @@
-import { baseUrl, cartId } from "./init.js";
+import { baseUrl, getCartId } from "./init.js";
+
+const cartId = getCartId();
 
 export async function createOrder(orderId) {
   let customerName;
@@ -39,9 +41,7 @@ export async function createOrder(orderId) {
         document.querySelector("#zipcode").value
       }:United States`,
     }),
-  })
-    .then((res) => res.json())
-    .then((res) => console.log(res));
+  });
 }
 
 export async function sendOrderEmail(orderId) {

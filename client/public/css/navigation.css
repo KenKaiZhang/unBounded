@@ -27,6 +27,7 @@ body {
 }
 
 .navbar {
+  position: relative;
   display: flex;
   width: 100%;
   height: 30%;
@@ -53,10 +54,19 @@ body {
 
 .navbar li:hover {
   cursor: pointer;
-  font-family: "Gotham Black", sans-serif;;
+  font-family: "Gotham Black", sans-serif;
 }
 
 .navbar .active {
-  font-family: "Gotham Black", sans-serif;;
+  font-family: "Gotham Black", sans-serif;
   color: #fffefb;
+}
+
+.navbar #cart {
+  position: absolute;
+  right: 1em;
+  font-size: 0.85em;
+}
+.navbar #cart i:hover {
+  text-decoration: underline;
 }

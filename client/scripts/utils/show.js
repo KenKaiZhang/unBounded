@@ -64,6 +64,8 @@ export async function showBrandName(location) {
   const locationHTML = document.querySelector(location);
   if (request.brand === undefined) {
     locationHTML.innerText = "Products";
+  } else if (request.brand === "home") {
+    locationHTML.innerText = "Store";
   } else {
     fetch(`${baseUrl}/brands/${request.brand}`, {
       method: "GET",

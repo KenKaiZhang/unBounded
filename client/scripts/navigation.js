@@ -1,4 +1,4 @@
-import { goToLink } from "./utils/goto.js";
+import { goToLink, skipToRegister } from "./utils/goto.js";
 
 // Setting up page links for navigating between the four main pages
 document.querySelector("#company-name").onclick = () => goToLink("/");
@@ -12,3 +12,8 @@ document.querySelector("#company-name").onclick = () => goToLink("/");
 const url = window.parent.location.href.split("/");
 const page = url[url.length - 1].replace(".html", "");
 document.querySelector(`.navbar #${page}`).classList.add("active");
+
+// Set navigation to register page
+document
+  .querySelector("#cart")
+  .addEventListener("click", async () => skipToRegister());

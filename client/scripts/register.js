@@ -1,6 +1,7 @@
-import { baseUrl, cartId } from "./utils/init.js";
+import { baseUrl, getCartId } from "./utils/init.js";
 import { goToCheckout } from "./utils/goto.js";
 
+const cartId = getCartId();
 document.querySelector(".continue").addEventListener("click", () => {
   const userName = document.querySelector("#user-name");
   const userEmail = document.querySelector("#user-email");

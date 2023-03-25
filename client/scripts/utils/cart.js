@@ -1,4 +1,7 @@
-import { baseUrl, cartId } from "./init.js";
+import { baseUrl, getCartId } from "./init.js";
+
+const cartId = getCartId();
+
 export async function addToCart(productId, quantity) {
   fetch(`${baseUrl}/carts/${cartId}/addItem`, {
     method: "PATCH",

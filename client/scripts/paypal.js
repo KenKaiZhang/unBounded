@@ -1,7 +1,9 @@
-import { baseUrl, cartId } from "./utils/init.js";
+import { baseUrl, getCartId } from "./utils/init.js";
 import { sendOrderEmail, createOrder } from "./utils/orders.js";
 import { validateFieldsFilled } from "./utils/validate.js";
 import { clearCart } from "./utils/cart.js";
+
+const cartId = getCartId();
 
 function showProcessResults(result = true) {
   document.querySelector(".results").style.display = "flex";
@@ -149,7 +151,7 @@ if (paypal.HostedFields.isEligible()) {
               createOrder(orderId)
                 .then(() => showProcessResults())
                 .then(() => {
-                  sendOrderEmail(orderId);
+                  sendOrderEmail(orderId).then(clearCart());
                 });
             });
         })

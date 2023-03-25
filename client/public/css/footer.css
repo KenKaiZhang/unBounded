@@ -21,6 +21,7 @@ body {
 }
 .slogan p {
   margin: 0;
+  font-size: 0.85em;
 }
 
 .content {
@@ -42,12 +43,16 @@ body {
 .box h2 {
   margin: 0;
   margin-bottom: 1rem;
-  font-size: 1.3em;
-  font-family: "Gotham Black", sans-serif;;
+  font-size: 1.2em;
+  font-family: "Gotham Black", sans-serif;
 }
 .box p {
   margin: 0;
-  font-size: 1em;
+  font-size: 0.8em;
+}
+.box i {
+  margin: 0;
+  font-size: 0.8em;
 }
 
 .nav {
@@ -56,15 +61,15 @@ body {
 .nav li {
   margin: 0.5rem;
 }
-.nav li:hover{
+.nav li:hover {
   cursor: pointer;
   font-family: "Gotham Black", sans-serif;
 }
 
-.follow-us .links{
+.follow-us .links {
   display: flex;
 }
-.follow-us .links i{
+.follow-us .links i {
   margin-right: 1rem;
   font-size: 2em;
   text-decoration: none;
@@ -98,12 +103,8 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 20px #1c1c1c inset !important;
   -webkit-text-fill-color: #fffefb;
 }
-.news-letter
-  input[type="text"][required]:focus
-  + label[placeholder]:before,
-.news-letter
-  input[type="text"][required]:valid
-  + label[placeholder]:before {
+.news-letter input[type="text"][required]:focus + label[placeholder]:before,
+.news-letter input[type="text"][required]:valid + label[placeholder]:before {
   transition-duration: 0.2s;
   transform: scale(0.9, 0.9) translate(-3px, -30px);
 }
@@ -135,7 +136,7 @@ input:-webkit-autofill:active {
 .news-letter button:hover {
   cursor: pointer;
   background-color: #fffefb;
-  font-family: "Gotham Black", sans-serif;;
+  font-family: "Gotham Black", sans-serif;
   color: #000000;
 }
 
@@ -144,10 +145,10 @@ input:-webkit-autofill:active {
     font-size: 12px;
     height: 400px;
   }
-  .content{
+  .content {
     grid-template-columns: 1fr;
     grid-row: auto;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .slogan {
@@ -156,12 +157,9 @@ input:-webkit-autofill:active {
   .box {
     padding: 0;
     border: none;
-    display: grid;
     grid-template-columns: 1fr 2.5fr;
-    gap: 1rem;
-    align-items: center;
+    gap: 0.5rem;
   }
-
   .nav {
     margin: 0;
     display: grid;

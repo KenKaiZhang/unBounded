@@ -1,8 +1,10 @@
-import { baseUrl, cartId } from "./utils/init.js";
+import { baseUrl, getCartId } from "./utils/init.js";
 import { goToBrandOrProducts } from "./utils/goto.js";
 import { showBrandName } from "./utils/show.js";
 import { changeCartQuantity, getCartTotal } from "./utils/cart.js";
 import { validateFieldsFilled } from "./utils/validate.js";
+
+const cartId = getCartId();
 
 function enableSubmit() {
   let enable;

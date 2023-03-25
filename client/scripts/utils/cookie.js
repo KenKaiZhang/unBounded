@@ -22,19 +22,19 @@ export function setCookie(cname, cvalue, exdays) {
 }
 
 export function assignCart() {
-  let customerId = getCookie("customerId");
-  if (customerId == "") {
-    fetch("http://localhost:7222/carts", {
+  let cartId = getCookie("cartId");
+  if (cartId == "") {
+    fetch("https://data.unboundedsw.com/carts", {
       method: "POST",
       headers: {
         Accept: "application/json",
       },
     })
       .then((res) => res.json())
-      .then((customer) => {
-        setCookie("customerId", customer, 7);
-        customerId = getCookie("customerId");
+      .then((cart) => {
+        setCookie("cartId", cart, 7);
+        cartId = getCookie("cartId");
       });
   }
-  return customerId;
+  return cartId;
 }

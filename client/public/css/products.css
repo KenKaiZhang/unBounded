@@ -14,6 +14,9 @@
 .menu-bar .unBounded i {
   margin-right: 0.5rem;
 }
+.menu-bar .unBounded:hover {
+  cursor: pointer;
+}
 .menu-bar .cart {
   position: absolute;
   right: 0;
@@ -103,7 +106,7 @@
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
-.style.active p{
+.style.active p {
   font-family: var(--bold);
 }
 .style p:hover {
@@ -130,7 +133,7 @@
   margin-top: 120px;
   padding: 1rem;
   display: grid;
-  grid-template-columns: 250px 250px 250px 250px;
+  grid-template-columns: 235px 235px 235px 235px;
   grid-auto-rows: 350px;
   gap: 1rem;
 }
@@ -202,6 +205,7 @@
     width: 50%;
   }
   .products {
+    margin-top: 60px;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }

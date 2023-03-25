@@ -57,7 +57,6 @@ sendButton.addEventListener("click", () => {
     }),
   }).then((res) => {
     const msg = res.status == 200 ? "#success" : "#failed";
-    console.log(msg);
     document.querySelector(".email-result").style.display = "block";
     document.querySelector(msg).style.display = "block";
     document.querySelector(".welcome-box").style.opacity = "10%";

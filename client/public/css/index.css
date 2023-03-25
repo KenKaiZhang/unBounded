@@ -8,7 +8,7 @@
 .title p {
   margin: 0;
   color: var(--main-white);
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-family: var(--medium);
   transform: scale(1, 0.9);
 }
@@ -37,7 +37,7 @@
 }
 .button p {
   color: var(--main-white);
-  font-size: 1em;
+  font-size: 0.9em;
 }
 .button:hover {
   cursor: pointer;
@@ -76,7 +76,7 @@
   margin-top: 1rem;
   margin-left: 1rem;
   color: var(--main-white);
-  font-size: 6em;
+  font-size: 4em;
   font-family: var(--bold);
 }
 .store .button-wrapper .button {
@@ -154,7 +154,7 @@
   align-items: center;
 }
 .join-about-text p {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 800;
   color: var(--main-white);
 }
@@ -188,7 +188,7 @@
     font-size: 12px;
   }
   .button {
-    border: 2px solid var(--main-white)
+    border: 2px solid var(--main-white);
   }
   .store .button-wrapper {
     border-top: 2px solid var(--main-white);
@@ -232,12 +232,14 @@
   .top-corner {
     margin-top: 1.5rem;
     margin-left: 1.5rem;
+    width: 20%;
     border-top: 2px solid var(--main-white);
     border-left: 2px solid var(--main-white);
   }
   .bottom-corner {
     margin-bottom: 1.5rem;
     margin-right: 1.5rem;
+    width: 20%;
     border-bottom: 2px solid var(--main-white);
     border-right: 2px solid var(--main-white);
   }

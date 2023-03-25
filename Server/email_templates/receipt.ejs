@@ -1,50 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
-</head>
-<body style="position: relative; font-family:'Gotham Light', sans-serif; height: auto; width: 600px; border: 2px solid #000000; background-color: #fffefb;">
-  <table id="main" style="padding: 1em; border-radius: 4px; width: calc(100% - 2em); margin-right: 0; border-spacing: 0 0.5em;">
-    <tr id="thank-you" style="font-size: 2em">
-      <th style="font-family: 'Gotham Medium', sans-serif;">Thanks for shopping at unBounded!</th>
-    </tr>
-    <tr id="order-id">
-      <th style="font-family: 'Gotham Medium', sans-serif;"> Order: <%= orderId %></th>
-    </tr>
-  </table>
-  <table id="shipping" style="padding: 1em; border-radius: 4px; width: calc(100% - 2em); margin: 1em; text-align: left; background-color: #e8e8e8;">
-    <tr>
-      <th style="font-family: 'Gotham Medium', sans-serif;">Shipping Address:</th>
-    </tr>
-    <tr id="street">
-      <td style="padding-left: 0.5em;"> <%= address[0] %></td>
-    </tr>
-    <tr id="city">
-      <td style="padding-left: 0.5em;"> <%= address[1] %></td>
-    </tr>
-    <tr id="country">
-      <td style="padding-left: 0.5em;"> <%= address[2] %></td>
-    </tr>
-  </table>
-  <table id="cart" style="padding: 1em; border-radius: 4px; width: calc(100% - 2em); margin: 1em; text-align: left; background-color: #e8e8e8; border-spacing: 0 0.5em;">
-    <tr>
-      <th style="font-family: 'Gotham Medium', sans-serif;">Cart:</th>
-    </tr>
-    <% items.map((item) => { %>
-      <tr style="padding-left: 0.5em; background-color: #fffefb; border-radius: 4px;">
-        <td><%= JSON.stringify(item.productName) %></td>
-        <td>x<%= JSON.stringify(item.quantity) %></td>
-        <td>$<%= JSON.stringify(item.productTotal) %></td>
+<html lang="en" style="display: flex; justify-content: center">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
+  </head>
+  <body
+    style="
+      position: relative;
+      font-family: 'Gotham Light', sans-serif;
+      height: auto;
+      min-width: 360px;
+      max-width: 600px;
+      border: 2px solid #000000;
+      background-color: #fffefb;
+    "
+  >
+    <table
+      id="main"
+      style="
+        margin-left: 1em;
+        padding: 1em;
+        border-radius: 4px;
+        width: calc(100% - 2em);
+        border-spacing: 0 0.5em;
+      "
+    >
+      <tr id="thank-you" style="font-size: 2em">
+        <th style="font-family: 'Gotham Medium', sans-serif">
+          Thanks for shopping at unBounded!
+        </th>
       </tr>
-    <% }) %>
-  </table>
-  <table id="total" style="padding: 1em; border-radius: 4px; width: calc(100% - 2em); text-align: right;">
-    <tr>
-      <td><b style="font-family: 'Gotham Medium', sans-serif;">Total:</b> $<%= subtotal %></td>
-    </tr>
-  </table>
-</body>
+      <tr id="order-id">
+        <th style="font-family: 'Gotham Medium', sans-serif">
+          Order: <%= orderId %>
+        </th>
+      </tr>
+    </table>
+    <table
+      id="shipping"
+      style="
+        padding: 1em;
+        border-radius: 4px;
+        width: calc(100% - 2em);
+        margin: 1em;
+        text-align: left;
+        background-color: #e8e8e8;
+      "
+    >
+      <tr>
+        <th style="font-family: 'Gotham Medium', sans-serif">
+          Shipping Address:
+        </th>
+      </tr>
+      <tr id="street">
+        <td style="padding-left: 0.5em"><%= address[0] %></td>
+      </tr>
+      <tr id="city">
+        <td style="padding-left: 0.5em"><%= address[1] %></td>
+      </tr>
+      <tr id="country">
+        <td style="padding-left: 0.5em"><%= address[2] %></td>
+      </tr>
+    </table>
+    <table
+      id="cart"
+      style="
+        padding: 1em;
+        border-radius: 4px;
+        width: calc(100% - 2em);
+        margin: 1em;
+        text-align: left;
+        background-color: #e8e8e8;
+        border-spacing: 0 1em;
+      "
+    >
+      <tr>
+        <th style="font-family: 'Gotham Medium', sans-serif">Cart:</th>
+      </tr>
+      <% items.map((item) => { %>
+      <tr style="background-color: #fffefb; height: 4em; border-radius: 4px">
+        <td style="padding-left: 0.5em">
+          <%= JSON.stringify(item.productName) %>
+        </td>
+        <td style="padding-left: 0.5em">
+          x<%= JSON.stringify(item.quantity) %>
+        </td>
+        <td style="padding-left: 0.5em">
+          $<%= JSON.stringify(item.productTotal) %>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+    <table
+      id="total"
+      style="
+        padding: 1em;
+        border-radius: 4px;
+        width: calc(100% - 2em);
+        text-align: right;
+      "
+    >
+      <tr>
+        <td>
+          <b style="font-family: 'Gotham Medium', sans-serif">Total:</b> $<%=
+          subtotal %>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
